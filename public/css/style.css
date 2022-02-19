@@ -1,0 +1,46 @@
+.toggle-bg:after {
+    border-color: #e63946;
+    background: #e63946;
+}
+input:checked + .toggle-bg:after {
+    border-color: #e63946;
+    background: #e63946;
+}
+
+input:checked + .toggle-bg {
+    background: #ffffff;
+    border-color: #ffffff;
+    border: 1px solid#E63946;
+}
+
+/* ************* */
+/* animation css */
+/* ************* */
+.rotate360 {
+    animation-name: rotate360;
+    animation-duration: 0.5s;
+}
+@keyframes rotate360 {
+    0% {
+        transform: rotate(-360deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+.slideup {
+    animation-name: slideup;
+    animation-duration: 1s;
+}
+@keyframes slideup {
+    0% {
+        transform: rotate(-360deg);
+        margin-bottom: 0px;
+        opacity: 0;
+    }
+    100% {
+        transform: rotate(0deg);
+        margin-bottom: 64px;
+        opacity: 1;
+    }
+}

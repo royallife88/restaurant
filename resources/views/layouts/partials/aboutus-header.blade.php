@@ -1,0 +1,31 @@
+<div class="w-full flex flex-row bg-blend-overlay bg-gray-600 bg-no-repeat bg-center bg-cover text-center items-center"
+    style="height: 200px; background-image: url('{{ asset('uploads/' . session('breadcrumb_background_image')) }}')">
+    <div class="w-full">
+        <div class="flex flex-row">
+            <div class="flex-3 text-white text-4xl font-bold text-left">
+                @include('layouts.partials.language_dropdown')
+            </div>
+            <div class="flex-1 mt-8 text-center">
+                <p class="font-bold text-4xl text-white">@lang('lang.about_us')</p>
+            </div>
+            <div class="flex-3">
+                <a href="https://wa.me/{{ App\Models\System::getProperty('whatsapp') }}">
+                    <img src="{{ asset('images/chat-icon.png') }}" alt="logo" class="m-auto w-10 h-10">
+                </a>
+            </div>
+        </div>
+
+        <div class="container mx-auto mt-16">
+            <div class="flex justify-end w-full">
+                <a class="text-xl text-white font-semibold px-2"
+                    href="{{ action('HomeController@index') }}">@lang('lang.home')</a> <span
+                    class="text-xl text-white font-semibold px-1">-</span>
+                @if (request()->segment(2) == 'about-us')
+                    <a class="text-xl text-white font-semibold px-2"
+                        href="{{ action('AboutUsController@index') }}">@lang('lang.about_us')</a>
+                @endif
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -20,7 +20,6 @@ $(document).ready(function () {
     //         next: "fa fa-angle-right",
     //     },
     // });
-
     // $("input[name='start_date']").datepicker({
     //     language: __language,
     //     format: "yyyy-mm-dd",
@@ -33,7 +32,6 @@ $(document).ready(function () {
     // });
     // $("input[name='start_date']").attr("autocomplete", "off");
     // $("input[name='end_date']").attr("autocomplete", "off");
-
     // $(".datepicker").datepicker({
     //     language: __language,
     //     todayHighlight: true,
@@ -219,61 +217,61 @@ var language = $("#__language").val();
 //     );
 // }
 
-// if (language == "en") {
-//     dt_lang_url = base_path + "/js/datatables_lang/en.json";
-// } else if (language == "fr") {
-//     dt_lang_url = base_path + "/js/datatables_lang/fr.json";
-// } else if (language == "ar") {
-//     dt_lang_url = base_path + "/js/datatables_lang/ar.json";
-// } else if (language == "hi") {
-//     dt_lang_url = base_path + "/js/datatables_lang/hi.json";
-// } else if (language == "pr") {
-//     dt_lang_url = base_path + "/js/datatables_lang/pr.json";
-// } else if (language == "ur") {
-//     dt_lang_url = base_path + "/js/datatables_lang/ur.json";
-// } else if (language == "tr") {
-//     dt_lang_url = base_path + "/js/datatables_lang/tr.json";
-// } else if (language == "du") {
-//     dt_lang_url = base_path + "/js/datatables_lang/du.json";
-// } else {
-//     dt_lang_url = base_path + "/js/datatables_lang/en.json";
-// }
-// var buttons = [
-//     {
-//         extend: "print",
-//         exportOptions: {
-//             columns: ":visible:not(.notexport)",
-//         },
-//     },
-//     {
-//         extend: "excel",
-//         exportOptions: {
-//             columns: ":visible:not(.notexport)",
-//         },
-//     },
-//     {
-//         extend: "csvHtml5",
-//         exportOptions: {
-//             columns: ":visible:not(.notexport)",
-//         },
-//     },
-//     {
-//         extend: "pdfHtml5",
-//         exportOptions: {
-//             columns: ":visible:not(.notexport)",
-//         },
-//     },
-//     {
-//         extend: "copyHtml5",
-//         exportOptions: {
-//             columns: ":visible:not(.notexport)",
-//         },
-//     },
-//     {
-//         extend: "colvis",
-//         columns: ":gt(0)",
-//     },
-// ];
+if (language == "en") {
+    dt_lang_url = base_path + "/js/datatables_lang/en.json";
+} else if (language == "fr") {
+    dt_lang_url = base_path + "/js/datatables_lang/fr.json";
+} else if (language == "ar") {
+    dt_lang_url = base_path + "/js/datatables_lang/ar.json";
+} else if (language == "hi") {
+    dt_lang_url = base_path + "/js/datatables_lang/hi.json";
+} else if (language == "pr") {
+    dt_lang_url = base_path + "/js/datatables_lang/pr.json";
+} else if (language == "ur") {
+    dt_lang_url = base_path + "/js/datatables_lang/ur.json";
+} else if (language == "tr") {
+    dt_lang_url = base_path + "/js/datatables_lang/tr.json";
+} else if (language == "du") {
+    dt_lang_url = base_path + "/js/datatables_lang/du.json";
+} else {
+    dt_lang_url = base_path + "/js/datatables_lang/en.json";
+}
+var buttons = [
+    {
+        extend: "print",
+        exportOptions: {
+            columns: ":visible:not(.notexport)",
+        },
+    },
+    {
+        extend: "excel",
+        exportOptions: {
+            columns: ":visible:not(.notexport)",
+        },
+    },
+    {
+        extend: "csvHtml5",
+        exportOptions: {
+            columns: ":visible:not(.notexport)",
+        },
+    },
+    {
+        extend: "pdfHtml5",
+        exportOptions: {
+            columns: ":visible:not(.notexport)",
+        },
+    },
+    {
+        extend: "copyHtml5",
+        exportOptions: {
+            columns: ":visible:not(.notexport)",
+        },
+    },
+    {
+        extend: "colvis",
+        columns: ":gt(0)",
+    },
+];
 // var datatable_params = {
 //     lengthChange: true,
 //     paging: true,
@@ -443,3 +441,8 @@ $(document).on("change", "#sku", function () {
         },
     });
 });
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+    $("html").animate({ scrollTop: 0 }, "slow");
+}

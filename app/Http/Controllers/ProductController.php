@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Offer;
+use App\Models\Product;
+use App\Models\ProductClass;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -11,11 +14,13 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getProductsByClass($category_id)
+    public function getProductListByCategory($category_id)
     {
-        $products = [];
+        $category = ProductClass::find($category_id);
+        $products = Product::where('product_class_id', $category_id)->where('active', 1)->get();
 
         return view('product.index')->with(compact(
+            'category',
             'products'
         ));
     }
@@ -26,6 +31,7 @@ class ProductController extends Controller
      */
     public function index()
     {
+        //
     }
 
     /**
@@ -57,7 +63,15 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $offer = Offer::whereDate('start_date', '<=', date('Y-m-d'))->whereDate('end_date', '>=', date('Y-m-d'))->whereJsonContains('product_ids', (string) $id)->where('status', 1)->first();
+        if (!empty($offer)) {
+            $product->discount = $offer->discount_value;
+        }
+
+        return view('product.show')->with(compact(
+            'product'
+        ));
     }
 
     /**
@@ -92,5 +106,28 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getPromotionProducts()
+    {
+
+        $offers = Offer::whereDate('start_date', '<=', date('Y-m-d'))->whereDate('end_date', '>=', date('Y-m-d'))->where('status', 1)->get();
+        $i = 0;
+        $offers_array = [];
+        foreach ($offers as $offer) {
+            foreach ($offer->products as $product) {
+                $offers_array[$i]['product_id'] = $product->id;
+                $offers_array[$i]['image'] = $product->getFirstMediaUrl('product');
+                $offers_array[$i]['product_name'] = $product->name;
+                $offers_array[$i]['product_details'] = $product->product_details;
+                $offers_array[$i]['sell_price'] =  $product->sell_price;
+                $offers_array[$i]['discount_price'] =  $product->sell_price - $offer->discount_value;
+                $i++;
+            }
+        }
+
+        return view('product.promotions')->with(compact(
+            'offers_array'
+        ));
     }
 }

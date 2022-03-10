@@ -1,0 +1,254 @@
+<?php
+
+namespace App\Console\Commands;
+
+use App\Models\Product;
+use App\Models\ProductClass;
+use App\Models\Size;
+use App\Models\Variation;
+use App\Utils\ProductUtil;
+use App\Utils\Util;
+use Carbon\Carbon;
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Http;
+
+class InitialPosDataSync extends Command
+{
+    /**
+     * All Utils instance.
+     *
+     */
+    protected $commonUtil;
+    protected $productUtil;
+
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'restaurant:initialPosDataSync';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Initial Pos Data Sync';
+
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct(Util $commonUtil, ProductUtil $productUtil)
+    {
+        $this->commonUtil = $commonUtil;
+        $this->productUtil = $productUtil;
+        parent::__construct();
+    }
+
+    /**
+     * Execute the console command.
+     *
+     * @return int
+     */
+    public function handle()
+    {
+        $ENABLE_POS_SYNC = env('ENABLE_POS_SYNC', false);
+        $POS_SYSTEM_URL = env('POS_SYSTEM_URL', null);
+        $POS_ACCESS_TOKEN = env('POS_ACCESS_TOKEN', null);
+
+
+        if ($ENABLE_POS_SYNC == true && !empty($POS_SYSTEM_URL) && !empty($POS_ACCESS_TOKEN)) {
+
+
+            // get sizes
+            $response_size = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $POS_ACCESS_TOKEN,
+            ])->get($POS_SYSTEM_URL . '/api/size')->json();
+
+
+            if ($response_size['success']) {
+                $sizes = $response_size['data'];
+                $keep_sizes = [];
+                foreach ($sizes as $size) {
+                    $keep_sizes[] = $size['id'];
+                    $size_exist = Size::where('pos_model_id', $size['id'])->first();
+                    if (empty($size_exist)) {
+                        $size_data = [
+                            'name' => $size['name'],
+                            'size_code' => $size['size_code'],
+                            'pos_model_id' => $size['id'],
+                            'created_at' => !empty($size['created_at']) ? $size['created_at'] : Carbon::now(),
+                            'updated_at' => !empty($size['updated_at']) ? $size['updated_at'] : Carbon::now(),
+                        ];
+                        Size::create($size_data);
+                    } else {
+                        $size_data = [
+                            'name' => $size['name'],
+                            'size_code' => $size['size_code'],
+                            'pos_model_id' => $size['id'],
+                            'updated_at' => empty($size['updated_at']) ? $size['updated_at'] : Carbon::now(),
+                        ];
+                        $size_exist->update($size_data);
+                    }
+                }
+                Size::whereNotIn('pos_model_id', $keep_sizes)->delete();
+            }
+
+
+            // get product classes
+            $response_pc = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $POS_ACCESS_TOKEN,
+            ])->get($POS_SYSTEM_URL . '/api/product-class')->json();
+
+
+            if ($response_pc['success']) {
+                $i = 1;
+                $product_classes = $response_pc['data'];
+                $keep_product_classes = [];
+                foreach ($product_classes as $product_class) {
+                    $keep_product_classes[] = $product_class['id'];
+                    $pc_exist = ProductClass::where('pos_model_id', $product_class['id'])->exists();
+                    if (empty($pc_exist)) {
+                        $pc_data = [
+                            'name' => $product_class['name'],
+                            'description' => $product_class['description'],
+                            'status' => 1,
+                            'sort' => $i,
+                            'pos_model_id' => $product_class['id'],
+                            'created_at' => !empty($product_class['created_at']) ? $product_class['created_at'] : Carbon::now(),
+                            'updated_at' => empty($product_class['updated_at']) ? $product_class['updated_at'] : Carbon::now(),
+                        ];
+                        $pc = ProductClass::create($pc_data);
+                        if (!empty($product_class['image'])) {
+                            $pc->addMediaFromUrl($product_class['image'])->toMediaCollection('product_class');
+                        }
+                    } else {
+                        $pc_data = [
+                            'name' => $product_class['name'],
+                            'description' => $product_class['description'],
+                            'status' => 1,
+                            'pos_model_id' => $product_class['id'],
+                            'updated_at' => empty($product_class['updated_at']) ? $product_class['updated_at'] : Carbon::now(),
+                        ];
+                        $pc = ProductClass::where('pos_model_id', $product_class['id'])->first();
+                        $pc->update($pc_data);
+                        if (!empty($product_class['image'])) {
+                            $pc->clearMediaCollection('product_class');
+                            $pc->addMediaFromUrl($product_class['image'])->toMediaCollection('product_class');
+                        }
+                    }
+
+                    $i++;
+                }
+
+                ProductClass::whereNotIn('pos_model_id', $keep_product_classes)->delete();
+            }
+
+
+            //get products
+            $response_p = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $POS_ACCESS_TOKEN,
+            ])->get($POS_SYSTEM_URL . '/api/product')->json();
+
+
+            if ($response_p['success']) {
+                $products = $response_p['data'];
+                $keep_products = [];
+                foreach ($products as $product) {
+                    $keep_products[] = $product['id'];
+                    $pc_exist = Product::where('pos_model_id', $product['id'])->exists();
+                    if (empty($pc_exist)) {
+                        $product_class = ProductClass::where('pos_model_id', $product['product_class_id'])->first();
+
+                        $p_data = [
+                            'name' => $product['name'],
+                            'product_class_id' => $product_class->id ?? null,
+                            'sku' => $product['sku'],
+                            'multiple_sizes' => $product['multiple_sizes'],
+                            'is_service' => $product['is_service'],
+                            'product_details' => $product['product_details'],
+                            'purchase_price' => $product['purchase_price'],
+                            'sell_price' => $product['sell_price'],
+                            'discount_type' => $product['discount_type'],
+                            'discount' => $product['discount'],
+                            'discount_start_date' => $product['discount_start_date'],
+                            'discount_end_date' => $product['discount_end_date'],
+                            'type' => $product['type'],
+                            'active' => $product['active'],
+                            'pos_model_id' => $product['id'],
+                            'created_by' => 1,
+                            'created_at' => !empty($product['created_at']) ? $product['created_at'] : Carbon::now(),
+                            'updated_at' => empty($product['updated_at']) ? $product['updated_at'] : Carbon::now(),
+                        ];
+                        $p = Product::create($p_data);
+                        $variation_formated = [];
+                        $variations = $product['variations'];
+                        foreach ($variations as $v) {
+                            $v['product_id'] = $p->id;
+                            if (!empty($v['size_id'])) {
+                                $size = Size::where('pos_model_id', $v['size_id'])->first();
+                                $v['size_id'] = $size->id ?? null;
+                            }
+                            $v['pos_model_id'] = $v['id'];
+                            unset($v['id']);
+                            $variation_formated[] = $v;
+                        }
+
+                        $this->productUtil->createOrUpdateVariations($p, $variation_formated);
+
+                        if (!empty($product['image'])) {
+                            $p->addMediaFromUrl($product['image'])->toMediaCollection('product');
+                        }
+                    } else {
+                        $product_class = ProductClass::where('pos_model_id', $product['product_class_id'])->first();
+                        $p_data = [
+                            'name' => $product['name'],
+                            'product_class_id' => $product_class->id ?? null,
+                            'sku' => $product['sku'],
+                            'multiple_sizes' => $product['multiple_sizes'],
+                            'is_service' => $product['is_service'],
+                            'product_details' => $product['product_details'],
+                            'purchase_price' => $product['purchase_price'],
+                            'sell_price' => $product['sell_price'],
+                            'discount_type' => $product['discount_type'],
+                            'discount' => $product['discount'],
+                            'discount_start_date' => $product['discount_start_date'],
+                            'discount_end_date' => $product['discount_end_date'],
+                            'type' => $product['type'],
+                            'active' => $product['active'],
+                            'pos_model_id' => $product['id'],
+                            'created_by' => 1,
+                            'updated_at' => empty($product['updated_at']) ? $product['updated_at'] : Carbon::now(),
+                        ];
+                        $p = Product::where('pos_model_id', $product['id'])->first();
+                        $p->update($p_data);
+
+                        $variation_formated = [];
+                        $variations = $product['variations'];
+                        foreach ($variations as $v) {
+                            $v['product_id'] = $p->id;
+                            if (!empty($v['size_id'])) {
+                                $size = Size::where('pos_model_id', $v['size_id'])->first();
+                                $v['size_id'] = $size->id ?? null;
+                            }
+                            $v['pos_model_id'] = $v['id'];
+                            unset($v['id']);
+                            $variation_formated[] = $v;
+                        }
+
+                        $this->productUtil->createOrUpdateVariations($p, $variation_formated);
+
+                        if (!empty($product['image'])) {
+                            $p->clearMediaCollection('product');
+                            $p->addMediaFromUrl($product['image'])->toMediaCollection('product');
+                        }
+                    }
+                }
+                Product::whereNotIn('pos_model_id', $keep_products)->delete();
+                Variation::whereNotIn('product_id', $keep_products)->delete();
+            }
+        }
+    }
+}

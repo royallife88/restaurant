@@ -7,21 +7,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, InteractsWithMedia, HasRoles;
 
     /**
-     * The attributes that are mass assignable.
+     * The attributes that aren't mass assignable.
      *
-     * @var array<int, string>
+     * @var array
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $guarded = ['id'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -41,4 +40,45 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public static function modulePermissionArray()
+    {
+        return [
+            'category' => __('lang.category'),
+            'product' => __('lang.product'),
+            'offer' => __('lang.offer'),
+            'order' => __('lang.order'),
+            'messages' => __('lang.messages'),
+            'sms' => __('lang.sms'),
+
+            'settings' => __('lang.settings'),
+        ];
+    }
+    public static function subModulePermissionArray()
+    {
+        return [
+            'settings' => [
+                'size' => __('lang.size'),
+                'user' => __('lang.user'),
+                'system_setting' => __('lang.system_setting'),
+            ],
+
+        ];
+    }
+
+    public function adminlte_image()
+    {
+        return !empty($this->getFirstMediaUrl('profile')) ? $this->getFirstMediaUrl('profile') : asset('/uploads/' . session('logo'));
+    }
+
+    public function adminlte_desc()
+    {
+        return 'That\'s a nice guy';
+    }
+
+    public function adminlte_profile_url()
+    {
+        return 'admin/user/profile';
+    }
 }

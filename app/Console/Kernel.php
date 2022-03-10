@@ -15,7 +15,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('restaurant:sendOrderToPosSystem')->everyMinute();
+        $schedule->command('restaurant:initialPosDataSync')->everyMinute();
+        $schedule->command('restaurant:syncDataWithPosCommand')->everyMinute();
+
+        $schedule->command('queue:work')
+            ->everyMinute()->withoutOverlapping();
     }
 
     /**
@@ -25,7 +30,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

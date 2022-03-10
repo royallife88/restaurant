@@ -3,7 +3,7 @@ $(document).ready(function () {
     owl_erp.owlCarousel({
         loop: true,
         dots: false,
-        items: 3,
+        items: 4,
     });
 
     $(".owl-next-custom-erp").click(function () {
@@ -11,22 +11,6 @@ $(document).ready(function () {
     });
     $(".owl-prev-custom-erp").click(function () {
         owl_erp.trigger("prev.owl.carousel");
-    });
-
-    var owl_testimonial = $(".owl-carousel-testimonial");
-    owl_testimonial.owlCarousel({
-        loop: true,
-        dots: true,
-        items: 1,
-        autoplay: true,
-        // dotsContainer: '.custom-owl-dots .custom-owl-dot'
-    });
-
-    $(".owl-next-custom-testimonial").click(function () {
-        owl_testimonial.trigger("next.owl.carousel");
-    });
-    $(".owl-prev-custom-testimonial").click(function () {
-        owl_testimonial.trigger("prev.owl.carousel");
     });
 });
 

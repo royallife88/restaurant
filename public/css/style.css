@@ -18,7 +18,7 @@ input:checked + .toggle-bg {
 /* ************* */
 .rotate360 {
     animation-name: rotate360;
-    animation-duration: 0.5s;
+    animation-duration: 0.3s;
 }
 @keyframes rotate360 {
     0% {
@@ -30,7 +30,7 @@ input:checked + .toggle-bg {
 }
 .slideup {
     animation-name: slideup;
-    animation-duration: 1s;
+    animation-duration: 0.5s;
 }
 @keyframes slideup {
     0% {
@@ -43,4 +43,25 @@ input:checked + .toggle-bg {
         margin-bottom: 64px;
         opacity: 1;
     }
+}
+
+.strikethrough {
+    position: relative;
+}
+.strikethrough:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 50%;
+    right: 0;
+    border-top: 1px solid red;
+    -webkit-transform: rotate(10deg);
+    -moz-transform: rotate(10deg);
+    -ms-transform: rotate(10deg);
+    -o-transform: rotate(10deg);
+    transform: rotate(10deg);
+}
+[type="checkbox"],
+[type="radio"] {
+    color: #e63946;
 }

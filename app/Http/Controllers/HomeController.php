@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Offer;
+use App\Models\ProductClass;
+use App\Models\System;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,7 +16,32 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home.index');
+        $homepage_category_carousel = System::getProperty('homepage_category_carousel');
+        $homepage_category_count = System::getProperty('homepage_category_count') ?? 8;
+        $categories = ProductClass::orderBy('sort', 'asc')->where('status', 1)->where('name', '!=', 'Extras')->limit($homepage_category_count)->get();
+
+        $offers_array = [];
+
+        $offers = Offer::whereDate('start_date', '<=', date('Y-m-d'))->whereDate('end_date', '>=', date('Y-m-d'))->where('status', 1)->get();
+        $i = 0;
+        foreach ($offers as $offer) {
+            foreach ($offer->products as $product) {
+                $offers_array[$i]['product_id'] = $product->id;
+                $offers_array[$i]['image'] = $product->getFirstMediaUrl('product');
+                $offers_array[$i]['product_name'] = $product->name;
+                $offers_array[$i]['product_details'] = $product->product_details;
+                $offers_array[$i]['sell_price'] =  $product->sell_price;
+                $offers_array[$i]['discount_price'] =  $product->sell_price - $offer->discount_value;
+                $i++;
+                if ($i == 4) break;
+            }
+        }
+
+        return view('home.index')->with(compact(
+            'categories',
+            'offers_array',
+            'homepage_category_carousel',
+        ));
     }
 
     /**

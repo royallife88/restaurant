@@ -7,6 +7,7 @@ $moment_time_format = 'hh:mm A';
 </script>
 <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
 <script src="{{asset('js/js.cookie.min.js')}}"></script>
+<script src="{{asset('js/sweetalert2.min.js')}}"></script>
 <script src="{{asset('js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('js/accounting.min.js')}}"></script>
 <script src="{{asset('js/common.js')}}"></script>

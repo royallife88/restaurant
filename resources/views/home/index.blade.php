@@ -47,9 +47,9 @@
             @php
                 $chunk_count = 1;
             @endphp
-            @foreach ($categories->chunk(4) as $categoryChunk)
+            {{-- @foreach ($categories->chunk(4) as $categoryChunk) --}}
                 <div class="flex flex-row flex-wrap justify-center">
-                    @foreach ($categoryChunk as $category)
+                    @foreach ($categories as $category)
                         @php
                             $border_round = '';
                             if ($loop->iteration == 1) {
@@ -71,10 +71,10 @@
                         ])
                     @endforeach
                 </div>
-                @php
+                {{-- @php
                     $chunk_count++;
                 @endphp
-            @endforeach
+            @endforeach --}}
         @endif
     </div>
     <div class="container mx-auto">

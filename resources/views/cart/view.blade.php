@@ -200,7 +200,7 @@
                                             </div>
                                         </div>
                                         <div class="flex-1 text-base text-right font-semibold">
-                                            {{ @num_format($variation->default_sell_price) }}<span
+                                            {{ @num_format($variation->default_sell_price - $item->discount_value) }}<span
                                                 class="font-bold">
                                                 TL</span>
                                         </div>
@@ -226,7 +226,7 @@
                             </div>
                         </div>
                         <div class="flex-1 text-base text-right font-semibold">
-                            {{ @num_format($extra->sell_price) }}<span class="font-bold"> TL</span>
+                            {{ @num_format($extra->sell_price - $extra->discount_value) }}<span class="font-bold"> TL</span>
                         </div>
                     </div>
                 @endforeach

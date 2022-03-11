@@ -166,46 +166,46 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // try {
-        $data = $request->except('_token', 'image');
-        $data['sku'] = $this->productUtil->generateProductSku($data['name']);
-        $data['discount_start_date'] = !empty($data['discount_start_date']) ? $this->commonUtil->uf_date($data['discount_start_date']) : null;
-        $data['discount_end_date'] = !empty($data['discount_end_date']) ? $this->commonUtil->uf_date($data['discount_end_date']) : null;
-        $data['active'] = !empty($data['active']) ? 1 : 0;
-        $data['created_by'] = auth()->user()->id;
-        $data['type'] = !empty($request->this_product_have_variant) ? 'variable' : 'single';
+        try {
+            $data = $request->except('_token', 'image');
+            $data['sku'] = $this->productUtil->generateProductSku($data['name']);
+            $data['discount_start_date'] = !empty($data['discount_start_date']) ? $this->commonUtil->uf_date($data['discount_start_date']) : null;
+            $data['discount_end_date'] = !empty($data['discount_end_date']) ? $this->commonUtil->uf_date($data['discount_end_date']) : null;
+            $data['active'] = !empty($data['active']) ? 1 : 0;
+            $data['created_by'] = auth()->user()->id;
+            $data['type'] = !empty($request->this_product_have_variant) ? 'variable' : 'single';
 
-        DB::beginTransaction();
-        $product = Product::create($data);
+            DB::beginTransaction();
+            $product = Product::create($data);
 
-        $this->productUtil->createOrUpdateVariations($product, $request->variations);
+            $this->productUtil->createOrUpdateVariations($product, $request->variations);
 
-        if ($request->has('images')) {
-            foreach ($request->file('images', []) as $key => $image) {
-                $product->addMedia($image)->toMediaCollection('product');
+            if ($request->has('images')) {
+                foreach ($request->file('images', []) as $key => $image) {
+                    $product->addMedia($image)->toMediaCollection('product');
+                }
+                $data['image'] = $product->getFirstMediaUrl('product');
             }
-            $data['image'] = $product->getFirstMediaUrl('product');
+
+            $data['variations'] = $product->variations->toArray();
+            $product_class = ProductClass::find($data['product_class_id']);
+            $data['product_class_id'] = $product_class->pos_model_id;
+
+            $this->commonUtil->addSyncDataWithPos('Product', $product, $data, 'POST', 'product');
+
+            DB::commit();
+
+            $output = [
+                'success' => true,
+                'msg' => __('lang.success')
+            ];
+        } catch (\Exception $e) {
+            Log::emergency('File: ' . $e->getFile() . 'Line: ' . $e->getLine() . 'Message: ' . $e->getMessage());
+            $output = [
+                'success' => false,
+                'msg' => __('lang.something_went_wrong')
+            ];
         }
-
-        $data['variations'] = $product->variations->toArray();
-        $product_class = ProductClass::find($data['product_class_id']);
-        $data['product_class_id'] = $product_class->pos_model_id;
-
-        $this->commonUtil->addSyncDataWithPos('Product', $product, $data, 'POST', 'product');
-
-        DB::commit();
-
-        $output = [
-            'success' => true,
-            'msg' => __('lang.success')
-        ];
-        // } catch (\Exception $e) {
-        //     Log::emergency('File: ' . $e->getFile() . 'Line: ' . $e->getLine() . 'Message: ' . $e->getMessage());
-        //     $output = [
-        //         'success' => false,
-        //         'msg' => __('lang.something_went_wrong')
-        //     ];
-        // }
 
         return redirect()->back()->with('status', $output);
     }
@@ -218,7 +218,11 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+
+        return view('admin.product.show')->with(compact(
+            'product'
+        ));
     }
 
     /**

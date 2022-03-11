@@ -25,7 +25,7 @@
                 <label for="">@lang('lang.phone_number'): </label> {{ $order->phone_number }}
             </div>
             <div class="col-md-4">
-                <label for="">@lang('lang.notes'): </label> {{ $order->notes }}
+                <label for="">@lang('lang.notes'): </label> {{ $order->sales_note }}
             </div>
             <div class="col-md-4">
                 <label for="">@lang('lang.delivery_type'): </label> {{ __('lang.' . $order->delivery_type) }}

@@ -105,16 +105,6 @@ class OrderController extends Controller
                                 '<a data-href="' . action('Admin\OrderController@edit', $row->id) . '" data-container=".view_modal" class="btn btn-modal btn-xs btn-danger"
                                 ><i class="fa fa-edit"></i> ' . __('lang.edit') . '</a>';
                         }
-
-                        // if (auth()->user()->can('order.delete')) {
-                        //     $html .=
-                        //         '<li>
-                        //     <a data-href="' . action('Admin\OrderController@destroy', $row->id) . '"
-                        //         data-check_password="' . action('Admin\UserController@checkPassword', Auth::user()->id) . '"
-                        //         class="btn text-red delete_item"><i class="fa fa-trash"></i>
-                        //         ' . __('lang.delete') . '</a>
-                        // </li>';
-                        // }
                         return $html;
                     }
                 )

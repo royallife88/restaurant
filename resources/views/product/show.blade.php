@@ -4,26 +4,26 @@
     @include('layouts.partials.product-header')
 
     <div class="container mx-auto mt-14">
-        <div class="flex flex-row flex-wrap h-96">
-            <div class="flex-1 w-full px-16">
+        <div class="flex flex-row flex-wrap h-96 min-h-full">
+            <div class="flex-1 xs:w-full lg:w-1/2 px-16">
                 <div class="flex flex-row justify-center items-center">
-                    <div class="w-16">
+                    <div class="w-32">
                         <div class="owl-nav">
                             <div class="owl-next-custom-erp text-center text-gray-600 text-4xl">
                                 <i class="fa fa-angle-left"></i>
                             </div>
                         </div>
                     </div>
-                    <div class="w-3/5">
+                    <div class="w-full">
                         <div class="owl-carousel owl-carousel-product owl-theme "
-                            style="width: 400px; border:1px solid grey">
+                            style=" border:1px solid grey">
                             @foreach ($product->getMedia('product') as $image)
                                 <img src="@if (!empty($image->getUrl())) {{ $image->getUrl() }}@else{{ asset('/uploads/' . session('logo')) }} @endif"
-                                    class="" alt="" style="width: 400px; height: 300px;">
+                                    class="md:h-72 sm:h-64 xs:h-48" alt="" style="">
                             @endforeach
                         </div>
                     </div>
-                    <div class="w-16">
+                    <div class="w-32">
                         <div class="owl-nav">
                             <div class="owl-next-custom-erp text-center  text-gray-600 text-4xl">
                                 <i class="fa fa-angle-right text-grey-500"></i>
@@ -34,7 +34,7 @@
 
 
             </div>
-            <div class="flex-1 w-full px-16">
+            <div class="flex-1 xs:w-full lg:w-1/2 px-16">
                 <div class="flex flex-col">
                     <div class="flex-1">
                         <h1 class="text-2xl font-bold">{{ $product->name }}</h1>
@@ -106,7 +106,8 @@
                 dots: false,
                 items: 1,
                 singleItem: true,
-                autoHeight: false
+                autoHeight: false,
+                // responsive: true
             });
 
             $(".owl-next-custom-erp").click(function() {

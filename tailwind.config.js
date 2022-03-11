@@ -55,6 +55,10 @@ module.exports = {
                 animation: ["hover", "group-hover"],
             },
         },
+        screens: {
+            xs: "475px",
+            ...defaultTheme.screens,
+        },
     },
 
     plugins: [require("@tailwindcss/forms"), require("flowbite/plugin")],

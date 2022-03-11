@@ -8,7 +8,7 @@ if (!empty($user_id)) {
     $cart_count = $cart_collection->count();
 }
 @endphp
-<div class="flex pb-8">
+<div class="flex pb-8 mt-32">
     <div class="flex-1">
     </div>
     <div class="flex-1 text-center mt-6">

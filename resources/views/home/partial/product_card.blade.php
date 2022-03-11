@@ -1,6 +1,6 @@
-<a data-href="{{action('ProductController@show', $product->id)}}" class="product_card text-center w-1/4 xl:p-16 lg:p-8 md:p-2 sm:p-1">
+<a data-href="{{action('ProductController@show', $product->id)}}" class="product_card text-center w-1/4 xl:p-16 lg:p-8 xs:p-2 sm:p-1">
     <div class="flex-col mx-auto">
-        <div class="relative overflow-hidden w-full rounded-lg md:h-72 sm:h-48 product_card">
+        <div class="relative overflow-hidden w-full rounded-lg lg:h-72 md:h-64 sm:h-48 xs:h-36 product_card">
             <img src="{{!empty($product->getFirstMediaUrl('product')) ? $product->getFirstMediaUrl('product') : asset('uploads/'. session('logo'))}}"
                 class="border-2 border-dark mx-auto w-full h-full rounded-lg object-cover " alt="category-1">
             <div

@@ -157,9 +157,8 @@ class InitialPosDataSync extends Command
                 $products = $response_p['data'];
                 $keep_products = [];
                 foreach ($products as $product) {
-                    $keep_products[] = $product['id'];
-                    $pc_exist = Product::where('pos_model_id', $product['id'])->exists();
-                    if (empty($pc_exist)) {
+                    $p_exist = Product::where('pos_model_id', $product['id'])->exists();
+                    if (empty($p_exist)) {
                         $product_class = ProductClass::where('pos_model_id', $product['product_class_id'])->first();
 
                         $p_data = [
@@ -183,6 +182,7 @@ class InitialPosDataSync extends Command
                             'updated_at' => empty($product['updated_at']) ? $product['updated_at'] : Carbon::now(),
                         ];
                         $p = Product::create($p_data);
+                        $keep_products[] = $p->id;
                         $variation_formated = [];
                         $variations = $product['variations'];
                         foreach ($variations as $v) {
@@ -223,6 +223,7 @@ class InitialPosDataSync extends Command
                             'updated_at' => empty($product['updated_at']) ? $product['updated_at'] : Carbon::now(),
                         ];
                         $p = Product::where('pos_model_id', $product['id'])->first();
+                        $keep_products[] = $p->id;
                         $p->update($p_data);
 
                         $variation_formated = [];
@@ -246,7 +247,7 @@ class InitialPosDataSync extends Command
                         }
                     }
                 }
-                Product::whereNotIn('pos_model_id', $keep_products)->delete();
+                Product::whereNotIn('id', $keep_products)->delete();
                 Variation::whereNotIn('product_id', $keep_products)->delete();
             }
         }

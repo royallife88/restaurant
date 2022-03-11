@@ -123,6 +123,7 @@ class ProductUtil extends Util
                     $variation->default_sell_price = !empty($v['default_sell_price']) ? $this->num_uf($v['default_sell_price']) : $this->num_uf($product->sell_price);
                     $variation->pos_model_id = $v['pos_model_id'] ?? null;
                     $variation->save();
+
                     $keey_variations[] = $variation->id;
                 } else {
                     $variation_data['name'] = $v['name'];

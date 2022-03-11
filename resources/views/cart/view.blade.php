@@ -1,8 +1,11 @@
 @extends('layouts.app')
+@php
+$locale_direction = LaravelLocalization::getCurrentLocaleDirection();
+@endphp
 @section('content')
     @include('layouts.partials.cart-header')
     <div class="container mx-auto mt-14">
-        <div class="flex mt-52 bg-red">
+        <div class="flex mt-40 bg-red">
             <div class="relative overflow-hidden w-full h-48 ">
                 <img src="{{ asset('images/cart-top.png') }}" class="mx-auto w-full h-full object-cover " alt="cart-top">
                 <div
@@ -16,26 +19,34 @@
 
     <div class="container mx-auto py-4">
         {!! Form::open(['url' => action('OrderController@store'), 'method' => 'pos', 'id' => 'cart_form']) !!}
-        <div class="flex lg:flex-row xs:flex-col">
-            <div class="flex-1 xl:px-16 lg:px-2 md:px-4 xs:px-4">
+        <div class="flex lg:flex-row xs:flex-col  ">
+            <div class="flex-1 xl:px-16 lg:px-2 md:px-4 xs:px-4 flow-root">
                 <div class="form-group">
-                    <label class="font-semibold text-base text-dark" for="sales_note">@lang('lang.notes')</label>
+                    <label
+                        class="font-semibold text-base text-dark  @if ($locale_direction == 'rtl') float-right @else float-left @endif"
+                        for="sales_note">@lang('lang.notes')</label>
                     <textarea class="border-b border-dark rounded-lg w-full px-4" name="sales_note" id="sales_note"
                         rows="3"></textarea>
                 </div>
                 <div class="flex flex-row py-2 flow-root">
-                    <label class="font-semibold text-base text-dark pr-2 pt-1 float-left"
+                    <label
+                        class="font-semibold text-base text-dark pr-2 pt-1 @if ($locale_direction == 'rtl') float-right @else float-left @endif"
                         for="customer_name">@lang('lang.name')</label>
-                    <input type="text" name="customer_name" required class="border-b border-dark rounded-lg w-full px-4 w-3/5 float-right " value="">
+                    <input type="text" name="customer_name" required
+                        class="border-b border-dark rounded-lg w-full px-4 w-3/5 @if ($locale_direction == 'rtl') float-left @else float-right @endif "
+                        value="">
                 </div>
                 <div class="flex flex-row py-2 flow-root">
-                    <label class="font-semibold text-base text-dark pr-2 pt-1 float-left"
+                    <label
+                        class="font-semibold text-base text-dark pr-2 pt-1 @if ($locale_direction == 'rtl') float-right @else float-left @endif"
                         for="phone_number">@lang('lang.phone_number')</label>
-                    <input type="text" name="phone_number" required class="border-b border-dark rounded-lg w-full px-4 w-3/5 float-right " value="">
+                    <input type="text" name="phone_number" required
+                        class="border-b border-dark rounded-lg w-full px-4 w-3/5 @if ($locale_direction == 'rtl') float-left @else float-right @endif "
+                        value="">
                 </div>
 
 
-                <div class="flex  py-2 justify-center">
+                <div class="flex py-2 justify-center">
                     <div class="flex-1">
                         <label class="order_now font-semibold text-base text-dark pr-2 pt-1 float-right"
                             for="order_now">@lang('lang.order_now')</label>
@@ -86,7 +97,8 @@
                     <div class="flex w-16 justify-center">
                         <div class="mt-1">
                             <label for="delivery" class="flex relative items-center mb-4 cursor-pointer">
-                                <input type="checkbox" id="delivery" name="delivery_type" checked value="1" class="sr-only">
+                                <input type="checkbox" id="delivery" name="delivery_type" checked value="1"
+                                    class="sr-only">
                                 <div
                                     class="w-11 h-6 bg-gray-200 rounded-full border border-red toggle-bg dark:bg-gray-700 dark:border-gray-600">
                                 </div>
@@ -107,7 +119,8 @@
                     <div class="flex w-16 justify-center">
                         <div class="mt-1">
                             <label for="payment_type" class="flex relative items-center mb-4 cursor-pointer">
-                                <input type="checkbox" id="payment_type" name="payment_type" checked value="1" class="sr-only">
+                                <input type="checkbox" id="payment_type" name="payment_type" checked value="1"
+                                    class="sr-only">
                                 <div
                                     class="w-11 h-6 bg-gray-200 rounded-full border border-red toggle-bg dark:bg-gray-700 dark:border-gray-600">
                                 </div>
@@ -128,7 +141,8 @@
                     <div class="flex w-16 justify-center">
                         <div class="mt-1">
                             <label for="out_of_restaurant" class="flex relative items-center mb-4 cursor-pointer">
-                                <input type="checkbox" id="out_of_restaurant" name="out_of_restaurant" checked value="1" class="sr-only">
+                                <input type="checkbox" id="out_of_restaurant" name="out_of_restaurant" checked value="1"
+                                    class="sr-only">
                                 <div
                                     class="w-11 h-6 bg-gray-200 rounded-full border border-red toggle-bg dark:bg-gray-700 dark:border-gray-600">
                                 </div>
@@ -144,8 +158,7 @@
                 <div class="flex flex-row justify-center inside_restaurant_div hidden ">
                     <label class="font-semibold text-base text-dark pr-2 pt-1 float-left"
                         for="table_no">@lang('lang.table_no')</label>
-                    <input type="text" id="table_no" name="table_no"
-                        class="w-32 border-b border-dark rounded-lg">
+                    <input type="text" id="table_no" name="table_no" class="w-32 border-b border-dark rounded-lg">
 
                 </div>
 
@@ -154,8 +167,8 @@
                 @foreach ($cart_content as $item)
                     @if ($item->attributes->extra != 1)
                         <div class="flex-col justify-center py-4">
-                            <div class="flex flex-row ">
-                                <div class="w-1/2">
+                            <div class="flex @if ($locale_direction == 'rtl') flex-row-reverse @else flex-row @endif ">
+                                <div class="w-1/2 @if ($locale_direction == 'rtl') text-right @else text-left @endif">
                                     <h3 class="font-semibold text-lg text-dark">{{ $item->name }}</h3>
                                 </div>
                                 <div class="w-1/4">
@@ -168,7 +181,7 @@
                                             class="plus border-2 rounded-full text-lg text-center border-lightgrey text-lightgrey h-8 w-8">+</button>
                                     </div>
                                 </div>
-                                <div class="w-1/4 text-right">
+                                <div class="w-1/4 @if ($locale_direction == 'rtl') text-left @else text-right @endif ">
                                     <a href="{{ action('CartController@removeProduct', $item->id) }}"
                                         class="mt-2 rounded-full text-lg text-center border-lightgrey text-rose-700 h-8 w-8">
                                         <i class="fa fa-times"></i>
@@ -181,25 +194,25 @@
                                 @lang('lang.select_size')</h3>
                             @foreach ($item->associatedModel->variations as $variation)
                                 @if (!empty($variation->size))
-                                    <div class="flex flex-row ">
+                                    <div class="flex @if ($locale_direction == 'rtl') flex-row-reverse @else flex-row @endif ">
                                         <div class="flex-1">
-                                            <div class="flex items-center mb-4">
+                                            <div class="flex @if ($locale_direction == 'rtl') flex-row-reverse @else flex-row @endif items-center mb-4">
                                                 <input type="radio" data-id="{{ $item->id }}"
                                                     @if ($item->attributes->variation_id == $variation->id) checked @endif
                                                     value="{{ $variation->id }}"
                                                     class="variation_radio w-4 h-4 border-red focus:ring-2 focus:ring-red dark:focus:ring-red dark:focus:bg-red dark:bg-gray-700 dark:border-red"
                                                     aria-labelledby="radio" aria-describedby="radio">
                                                 <label for="radio"
-                                                    class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                                    class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 px-2">
                                                     @if ($variation->name == 'Default')
-                                                    {{ $item->name }}
+                                                        {{ $item->name }}
                                                     @else
-                                                    {{ $variation->size->name ?? '' }}
+                                                        {{ $variation->size->name ?? '' }}
                                                     @endif
                                                 </label>
                                             </div>
                                         </div>
-                                        <div class="flex-1 text-base text-right font-semibold">
+                                        <div class="flex-1 text-base @if ($locale_direction == 'rtl') text-left @else text-right @endif font-semibold">
                                             {{ @num_format($variation->default_sell_price - $item->attributes->discount) }}<span
                                                 class="font-bold">
                                                 TL</span>
@@ -211,22 +224,25 @@
                     @endif
                 @endforeach
 
-                <h3 class="font-semibold text-lg text-dark pt-5 @if ($extras->count() == 0) hidden @endif">
-                    @lang('lang.extras')</h3>
+                <div class="flex @if ($locale_direction == 'rtl') justify-end @endif">
+                    <h3 class="font-semibold text-lg text-dark pt-5 @if ($locale_direction == 'rtl') text-right @else text-right @endif @if ($extras->count() == 0) hidden @endif">
+                        @lang('lang.extras')</h3>
+                </div>
                 @foreach ($extras as $extra)
-                    <div class="flex flex-row py-2">
+                    <div class="flex @if ($locale_direction == 'rtl') flex-row-reverse @else flex-row @endif py-2">
                         <div class="flex-1">
-                            <div class="form-check">
+                            <div class="flex @if ($locale_direction == 'rtl') flex-row-reverse @else flex-row @endif">
                                 <input @if (in_array($extra->id, $cart_content->pluck('id')->toArray())) checked @endif
                                     class="extra_checkbox form-check-input appearance-none h-4 w-4 border border-red rounded-sm bg-white checked:bg-red checked:border-red focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                                     type="checkbox" value="{{ $extra->id }}" id="extra">
-                                <label class="form-check-label inline-block text-gray-800 font-semibold" for="extra">
+                                <label class="form-check-label inline-block text-gray-800 font-semibold px-2" for="extra">
                                     {{ $extra->name }}
                                 </label>
                             </div>
                         </div>
-                        <div class="flex-1 text-base text-right font-semibold">
-                            {{ @num_format($extra->sell_price - $extra->discount_value) }}<span class="font-bold"> TL</span>
+                        <div class="flex-1 text-base @if ($locale_direction == 'rtl') text-left @else text-right @endif font-semibold">
+                            {{ @num_format($extra->sell_price - $extra->discount_value) }}<span class="font-bold">
+                                TL</span>
                         </div>
                     </div>
                 @endforeach
@@ -236,8 +252,8 @@
 
         <div class="flex justify-center">
             <button type="submit"
-                class="lg:w-1/4 md:w-1/2 xs:w-full h-10 mt-4 rounded-lg  bg-red text-white relative">@lang('lang.send_the_order') <span
-                    class="text-white text-base absolute right-2">{{ @num_format($total) }} TL</span></button>
+                class="lg:w-1/4 md:w-1/2 xs:w-full h-10 mt-4 rounded-lg  bg-red text-white relative">@lang('lang.send_the_order')
+                <span class="text-white text-base absolute right-2">{{ @num_format($total) }} TL</span></button>
         </div>
 
         {!! Form::close() !!}

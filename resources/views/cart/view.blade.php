@@ -16,8 +16,8 @@
 
     <div class="container mx-auto py-4">
         {!! Form::open(['url' => action('OrderController@store'), 'method' => 'pos', 'id' => 'cart_form']) !!}
-        <div class="flex lg:flex-row md:flex-col">
-            <div class="flex-1 px-32">
+        <div class="flex lg:flex-row xs:flex-col">
+            <div class="flex-1 xl:px-16 lg:px-2 md:px-4 xs:px-4">
                 <div class="form-group">
                     <label class="font-semibold text-base text-dark" for="sales_note">@lang('lang.notes')</label>
                     <textarea class="border-b border-dark rounded-lg w-full px-4" name="sales_note" id="sales_note"
@@ -150,7 +150,7 @@
                 </div>
 
             </div>
-            <div class="flex-1 px-32">
+            <div class="flex-1 xl:px-16 lg:px-2 md:px-4 xs:px-4">
                 @foreach ($cart_content as $item)
                     @if ($item->attributes->extra != 1)
                         <div class="flex-col justify-center py-4">
@@ -236,7 +236,7 @@
 
         <div class="flex justify-center">
             <button type="submit"
-                class="lg:w-1/4 md:w-1/2 h-10 mt-4 rounded-lg  bg-red text-white relative">@lang('lang.send_the_order') <span
+                class="lg:w-1/4 md:w-1/2 xs:w-full h-10 mt-4 rounded-lg  bg-red text-white relative">@lang('lang.send_the_order') <span
                     class="text-white text-base absolute right-2">{{ @num_format($total) }} TL</span></button>
         </div>
 

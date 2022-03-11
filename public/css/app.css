@@ -850,10 +850,10 @@ input:checked + .toggle-bg {
 .container {
   width: 100%;
 }
-@media (min-width: 430px) {
+@media (min-width: 400px) {
 
   .container {
-    max-width: 430px;
+    max-width: 400px;
   }
 }
 @media (min-width: 640px) {
@@ -2124,7 +2124,7 @@ input:checked + .toggle-bg {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(230 57 70 / var(--tw-ring-opacity));
 }
-@media (min-width: 430px) {
+@media (min-width: 400px) {
 
   .xs\:h-48 {
     height: 12rem;
@@ -2142,12 +2142,31 @@ input:checked + .toggle-bg {
     width: 6rem;
   }
 
+  .xs\:flex-col {
+    flex-direction: column;
+  }
+
   .xs\:p-1 {
     padding: 0.25rem;
   }
 
   .xs\:p-2 {
     padding: 0.5rem;
+  }
+
+  .xs\:px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .xs\:px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .xs\:px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   .xs\:text-base {
@@ -2256,6 +2275,21 @@ input:checked + .toggle-bg {
     padding-right: 1.5rem;
   }
 
+  .sm\:px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .sm\:px-32 {
+    padding-left: 8rem;
+    padding-right: 8rem;
+  }
+
+  .sm\:px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
   .sm\:pt-0 {
     padding-top: 0px;
   }
@@ -2318,6 +2352,36 @@ input:checked + .toggle-bg {
 
   .md\:p-2 {
     padding: 0.5rem;
+  }
+
+  .md\:px-32 {
+    padding-left: 8rem;
+    padding-right: 8rem;
+  }
+
+  .md\:px-16 {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
+  .md\:px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .md\:px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .md\:px-1 {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+
+  .md\:px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   .md\:text-lg {
@@ -2392,6 +2456,21 @@ input:checked + .toggle-bg {
     padding-left: 2rem;
     padding-right: 2rem;
   }
+
+  .lg\:px-32 {
+    padding-left: 8rem;
+    padding-right: 8rem;
+  }
+
+  .lg\:px-16 {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
+  .lg\:px-2 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
 }
 @media (min-width: 1280px) {
 
@@ -2405,6 +2484,11 @@ input:checked + .toggle-bg {
 
   .xl\:p-16 {
     padding: 4rem;
+  }
+
+  .xl\:px-16 {
+    padding-left: 4rem;
+    padding-right: 4rem;
   }
 }
 @media (min-width: 1536px) {

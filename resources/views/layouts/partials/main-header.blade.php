@@ -6,7 +6,7 @@
                 @include('layouts.partials.language_dropdown')
             </div>
             <div class="flex-1  mt-8">
-                <img src="{{ asset('uploads/' . session('logo')) }}" alt="logo" class="mx-auto w-56 h-56">
+                <img src="{{ asset('uploads/' . session('logo')) }}" alt="logo" class="mx-auto md:w-56 md:h-56 md:w-40 md:h-40">
             </div>
             <div class="flex-3 w-32 items-end">
                 <a href="https://api.whatsapp.com/send?phone={{ App\Models\System::getProperty('whatsapp') }}"

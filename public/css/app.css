@@ -2314,12 +2314,28 @@ input:checked + .toggle-bg {
     height: 16rem;
   }
 
+  .md\:h-56 {
+    height: 14rem;
+  }
+
+  .md\:h-40 {
+    height: 10rem;
+  }
+
   .md\:w-1\/2 {
     width: 50%;
   }
 
   .md\:w-32 {
     width: 8rem;
+  }
+
+  .md\:w-56 {
+    width: 14rem;
+  }
+
+  .md\:w-40 {
+    width: 10rem;
   }
 
   .md\:grid-cols-2 {

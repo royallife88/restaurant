@@ -90,7 +90,7 @@ class OrderController extends Controller
             $text .= urlencode($product->name) . '+%3A+' . $oder_details['quantity'] . "+%2A+" . $oder_details['price'] . '+=+' . $oder_details['sub_total'] . " TL +%0D%0A+";
             OrderDetails::create($oder_details);
         }
-        $order->discount_amount = $order->order_details->sum('discount');
+        $order->discount_amount = $order->order_details->sum('discount') ?? 0;
         $order->save();
 
         \Cart::session($user_id)->clear();

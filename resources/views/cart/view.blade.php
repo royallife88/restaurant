@@ -200,7 +200,7 @@
                                             </div>
                                         </div>
                                         <div class="flex-1 text-base text-right font-semibold">
-                                            {{ @num_format($variation->default_sell_price - $item->discount_value) }}<span
+                                            {{ @num_format($variation->default_sell_price - $item->attributes->discount) }}<span
                                                 class="font-bold">
                                                 TL</span>
                                         </div>

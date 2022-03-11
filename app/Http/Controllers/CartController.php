@@ -146,16 +146,28 @@ class CartController extends Controller
             $product = Product::find($id);
             $variation = Variation::where('product_id', $id)->first();
 
+            $price = $variation->default_sell_price;
+            $discount_value = 0;
+            $offers = Offer::whereDate('start_date', '<=', date('Y-m-d'))->whereDate('end_date', '>=', date('Y-m-d'))->whereJsonContains('product_ids', (string) $id)->where('status', 1)->first();
+            if (!empty($offers)) {
+                $discount_value = $offers->discount_value;
+                $price = $price - $discount_value;
+            } else {
+                $discount_value = $product->discount_value;
+                $price = $price - $discount_value;
+            }
+
 
             $user_id = Session::get('user_id');
             \Cart::session($user_id)->add(array(
                 'id' => $product->id,
                 'name' => $product->name,
-                'price' => $variation->default_sell_price,
+                'price' => $price,
                 'quantity' => $quantity,
                 'attributes' => [
                     'variation_id' => $variation->id,
-                    'extra' => true
+                    'extra' => true,
+                    'discount' => $discount_value
                 ],
                 'associatedModel' => $product
             ));
@@ -185,58 +197,58 @@ class CartController extends Controller
      */
     public function addToCart($id)
     {
-        // try {
-        $quantity = !empty(request()->quantity) ? request()->quantity : 1;
-        $product = Product::find($id);
-        $variation = Variation::where('product_id', $id)->first();
+        try {
+            $quantity = !empty(request()->quantity) ? request()->quantity : 1;
+            $product = Product::find($id);
+            $variation = Variation::where('product_id', $id)->first();
 
-        $user_id = Session::get('user_id');
-        $price = $variation->default_sell_price;
+            $user_id = Session::get('user_id');
+            $price = $variation->default_sell_price;
 
-        $offers = Offer::whereDate('start_date', '<=', date('Y-m-d'))->whereDate('end_date', '>=', date('Y-m-d'))->whereJsonContains('product_ids', (string) $id)->where('status', 1)->first();
-        if (!empty($offers)) {
-            $price = $price - $offers->discount_value;
-        } else {
-            $price = $price - $product->discount_value;
+            $offers = Offer::whereDate('start_date', '<=', date('Y-m-d'))->whereDate('end_date', '>=', date('Y-m-d'))->whereJsonContains('product_ids', (string) $id)->where('status', 1)->first();
+            if (!empty($offers)) {
+                $price = $price - $offers->discount_value;
+            } else {
+                $price = $price - $product->discount_value;
+            }
+            $item_exist = \Cart::session($user_id)->get($product->id);
+
+
+            if (!empty($item_exist)) {
+                \Cart::session($user_id)->update($product->id, array(
+                    'quantity' =>  array(
+                        'relative' => false,
+                        'value' => $item_exist->quantity + 1
+                    ),
+                ));
+            } else {
+                \Cart::session($user_id)->add(array(
+                    'id' => $product->id,
+                    'name' => $product->name,
+                    'price' => $price,
+                    'quantity' =>  $quantity,
+                    'attributes' => [
+                        'variation_id' => $variation->id,
+                        'extra' => false,
+                        'discount' => $product->discount_value
+                    ],
+                    'associatedModel' => $product
+                ));
+            }
+
+            $this->cartUtil->createOrUpdateCart($user_id);
+
+            $output = [
+                'success' => 1,
+                'msg' => __('lang.success')
+            ];
+        } catch (\Exception $e) {
+            Log::emergency('File: ' . $e->getFile() . 'Line: ' . $e->getLine() . 'Message: ' . $e->getMessage());
+            $output = [
+                'success' => false,
+                'msg' => __('lang.something_went_wrong')
+            ];
         }
-        $item_exist = \Cart::session($user_id)->get($product->id);
-
-
-        if (!empty($item_exist)) {
-            \Cart::session($user_id)->update($product->id, array(
-                'quantity' =>  array(
-                    'relative' => false,
-                    'value' => $item_exist->quantity + 1
-                ),
-            ));
-        } else {
-            \Cart::session($user_id)->add(array(
-                'id' => $product->id,
-                'name' => $product->name,
-                'price' => $price,
-                'quantity' =>  $quantity,
-                'attributes' => [
-                    'variation_id' => $variation->id,
-                    'extra' => false,
-                    'discount' => $product->discount_value
-                ],
-                'associatedModel' => $product
-            ));
-        }
-
-        $this->cartUtil->createOrUpdateCart($user_id);
-
-        $output = [
-            'success' => 1,
-            'msg' => __('lang.success')
-        ];
-        // } catch (\Exception $e) {
-        //     Log::emergency('File: ' . $e->getFile() . 'Line: ' . $e->getLine() . 'Message: ' . $e->getMessage());
-        //     $output = [
-        //         'success' => false,
-        //         'msg' => __('lang.something_went_wrong')
-        //     ];
-        // }
 
         return redirect()->back()->with('status', $output);
     }

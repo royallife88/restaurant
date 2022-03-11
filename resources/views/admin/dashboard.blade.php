@@ -10,7 +10,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-4">
-            <x-adminlte-card theme="lime" theme-mode="outline" title="{{ __('lang.order_count') }} {{ $order_count }}" maximizable removable
+            <x-adminlte-card theme="lime" theme-mode="outline" title="{{ __('lang.order_count') }}: {{ $order_count }}"
                 icon="fas fa-gem">
 
                 {{-- <x-slot name="toolsSlot">
@@ -26,13 +26,13 @@
         </div>
         <div class="col-md-4">
             <x-adminlte-card theme="dark" theme-mode="outline"
-                title="{{ __('lang.number_of_products_sold') }} {{ $number_of_products }}" icon="fas fa-clipboard">
+                title="{{ __('lang.number_of_products_sold') }}: {{ $number_of_products }}" icon="fas fa-clipboard">
                 <canvas id="number_of_products_chart" width="400" height="100"></canvas>
             </x-adminlte-card>
         </div>
         <div class="col-md-4">
             <x-adminlte-card theme="danger" theme-mode="outline"
-                title="{{ __('lang.total_revenue') }} {{ $total_revenue }}" icon="fas fa-money-bill-alt">
+                title="{{ __('lang.total_revenue') }}: {{ $total_revenue }}" icon="fas fa-money-bill-alt">
                 <canvas id="total_revenue_chart" width="400" height="100"></canvas>
             </x-adminlte-card>
         </div>

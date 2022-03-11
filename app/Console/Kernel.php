@@ -16,7 +16,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('restaurant:sendOrderToPosSystem')->everyMinute();
-        $schedule->command('restaurant:initialPosDataSync')->everyMinute();
+        $schedule->command('restaurant:initialPosDataSync')->everyTwoMinutes();
         $schedule->command('restaurant:syncDataWithPosCommand')->everyMinute();
 
         $schedule->command('queue:work')

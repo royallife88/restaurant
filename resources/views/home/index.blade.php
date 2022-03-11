@@ -17,44 +17,12 @@
                     <div class="flex-3 w-48">
                         <div class="owl-nav">
                             <div class="owl-next-custom-erp">
-                                <img src="{{ asset('images/slider-arrow.png') }}" alt="" class="m-auto">
+                                <img src="{{ asset('images/slider-arrow-left.png') }}" alt="" class="m-auto">
                             </div>
                         </div>
                     </div>
                     <div class="flex-1 w-96">
                         <div class="owl-carousel owl-carousel-erp owl-theme">
-                            {{-- @foreach ($arr as $i)
-                            <div>
-                                <div class="flex-2 p-4 bg-lightgray">
-                                    <div class="flex-col">
-                                        <div class="py-6">
-                                            <img class="w-full h-72" src="{{ $page_data['ready_made_erp_' . $i . '_image'] }}"
-                                                alt="robot">
-                                        </div>
-                                        <div>
-                                            <h4 class="xl:text-3xl lg:text-2xl text-darkblue font-bold">
-                                                {{ $page_data['ready_made_erp_' . $i . '_heading'] }}</h4>
-                                        </div>
-                                        <div>
-                                            <p class="text-dark text-sm  pb-4 pr-28">
-                                                {{ $page_data['ready_made_erp_' . $i . '_text'] }}
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <a class="text-darkblue text-sm underline "
-                                                href="{{ $page_data['ready_made_erp_' . $i . '_link'] }}">@lang('lang.read_more')</a>
-                                        </div>
-                                        <div class="inline-flex items-center mt-12">
-                                            <img class="mr-2 h-5" src="{{ asset('images/link-icon.png') }}" alt="link"><a
-                                                class="text-lightblue text-lg"
-                                                href="{{ $page_data['ready_made_erp_' . $i . '_link'] }}">{{ $page_data['ready_made_erp_' . $i . '_link'] }}</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        @endforeach --}}
-
 
                             @foreach ($categories as $category)
                                 <div style="margin-left: 20px; margin-right: 20px;">
@@ -69,7 +37,7 @@
                     <div class="flex-3 w-48 justify-center">
                         <div class="owl-nav">
                             <div class="owl-prev-custom-erp">
-                                <img src="{{ asset('images/slider-arrow.png') }}" alt="" class="m-auto">
+                                <img src="{{ asset('images/slider-arrow-right.png') }}" alt="" class="m-auto">
                             </div>
                         </div>
                     </div>

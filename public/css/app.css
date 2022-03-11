@@ -2142,6 +2142,10 @@ input:checked + .toggle-bg {
     flex-direction: column;
   }
 
+  .xs\:justify-center {
+    justify-content: center;
+  }
+
   .xs\:p-1 {
     padding: 0.25rem;
   }
@@ -2153,6 +2157,11 @@ input:checked + .toggle-bg {
   .xs\:px-4 {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+
+  .xs\:px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
   .xs\:text-base {
@@ -2285,6 +2294,14 @@ input:checked + .toggle-bg {
 }
 @media (min-width: 768px) {
 
+  .md\:mr-16 {
+    margin-right: 4rem;
+  }
+
+  .md\:mt-8 {
+    margin-top: 2rem;
+  }
+
   .md\:h-72 {
     height: 18rem;
   }
@@ -2307,6 +2324,10 @@ input:checked + .toggle-bg {
 
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .md\:justify-end {
+    justify-content: flex-end;
   }
 
   .md\:border-t-0 {

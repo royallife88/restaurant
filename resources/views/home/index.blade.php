@@ -96,9 +96,9 @@
         </div>
 
         <div class="container mx-auto">
-            <div class="flex justify-end">
+            <div class="flex md:justify-end xs:justify-center">
                 <a href="{{ action('ProductController@getPromotionProducts') }}"
-                    class="bg-red text-white font-semibold py-1 px-4 rounded-md mr-16 mt-8">@lang('lang.show_more')</a>
+                    class="bg-red text-white font-semibold py-1 md:px-4 xs:px-8 rounded-md md:mr-16 md:mt-8">@lang('lang.show_more')</a>
             </div>
         </div>
 

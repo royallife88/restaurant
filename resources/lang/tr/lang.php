@@ -194,5 +194,8 @@ return [
     'edit_message' => 'Edit Message',
     'proudly_developed_at' => 'Proudly Developed at',
     'latest_messages' => 'Latest Messages',
+    'selling_price' => 'Selling Price',
+    'purchase_price' => 'Purchase Price',
+    'sku' => 'Sku',
 
 ];

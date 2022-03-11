@@ -18,7 +18,7 @@ return [
     'en' => 'English',
     'tr' => 'Turkce',
     'fa' => 'Persian',
-    'categories' => 'فئات',
+    'categories' => 'Categories',
     'promotions' => 'Promotions',
     'order_now' => 'Order Now',
     'show_more' => 'Show More',
@@ -194,5 +194,8 @@ return [
     'edit_message' => 'Edit Message',
     'proudly_developed_at' => 'Proudly Developed at',
     'latest_messages' => 'Latest Messages',
+    'selling_price' => 'Selling Price',
+    'purchase_price' => 'Purchase Price',
+    'sku' => 'Sku',
 
 ];

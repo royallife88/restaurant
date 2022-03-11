@@ -48,9 +48,17 @@ class Product extends Model implements HasMedia
                     $discount_value = $this->sell_price * ($this->discount / 100);
                 } else if ($this->discount_type == 'fixed') {
                     $discount_value = $this->discount;
-                } else{
+                } else {
                     $discount_value = 0;
                 }
+            }
+        } else {
+            if ($this->discount_type == 'percentage') {
+                $discount_value = $this->sell_price * ($this->discount / 100);
+            } else if ($this->discount_type == 'fixed') {
+                $discount_value = $this->discount;
+            } else {
+                $discount_value = 0;
             }
         }
 

@@ -554,11 +554,9 @@ class Util
      * @param int $length
      * @return string
      */
-    public function divideMonthInDates()
+    public function divideMonthInDates($start_date, $end_date)
     {
         $dates = [];
-        $start_date = date('Y-m-01');
-        $end_date = date('Y-m-t');
         $start_date = strtotime($start_date);
         $end_date = strtotime($end_date);
         $current_date = $start_date;

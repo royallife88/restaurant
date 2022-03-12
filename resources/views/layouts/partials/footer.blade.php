@@ -4,7 +4,7 @@
             <div class="w-3/4 text-right">
                 <div class="flex-col mt-6">
                     <div class="pr-4 pt-2 font-semibold text-lg text-white">@lang('lang.about_us')</div>
-                    <div class="pr-4 pt-2 font-semibold md:text-base xs:text-sm text-white">
+                    <div class="pr-4 pt-2 font-semibold sm:text-base xs:text-xs text-white">
                         <a href="{{ action('AboutUsController@index') }}">
                             {{ App\Models\System::getProperty('about_us_footer') }}
                         </a>

@@ -547,4 +547,48 @@ class Util
             $sync_data->save();
         }
     }
+
+    /**
+     * divide month in 4 dates
+     *
+     * @param int $length
+     * @return string
+     */
+    public function divideMonthInDates()
+    {
+        $dates = [];
+        $start_date = date('Y-m-01');
+        $end_date = date('Y-m-t');
+        $start_date = strtotime($start_date);
+        $end_date = strtotime($end_date);
+        $current_date = $start_date;
+        while ($current_date <= $end_date) {
+            $dates[] = date('Y-m-d', $current_date);
+            $current_date = strtotime('+1 day', $current_date);
+        }
+        return $dates;
+    }
+
+    public function divideArrayInEqualParts($array, $part_size)
+    {
+        $part_size = (int)$part_size;
+        $count = count($array);
+        $part_count = ceil($count / $part_size);
+        $part_array = array_chunk($array, $part_count);
+        return $part_array;
+    }
+
+    public function getDateArray($dates)
+    {
+        $date_array = [];
+
+        foreach ($dates as $date) {
+            $date_array[] = $date[0];
+        }
+        //get the last element of the array
+        $last_element = end($dates);
+        $date_array[] = end($last_element);
+
+        return $date_array;
+    }
 }

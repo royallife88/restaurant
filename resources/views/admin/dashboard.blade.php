@@ -141,6 +141,8 @@
         const config = {
             responsive: true,
             radius: 0,
+            lineTension: 0.6,
+            fill: true,
             plugins: {
                 legend: {
                     display: false,

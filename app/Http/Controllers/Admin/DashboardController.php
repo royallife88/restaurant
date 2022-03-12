@@ -42,29 +42,36 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        //divide month in 4 dates
+        $dates = $this->commonUtil->divideMonthInDates();
+
+        //divide array in 4 equal   parts
+        $dates = $this->commonUtil->divideArrayInEqualParts($dates, 4);
+        //get the first element of the multi array
+        $dates = $this->commonUtil->getDateArray($dates);
+
         $order_count_array = [];
         $number_of_products_array = [];
         $total_revenue_array = [];
         $order_count = 0;
         $number_of_products = 0;
         $total_revenue = 0;
+        for ($i = 0; $i < 4; $i++) {
+            $orders =  Order::whereBetween('created_at', [$dates[$i], $dates[$i + 1]])->get();
 
-        $orders =  Order::get()->splitIn(4);
-        $i = 0;
-        foreach ($orders as $order_chunk) {
-            $order_count_array[$i] = $order_chunk->count();
+
+            $order_count_array[$i] = $orders->count();
             $number_of_products_array[$i] = 0;
             $total_revenue_array[$i] = 0;
-            foreach ($order_chunk as $order) {
+            foreach ($orders as $order) {
                 $number_of_products_array[$i] += $order->order_details->sum('quantity');
                 $total_revenue_array[$i] += $order->final_total;
             }
             $order_count += $order_count_array[$i];
             $number_of_products += $number_of_products_array[$i];
             $total_revenue += $total_revenue_array[$i];
-
-            $i++;
         }
+
         $total_revenue = $this->commonUtil->num_f($total_revenue);
 
         $count_carts_now = Cart::count();

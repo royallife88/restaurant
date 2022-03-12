@@ -43,12 +43,8 @@ class DashboardController extends Controller
     public function index()
     {
         $start_date = date('Y-m-01');
-        $order = Order::latest()->first();
-        if (!empty($order)) {
-            $end_date = $order->created_at->format('Y-m-d');
-        } else {
-            $end_date = date('Y-m-t');
-        }
+        $end_date = date('Y-m-t');
+
 
         //divide month in 4 dates
         $dates = $this->commonUtil->divideMonthInDates($start_date, $end_date);

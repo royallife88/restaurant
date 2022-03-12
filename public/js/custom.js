@@ -4,6 +4,20 @@ $(document).ready(function () {
         loop: true,
         dots: false,
         items: 4,
+        responsive: {
+            0: {
+                items: 2,
+            },
+            600: {
+                items: 2,
+            },
+            800: {
+                items: 3,
+            },
+            1000: {
+                items: 4,
+            },
+        },
     });
 
     $(".owl-next-custom-erp").click(function () {

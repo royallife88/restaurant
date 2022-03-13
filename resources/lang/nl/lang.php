@@ -198,4 +198,17 @@ return [
     'purchase_price' => 'Aankoopprijs',
     'sku' => 'Sku',
 
+    'January' => 'Januari',
+    'February' => 'Februari',
+    'March' => 'maart',
+    'April' => 'april',
+    'May' => 'Kunnen',
+    'June' => 'juni-',
+    'July' => 'juli-',
+    'August' => 'augustus',
+    'September' => 'september',
+    'October' => 'oktober',
+    'November' => 'november',
+    'December' => 'december',
+
 ];

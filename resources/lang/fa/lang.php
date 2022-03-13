@@ -198,4 +198,17 @@ return [
     'purchase_price' => 'قیمت خرید',
     'sku' => 'Sku',
 
+    'January' => 'ژانویه',
+    'February' => 'فوریه',
+    'March' => 'مارس',
+    'April' => 'آوریل',
+    'May' => 'ممکن است',
+    'June' => 'ژوئن',
+    'July' => 'جولای',
+    'August' => 'اوت',
+    'September' => 'سپتامبر',
+    'October' => 'اکتبر',
+    'November' => 'نوامبر',
+    'December' => 'دسامبر',
+
 ];

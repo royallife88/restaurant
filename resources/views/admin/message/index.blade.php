@@ -7,11 +7,11 @@
 @stop
 
 @section('main_content')
-    @can('settings.size.create')
+    {{-- @can('messages.create')
         <a class="btn btn-primary btn-flat mb-3" href="{{ action('Admin\MessageController@create') }}"><i
                 class="fas fa-paper-plane"></i>
             @lang('lang.send_message')</a>
-    @endcan
+    @endcan --}}
     <x-adminlte-card title="{{ __('lang.messages') }}" theme="{{ config('adminlte.right_sidebar_theme') }}"
         theme-mode="outline" icon="fas fa-file">
 
@@ -20,11 +20,8 @@
                 <thead>
                     <tr>
                         <th>@lang('lang.date_and_time')</th>
-                        <th>@lang('lang.created_by')</th>
-                        <th>@lang('lang.content')</th>
-                        <th>@lang('lang.receiver')</th>
-                        <th>@lang('lang.attachments')</th>
-                        <th>@lang('lang.notes')</th>
+                        <th>@lang('lang.email')</th>
+                        <th>@lang('lang.subject')</th>
                         <th class="notexport">@lang('lang.action')</th>
                     </tr>
                 </thead>
@@ -66,35 +63,22 @@
                     "data": function(d) {}
                 },
                 columnDefs: [{
-                    "targets": [4,6],
+                    "targets": [3],
                     "orderable": false,
                     "searchable": false
                 }],
-                columns: [{
+                columns: [
+                    {
                         data: 'created_at',
                         name: 'created_at'
-                    },
-                    {
-                        data: 'sent_by',
-                        name: 'sent_by'
-                    },
-                    {
-                        data: 'body',
-                        name: 'body'
                     },
                     {
                         data: 'emails',
                         name: 'emails'
                     },
                     {
-                        data: 'attachments',
-                        name: 'attachments',
-                        orderable: false,
-                        searchable: false
-                    },
-                    {
-                        data: 'notes',
-                        name: 'notes'
+                        data: 'subject',
+                        name: 'subject'
                     },
 
                     {

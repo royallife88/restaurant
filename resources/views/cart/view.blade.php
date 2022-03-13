@@ -25,8 +25,7 @@ $locale_direction = LaravelLocalization::getCurrentLocaleDirection();
                     <label
                         class="font-semibold text-base text-dark  @if ($locale_direction == 'rtl') float-right @else float-left @endif"
                         for="sales_note">@lang('lang.notes')</label>
-                    <textarea class="border-b border-dark rounded-lg w-full px-4" name="sales_note" id="sales_note"
-                        rows="3"></textarea>
+                    <textarea class="border-b border-dark rounded-lg w-full px-4" name="sales_note" id="sales_note" rows="3"></textarea>
                 </div>
                 <div class="flex flex-row py-2 flow-root">
                     <label
@@ -71,19 +70,20 @@ $locale_direction = LaravelLocalization::getCurrentLocaleDirection();
                     <img class="h-8 w-12 px-2 mt-1" src="{{ asset('images/calender-icon.png') }}" alt="">
                     <select id="month" name="month"
                         class="w-16 mx-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        @for ($i = 1; $i <= 12; $i++)
-                            <option value="{{ $i }}">{{ $i }}</option>
-                        @endfor
+                        @foreach ($month_array as $key => $month)
+                            <option @if ($key == date('m')) selected @endif value="{{ $key }}">
+                                {{ $month }}</option>
+                        @endforeach
                     </select>
                     <select id="day" name="day"
                         class="w-16 mx-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         @for ($i = 1; $i <= 31; $i++)
-                            <option value="{{ $i }}">{{ $i }}</option>
+                            <option @if ($i == date('d')) selected @endif value="{{ $i }}">{{ $i }}</option>
                         @endfor
                     </select>
                     <img class="h-8 w-12 px-2 mt-1" src="{{ asset('images/time-icon.png') }}" alt="">
 
-                    <input type="time" name="time" id="base-input"
+                    <input type="time" name="time" id="base-input" value="{{ date('H:i') }}"
                         class="w-32 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
                 </div>
@@ -176,7 +176,7 @@ $locale_direction = LaravelLocalization::getCurrentLocaleDirection();
                                         <button type="button"
                                             class="minus border-2 rounded-full text-lg text-center border-lightgrey text-lightgrey h-8 w-8">-</button>
                                         <input type="text" data-id="{{ $item->id }}" value="{{ $item->quantity }}"
-                                            class="quantity text-center text-lightgrey w-16 line leading-none border-transparent focus:border-transparent focus:ring-0 ">
+                                            class="quantity text-center text-lightgrey w-16 line leading-none border-transparent bg-transparent focus:border-transparent focus:ring-0 ">
                                         <button type="button"
                                             class="plus border-2 rounded-full text-lg text-center border-lightgrey text-lightgrey h-8 w-8">+</button>
                                     </div>
@@ -194,9 +194,11 @@ $locale_direction = LaravelLocalization::getCurrentLocaleDirection();
                                 @lang('lang.select_size')</h3>
                             @foreach ($item->associatedModel->variations as $variation)
                                 @if (!empty($variation->size))
-                                    <div class="flex @if ($locale_direction == 'rtl') flex-row-reverse @else flex-row @endif ">
+                                    <div
+                                        class="flex @if ($locale_direction == 'rtl') flex-row-reverse @else flex-row @endif ">
                                         <div class="flex-1">
-                                            <div class="flex @if ($locale_direction == 'rtl') flex-row-reverse @else flex-row @endif items-center mb-4">
+                                            <div
+                                                class="flex @if ($locale_direction == 'rtl') flex-row-reverse @else flex-row @endif items-center mb-4">
                                                 <input type="radio" data-id="{{ $item->id }}"
                                                     @if ($item->attributes->variation_id == $variation->id) checked @endif
                                                     value="{{ $variation->id }}"
@@ -212,7 +214,8 @@ $locale_direction = LaravelLocalization::getCurrentLocaleDirection();
                                                 </label>
                                             </div>
                                         </div>
-                                        <div class="flex-1 text-base @if ($locale_direction == 'rtl') text-left @else text-right @endif font-semibold">
+                                        <div
+                                            class="flex-1 text-base @if ($locale_direction == 'rtl') text-left @else text-right @endif font-semibold">
                                             {{ @num_format($variation->default_sell_price - $item->attributes->discount) }}<span
                                                 class="font-bold">
                                                 TL</span>
@@ -225,7 +228,8 @@ $locale_direction = LaravelLocalization::getCurrentLocaleDirection();
                 @endforeach
 
                 <div class="flex @if ($locale_direction == 'rtl') justify-end @endif">
-                    <h3 class="font-semibold text-lg text-dark pt-5 @if ($locale_direction == 'rtl') text-right @else text-right @endif @if ($extras->count() == 0) hidden @endif">
+                    <h3
+                        class="font-semibold text-lg text-dark pt-5 @if ($locale_direction == 'rtl') text-right @else text-right @endif @if ($extras->count() == 0) hidden @endif">
                         @lang('lang.extras')</h3>
                 </div>
                 @foreach ($extras as $extra)
@@ -240,7 +244,8 @@ $locale_direction = LaravelLocalization::getCurrentLocaleDirection();
                                 </label>
                             </div>
                         </div>
-                        <div class="flex-1 text-base @if ($locale_direction == 'rtl') text-left @else text-right @endif font-semibold">
+                        <div
+                            class="flex-1 text-base @if ($locale_direction == 'rtl') text-left @else text-right @endif font-semibold">
                             {{ @num_format($extra->sell_price - $extra->discount_value) }}<span class="font-bold">
                                 TL</span>
                         </div>

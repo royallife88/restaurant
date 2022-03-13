@@ -17,9 +17,9 @@
                 <div class=" row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="sender_email">{{ __('lang.sender_email') }}:</label>
-                            <input type="text" class="form-control" id="sender_email" name="sender_email" required
-                                value="@if (!empty($settings['sender_email'])) {{ $settings['sender_email'] }} @endif">
+                            <label for="system_email">{{ __('lang.email') }}:</label>
+                            <input type="text" class="form-control" id="system_email" name="system_email" required
+                                value="@if (!empty($settings['system_email'])) {{ $settings['system_email'] }} @endif">
                         </div>
                     </div>
                 </div>

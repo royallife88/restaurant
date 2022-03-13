@@ -20,7 +20,7 @@
         @include('layouts.partials.main-header')
     @endif
     <main class="relative bg-cover bg-no-repeat bg-center"
-        style="background-image: url('{{ asset('uploads/' . session('page_background_image')) }}')">
+        style="background-image: url('@if(!empty(session('page_background_image'))){{ asset('uploads/' . session('page_background_image')) }}@else{{ asset('images/default-page-bg.png') }}@endif')">
         @yield('content')
     </main>
     @include('layouts.partials.footer')

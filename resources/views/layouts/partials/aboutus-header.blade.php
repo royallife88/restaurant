@@ -1,4 +1,4 @@
-<div class="w-full flex flex-row bg-blend-overlay bg-gray-600 bg-no-repeat bg-center bg-cover text-center items-center"
+<div class="w-full flex flex-row bg-no-repeat bg-center bg-cover text-center items-center"
     style="height: 200px; background-image: url('{{ asset('uploads/' . session('breadcrumb_background_image')) }}')">
     <div class="w-full">
         <div class="flex flex-row">
@@ -8,10 +8,8 @@
             <div class="flex-1 mt-8 text-center">
                 <p class="font-bold text-4xl text-white">@lang('lang.about_us')</p>
             </div>
-            <div class="flex-3">
-                <a href="https://wa.me/{{ App\Models\System::getProperty('whatsapp') }}">
-                    <img src="{{ asset('images/chat-icon.png') }}" alt="logo" class="m-auto w-10 h-10">
-                </a>
+            <div class="flex-3 w-48 items-end">
+                @include('layouts.partials.social_icons')
             </div>
         </div>
 

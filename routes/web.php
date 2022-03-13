@@ -38,7 +38,7 @@ require __DIR__ . '/auth.php';
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'SetSessionData']], function () {
     Auth::routes();
     Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
-        Route::get('/test', function(){
+        Route::get('/test', function () {
             return app()->getLocale();
         });
         Route::get('/dashboard', 'Admin\DashboardController@index')->name('dashboard');
@@ -56,6 +56,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         Route::resource('/offers', Admin\OfferController::class)->name('index', 'offers.index')->name('create', 'offers.create');
         Route::get('size/get-dropdown', 'Admin\SizeController@getDropdown');
         Route::resource('size', Admin\SizeController::class)->name('index', 'size.index');
+        Route::post('settings/remove-image/{type}', 'Admin\SettingController@removeImage');
         Route::get('system-settings', 'Admin\SettingController@getSystemSettings')->name('system.settings');
         Route::post('system-settings', 'Admin\SettingController@saveSystemSettings');
         Route::resource('/orders', Admin\OrderController::class)->name('index', 'orders.index');

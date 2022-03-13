@@ -7,6 +7,7 @@ use App\Jobs\SendMessagesJob;
 use App\Models\Message;
 use App\Models\System;
 use App\Models\User;
+use App\Utils\Util;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -14,6 +15,23 @@ use Yajra\DataTables\Facades\DataTables;
 
 class MessageController extends Controller
 {
+    /**
+     * All Utils instance.
+     *
+     */
+    protected $commonUtil;
+
+    /**
+     * Constructor
+     *
+     * @param Util $commonUtil
+     * @return void
+     */
+    public function __construct(Util $commonUtil)
+    {
+        $this->commonUtil = $commonUtil;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -33,7 +51,6 @@ class MessageController extends Controller
 
             $messages = $messages->select(
                 'messages.*',
-                'users.name as sent_by'
 
             );
 
@@ -63,16 +80,16 @@ class MessageController extends Controller
 
                         if (auth()->user()->can('message.view')) {
                             $html .=
-                                '<li><a data-href="' . action('Admin\MessageController@resend', $row->id) . '"
-                                data-container=".view_modal" class="btn btn-modal text-primary"><i class="fa fa-paper-plane"></i>
-                                ' . __('lang.resend') . '</a></li>';
+                                '<li><a href="' . action('Admin\MessageController@show', $row->id) . '" class="btn"
+                                target="_blank"><i class="fas fa-eye"></i> ' . __('lang.view') . '</a></li>';
                         }
                         $html .= '<li class="divider"></li>';
-                        if (auth()->user()->can('message.edit')) {
-                            $html .=
-                                '<li><a href="' . action('Admin\MessageController@edit', $row->id) . '" class="btn"
-                            target="_blank"><i class="fas fa-edit"></i> ' . __('lang.edit') . '</a></li>';
-                        }
+
+                        $html .=
+                            '<li><a href="' . action('Admin\MessageController@resend', $row->id) . '"
+                                 class="btn text-primary"><i class="fa fa-paper-plane"></i>
+                                ' . __('lang.resend') . '</a></li>';
+
 
                         $html .= '<li class="divider"></li>';
                         if (auth()->user()->can('message.delete')) {
@@ -155,7 +172,7 @@ class MessageController extends Controller
                 }
             }
 
-            $from = System::getProperty('sender_email');
+            $from = System::getProperty('system_email');
 
             foreach ($emails as $email) {
                 $data["email"] = trim($email);
@@ -261,7 +278,7 @@ class MessageController extends Controller
                     $attachments[] = $att;
                 }
             }
-            $from = System::getProperty('sender_email');
+            $from = System::getProperty('system_email');
 
             foreach ($emails as $email) {
                 $data["email"] = trim($email);
@@ -330,7 +347,7 @@ class MessageController extends Controller
     public function getSetting()
     {
 
-        $settings['sender_email'] = System::getProperty('sender_email');
+        $settings['system_email'] = System::getProperty('system_email');
 
 
         return view('admin.message.setting')->with(compact(
@@ -347,7 +364,9 @@ class MessageController extends Controller
     {
 
         try {
-            $settings['sender_email'] = System::saveProperty('sender_email', $request->sender_email);
+            $settings['system_email'] = System::saveProperty('system_email', $request->system_email);
+            $data['sender_email'] = System::getProperty('system_email');
+            $this->commonUtil->addSyncDataWithPos('System', $settings['system_email'], $data, 'POST', 'setting');
 
             $output = [
                 'success' => true,
@@ -382,7 +401,7 @@ class MessageController extends Controller
                 $attachments[] = $att;
             }
 
-            $from = System::getProperty('sender_email');
+            $from = System::getProperty('system_email');
             foreach ($emails as $email) {
                 $data["email"] = trim($email);
 

@@ -76,6 +76,10 @@
             </div>
             <div class="col-md-4">
                 <div class="form-group">
+                    @if (!empty($settings['page_background_image']))
+                        <button type="button" class="btn btn-xs btn-danger remove_image" data-type="page_background_image"><i
+                                class="fa fa-times"></i></button>
+                    @endif
                     {!! Form::label('page_background_image', __('lang.page_background_image'), []) !!} <small class="text-red">@lang('lang.1350_900')</small>
                     <x-adminlte-input-file name="page_background_image" placeholder="{{ __('lang.choose_a_file') }}">
                         <x-slot name="prependSlot">
@@ -130,6 +134,18 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
+                    {!! Form::label('instagram', __('lang.instagram'), []) !!}
+                    {!! Form::text('instagram', !empty($settings['instagram']) ? $settings['instagram'] : null, ['class' => 'form-control']) !!}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    {!! Form::label('telegram', __('lang.telegram'), []) !!}
+                    {!! Form::text('telegram', !empty($settings['telegram']) ? $settings['telegram'] : null, ['class' => 'form-control']) !!}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
                     {!! Form::label('phone_number_1', __('lang.phone_number_1'), []) !!}
                     {!! Form::text('phone_number_1', !empty($settings['phone_number_1']) ? $settings['phone_number_1'] : null, ['class' => 'form-control']) !!}
                 </div>
@@ -142,8 +158,8 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    {!! Form::label('email', __('lang.email'), []) !!}
-                    {!! Form::text('email', !empty($settings['email']) ? $settings['email'] : null, ['class' => 'form-control']) !!}
+                    {!! Form::label('system_email', __('lang.email'), []) !!}
+                    {!! Form::text('system_email', !empty($settings['system_email']) ? $settings['system_email'] : null, ['class' => 'form-control']) !!}
                 </div>
             </div>
             <div class="col-md-6">
@@ -204,5 +220,18 @@
 @section('javascript')
     <script>
         $("[name='homepage_category_carousel']").bootstrapSwitch();
+
+        $(document).on('click', '.remove_image', function() {
+            var type = $(this).data('type');
+            $.ajax({
+                url: "/admin/settings/remove-image/" + type,
+                type: "POST",
+                success: function(response) {
+                    if (response.success) {
+                        location.reload();
+                    }
+                }
+            });
+        });
     </script>
 @endsection

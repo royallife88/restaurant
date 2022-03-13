@@ -387,6 +387,24 @@ class Util
         return $ip;
     }
 
+    public function getMonthsArray()
+    {
+        return [
+            '1' => __('lang.January'),
+            '2' => __('lang.February'),
+            '3' => __('lang.March'),
+            '4' => __('lang.April'),
+            '5' => __('lang.May'),
+            '6' => __('lang.June'),
+            '7' => __('lang.July'),
+            '8' => __('lang.August'),
+            '9' => __('lang.September'),
+            '10' => __('lang.October'),
+            '11' => __('lang.November'),
+            '12' => __('lang.December'),
+        ];
+    }
+
     public function createDropdownHtml($array, $append_text = null)
     {
         $html = '';

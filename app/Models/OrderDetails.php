@@ -33,6 +33,6 @@ class OrderDetails extends Model
 
     public function getVariationPosModelIdAttribute()
     {
-        return $this->variation->pos_model_id;
+        return !empty($this->variation) ? $this->variation->pos_model_id : null;
     }
 }

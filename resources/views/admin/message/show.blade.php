@@ -35,7 +35,7 @@
                             {!! $message->body !!}
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    {{-- <div class="col-md-4">
                         <div class="form-group">
                             <label for="attachment">{{ __('lang.attachment') }}:</label> <br>
                             @foreach ($message->attachments as $item)
@@ -50,7 +50,7 @@
                             <textarea name="notes" id="notes" cols="30" rows="3" readonly
                                 class="form-control">{{ $message->notes }}</textarea>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

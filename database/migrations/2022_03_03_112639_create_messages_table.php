@@ -20,7 +20,7 @@ class CreateMessagesTable extends Migration
             $table->text('body');
             $table->text('attachments')->nullable();
             $table->text('notes')->nullable();
-            $table->unsignedBigInteger('created_by');
+            $table->unsignedBigInteger('created_by')->nullable();
             $table->timestamps();
         });
     }

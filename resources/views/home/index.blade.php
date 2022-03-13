@@ -47,7 +47,7 @@
             @php
                 $chunk_count = 1;
             @endphp
-            {{-- @foreach ($categories->chunk(4) as $categoryChunk) --}}
+
                 <div class="flex flex-row flex-wrap justify-center">
                     @foreach ($categories as $category)
                         @php
@@ -71,10 +71,7 @@
                         ])
                     @endforeach
                 </div>
-                {{-- @php
-                    $chunk_count++;
-                @endphp
-            @endforeach --}}
+
         @endif
     </div>
     <div class="container mx-auto">

@@ -7,6 +7,7 @@ use App\Models\Offer;
 use App\Models\Product;
 use App\Models\Variation;
 use App\Utils\CartUtil;
+use App\Utils\Util;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
@@ -18,6 +19,7 @@ class CartController extends Controller
      *
      */
     protected $cartUtil;
+    protected $commonUtil;
 
     /**
      * Constructor
@@ -25,9 +27,10 @@ class CartController extends Controller
      * @param Util $cartUtil
      * @return void
      */
-    public function __construct(CartUtil $cartUtil)
+    public function __construct(CartUtil $cartUtil, Util $commonUtil)
     {
         $this->cartUtil = $cartUtil;
+        $this->commonUtil = $commonUtil;
     }
 
 
@@ -80,11 +83,13 @@ class CartController extends Controller
             ->get();
 
         $total = \Cart::session($user_id)->getTotal();
+        $month_array = $this->commonUtil->getMonthsArray();
 
         return view('cart.view')->with(compact(
             'extras',
             'total',
-            'cart_content'
+            'cart_content',
+            'month_array'
         ));
     }
 

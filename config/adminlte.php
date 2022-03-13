@@ -302,12 +302,12 @@ return [
             'icon'    => 'fas fa-envelope',
             'can'      => 'messages.view',
             'submenu' => [
-                [
-                    'text' => 'send_message',
-                    'route'  => 'messages.create',
-                    'icon' => 'fas fa-plus',
-                    'can'      => 'messages.create',
-                ],
+                // [
+                //     'text' => 'send_message',
+                //     'route'  => 'messages.create',
+                //     'icon' => 'fas fa-plus',
+                //     'can'      => 'messages.create',
+                // ],
                 [
                     'text' => 'view_all_messages',
                     'route'  => 'messages.index',

@@ -4,6 +4,9 @@
     <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
 @endsection
 @section('content_top_nav_right')
+    @if (!empty(env('POS_SYSTEM_URL')))
+        <a class="btn btn-primary btn-flat mb-3" href="{{ env('POS_SYSTEM_URL') }}" target="_blank" rel="noopener noreferrer">@lang('lang.pos')</a>
+    @endif
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" aria-expanded="true">
             <img class="h-5 w-5 rounded-full object-cover mx-1"
@@ -14,7 +17,7 @@
         <ul class="dropdown-menu border-0 shadow" style="left: 0px; right: 0;">
             <li>
                 <a class="dropdown-item"
-                    href="{{ url('/') }}/ar/{{ request()->segment(2) }}/{{ request()->segment(3) }}/{{request()->segment(4)}}">
+                    href="{{ url('/') }}/ar/{{ request()->segment(2) }}/{{ request()->segment(3) }}/{{ request()->segment(4) }}">
                     <img class="" src="{{ asset('images/ar-flag.png') }}"
                         style="float: left; margin-top: 3px; width: 1.25rem; height: 1.25rem; color: grey;" alt="avatar">
                     <p style="margin-left: 30px; padding-top: 0px;"> Arabic</p>
@@ -22,7 +25,7 @@
             </li>
             <li>
                 <a class="dropdown-item"
-                    href="{{ url('/') }}/nl/{{ request()->segment(2) }}/{{ request()->segment(3) }}/{{request()->segment(4)}}">
+                    href="{{ url('/') }}/nl/{{ request()->segment(2) }}/{{ request()->segment(3) }}/{{ request()->segment(4) }}">
                     <img class="" src="{{ asset('images/nl-flag.png') }}"
                         style="float: left; margin-top: 3px; width: 1.25rem; height: 1.25rem; color: grey;" alt="avatar">
                     <p style="margin-left: 30px; padding-top: 0px;">Deutsch</p>
@@ -30,7 +33,7 @@
             </li>
             <li>
                 <a class="dropdown-item"
-                    href="{{ url('/') }}/en/{{ request()->segment(2) }}/{{ request()->segment(3) }}/{{request()->segment(4)}}">
+                    href="{{ url('/') }}/en/{{ request()->segment(2) }}/{{ request()->segment(3) }}/{{ request()->segment(4) }}">
                     <img class="" src="{{ asset('images/en-flag.png') }}"
                         style="float: left; margin-top: 3px; width: 1.25rem; height: 1.25rem; color: grey;" alt="avatar">
                     <p style="margin-left: 30px; padding-top: 0px;">English</p>
@@ -38,7 +41,7 @@
             </li>
             <li>
                 <a class="dropdown-item"
-                    href="{{ url('/') }}/tr/{{ request()->segment(2) }}/{{ request()->segment(3) }}/{{request()->segment(4)}}">
+                    href="{{ url('/') }}/tr/{{ request()->segment(2) }}/{{ request()->segment(3) }}/{{ request()->segment(4) }}">
                     <img class="" src="{{ asset('images/tr-flag.png') }}"
                         style="float: left; margin-top: 3px; width: 1.25rem; height: 1.25rem; color: grey;" alt="avatar">
                     <p style="margin-left: 30px; padding-top: 0px;">Turkce</p>
@@ -46,7 +49,7 @@
             </li>
             <li>
                 <a class="dropdown-item"
-                    href="{{ url('/') }}/fa/{{ request()->segment(2) }}/{{ request()->segment(3) }}/{{request()->segment(4)}}">
+                    href="{{ url('/') }}/fa/{{ request()->segment(2) }}/{{ request()->segment(3) }}/{{ request()->segment(4) }}">
                     <img class="" src="{{ asset('images/fa-flag.png') }}"
                         style="float: left; margin-top: 3px; width: 1.25rem; height: 1.25rem; color: grey;" alt="avatar">
                     <p style="margin-left: 30px; padding-top: 0px;">فارسی</p>

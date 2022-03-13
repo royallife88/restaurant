@@ -1,6 +1,6 @@
 <div x-data="{ dropdownOpen: false }" class="relative">
     <button @click="dropdownOpen = !dropdownOpen"
-        class="relative z-10 block rounded-tr-full rounded-br-full bg-red p-2 focus:outline-none w-32 flex items-center">
+        class="relative z-10 block rounded-tr-full rounded-br-full bg-red p-2 focus:outline-none w-32 flex items-center  border border-dark">
         <img class="h-5 w-5 text-gray-800" src="{{ asset('images/' . app()->getLocale() . '-flag.png') }}" alt="">
         <p class="text-dark text-sm mx-2">
             @lang('lang.'.app()->getLocale())
@@ -12,7 +12,7 @@
 
     <div x-show="dropdownOpen" class="absolute left-0 mt-2 bg-red rounded-md shadow-lg overflow-hidden z-20 w-32">
         <div class="py-2">
-            <a href="{{ url('/') .'/ar' }}" class="flex items-center px-4 py-1 -mx-2">
+            <a href="{{ url('/') }}/ar/{{ request()->segment(2) }}/{{ request()->segment(3) }}" class="flex items-center px-4 py-1 -mx-2">
                 <img class="h-5 w-5 rounded-full object-cover mx-1" src="{{ asset('images/ar-flag.png') }}"
                     alt="avatar">
                 <p class="text-dark text-sm mx-2">
@@ -20,7 +20,7 @@
                 </p>
             </a>
             <div class="w-9/12 mx-auto" style="height: 1px; background-color: rgba(0,0,0, 0.5)"></div>
-            <a href="{{ url('/') .'/nl' }}" class="flex items-center px-4 py-1 -mx-2">
+            <a href="{{ url('/') }}/nl/{{ request()->segment(2) }}/{{ request()->segment(3) }}" class="flex items-center px-4 py-1 -mx-2">
                 <img class="h-5 w-5 rounded-full object-cover mx-1" src="{{ asset('images/nl-flag.png') }}"
                     alt="avatar">
                 <p class="text-dark text-sm mx-2">
@@ -28,7 +28,7 @@
                 </p>
             </a>
             <div class="w-9/12 mx-auto" style="height: 1px; background-color: rgba(0,0,0, 0.5)"></div>
-            <a href="{{ url('/') .'/en' }}"
+            <a href="{{ url('/') }}/en/{{ request()->segment(2) }}/{{ request()->segment(3) }}"
                 class="flex items-center px-4 py-1 -mx-2">
                 <img class="h-5 w-5 rounded-full object-cover mx-1" src="{{ asset('images/en-flag.png') }}"
                     alt="avatar">
@@ -37,7 +37,7 @@
                 </p>
             </a>
             <div class="w-9/12 mx-auto" style="height: 1px; background-color: rgba(0,0,0, 0.5)"></div>
-            <a href="{{ url('/') .'/tr' }}"
+            <a href="{{ url('/') }}/tr/{{ request()->segment(2) }}/{{ request()->segment(3) }}"
                 class="flex items-center px-4 py-1 -mx-2">
                 <img class="h-5 w-5 rounded-full object-cover mx-1" src="{{ asset('images/tr-flag.png') }}"
                     alt="avatar">
@@ -46,7 +46,7 @@
                 </p>
             </a>
             <div class="w-9/12 mx-auto" style="height: 1px; background-color: rgba(0,0,0, 0.5)"></div>
-            <a href="{{ url('/') .'/fa' }}"
+            <a href="{{ url('/') }}/fa/{{ request()->segment(2) }}/{{ request()->segment(3) }}"
                 class="flex items-center px-4 py-1 -mx-2">
                 <img class="h-5 w-5 rounded-full object-cover mx-1" src="{{ asset('images/fa-flag.png') }}"
                     alt="avatar">

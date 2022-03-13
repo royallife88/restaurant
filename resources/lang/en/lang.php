@@ -124,6 +124,9 @@ return [
     'twitter' => 'Twitter',
     'whatsapp' => 'Whatsapp',
     'youtube' => 'Youtube',
+    'instagram' => 'Instagram',
+    'telegram' => 'Telegram',
+
     'phone_number_1' => 'Phone Number 1',
     'phone_number_2' => 'Phone Number 2',
     'open_time' => 'Open Time',
@@ -197,5 +200,18 @@ return [
     'selling_price' => 'Selling Price',
     'purchase_price' => 'Purchase Price',
     'sku' => 'Sku',
+    'pos' => 'POS',
 
+    'January' => 'January',
+    'February' => 'February',
+    'March' => 'March',
+    'April' => 'April',
+    'May' => 'May',
+    'June' => 'June',
+    'July' => 'July',
+    'August' => 'August',
+    'September' => 'September',
+    'October' => 'October',
+    'November' => 'November',
+    'December' => 'December',
 ];

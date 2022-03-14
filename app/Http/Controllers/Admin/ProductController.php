@@ -259,6 +259,7 @@ class ProductController extends Controller
     {
         try {
             $data = $request->except('_token', '_method', 'image');
+            $data['discount_type'] = $data['discount_type'];
             $data['discount_start_date'] = !empty($data['discount_start_date']) ? $this->commonUtil->uf_date($data['discount_start_date']) : null;
             $data['discount_end_date'] = !empty($data['discount_end_date']) ? $this->commonUtil->uf_date($data['discount_end_date']) : null;
             $data['active'] = !empty($data['active']) ? 1 : 0;

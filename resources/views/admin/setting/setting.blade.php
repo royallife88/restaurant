@@ -33,6 +33,10 @@
             </div>
             <div class="col-md-4">
                 <div class="form-group">
+                    @if (!empty($settings['home_background_image']))
+                        <button type="button" class="btn btn-xs btn-danger remove_image" data-type="home_background_image"><i
+                                class="fa fa-times"></i></button>
+                    @endif
                     {!! Form::label('home_background_image', __('lang.home_background_image'), []) !!} <small class="text-red">@lang('lang.1350_450')</small>
                     <x-adminlte-input-file name="home_background_image" placeholder="{{ __('lang.choose_a_file') }}">
                         <x-slot name="prependSlot">
@@ -54,6 +58,10 @@
             </div>
             <div class="col-md-4">
                 <div class="form-group">
+                    @if (!empty($settings['breadcrumb_background_image']))
+                        <button type="button" class="btn btn-xs btn-danger remove_image"
+                            data-type="breadcrumb_background_image"><i class="fa fa-times"></i></button>
+                    @endif
                     {!! Form::label('breadcrumb_background_image', __('lang.breadcrumb_background_image'), []) !!} <small class="text-red">@lang('lang.1350_450')</small>
                     <x-adminlte-input-file name="breadcrumb_background_image"
                         placeholder="{{ __('lang.choose_a_file') }}">
@@ -77,8 +85,8 @@
             <div class="col-md-4">
                 <div class="form-group">
                     @if (!empty($settings['page_background_image']))
-                        <button type="button" class="btn btn-xs btn-danger remove_image" data-type="page_background_image"><i
-                                class="fa fa-times"></i></button>
+                        <button type="button" class="btn btn-xs btn-danger remove_image"
+                            data-type="page_background_image"><i class="fa fa-times"></i></button>
                     @endif
                     {!! Form::label('page_background_image', __('lang.page_background_image'), []) !!} <small class="text-red">@lang('lang.1350_900')</small>
                     <x-adminlte-input-file name="page_background_image" placeholder="{{ __('lang.choose_a_file') }}">

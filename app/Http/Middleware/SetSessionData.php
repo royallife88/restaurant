@@ -35,28 +35,28 @@ class SetSessionData
         }
         $request->session()->put('logo', $logo);
 
-        if (empty(session('home_background_image'))) {
-            $home_background_image = System::getProperty('home_background_image');
-            if (empty($home_background_image)) {
-                $home_background_image = null;
-            }
-            $request->session()->put('home_background_image', $home_background_image);
-        }
-        if (empty(session('breadcrumb_background_image'))) {
-            $breadcrumb_background_image = System::getProperty('breadcrumb_background_image');
-            if (empty($breadcrumb_background_image)) {
-                $breadcrumb_background_image = null;
-            }
-            $request->session()->put('breadcrumb_background_image', $breadcrumb_background_image);
-        }
 
-        if (empty(session('page_background_image'))) {
-            $page_background_image = System::getProperty('page_background_image');
-            if (empty($page_background_image)) {
-                $page_background_image = null;
-            }
-            $request->session()->put('page_background_image', $page_background_image);
+        $home_background_image = System::getProperty('home_background_image');
+        if (empty($home_background_image)) {
+            $home_background_image = null;
         }
+        $request->session()->put('home_background_image', $home_background_image);
+
+
+        $breadcrumb_background_image = System::getProperty('breadcrumb_background_image');
+        if (empty($breadcrumb_background_image)) {
+            $breadcrumb_background_image = null;
+        }
+        $request->session()->put('breadcrumb_background_image', $breadcrumb_background_image);
+
+
+
+        $page_background_image = System::getProperty('page_background_image');
+        if (empty($page_background_image)) {
+            $page_background_image = null;
+        }
+        $request->session()->put('page_background_image', $page_background_image);
+
 
         return $next($request);
     }

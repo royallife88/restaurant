@@ -75,7 +75,7 @@
             </div>
 
             <div class="clearfix"></div>
-            <div class="col-md-4 hide">
+            <div class="col-md-4">
                 <div class="form-group">
                     {!! Form::label('discount_type', __('lang.discount_type'), []) !!}
                     {!! Form::select('discount_type', ['fixed' => __('lang.fixed'), 'percentage' => __('lang.percentage')], 'fixed', ['class' => 'form-control', 'style' => 'width: 80%', 'placeholder' => __('lang.please_select'),]) !!}

@@ -44,4 +44,8 @@ return [
     'Turkce' => 'Turkce',
     'فارسی' => 'فارسی',
     'Deutsch' => 'Deutsch',
+
+
+    'stores' => 'Stores',
+    'customer_type' => 'Customer Type',
 ];

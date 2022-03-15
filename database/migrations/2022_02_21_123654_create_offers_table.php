@@ -26,7 +26,9 @@ class CreateOffersTable extends Migration
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->boolean('status')->default(1);
-            $table->unsignedBigInteger('created_by');
+            $table->boolean('pos_model_id')->nullable();
+            $table->unsignedBigInteger('created_by')->nullable();
+
             $table->timestamps();
         });
     }

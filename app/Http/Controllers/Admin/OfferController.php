@@ -108,9 +108,9 @@ class OfferController extends Controller
                             <a href="' . action('Admin\OfferController@toggleOfferStatus', $row->id) . '"
                                     class="btn text-red">';
                         if ($row->status == 1) {
-                            $html .= '<i class="fa fa-ban"></i> '.__('lang.suspend');
+                            $html .= '<i class="fa fa-ban"></i> ' . __('lang.suspend');
                         } else {
-                            $html .= '<i class="fa fa-recycle"></i> '.__('lang.activate');
+                            $html .= '<i class="fa fa-recycle"></i> ' . __('lang.activate');
                         }
                         $html .= '</a>
                             </li>';
@@ -191,9 +191,11 @@ class OfferController extends Controller
             $data['created_by'] = Auth::user()->id;
             DB::beginTransaction();
 
-            Offer::create($data);
-
+            $offer = Offer::create($data);
+            $data['product_ids'] = $this->productUtil->getCorrespondingProductIdsReverse($data['product_ids']);
+            $this->commonUtil->addSyncDataWithPos('Offer', $offer, $data, 'POST', 'sales-promotion');
             DB::commit();
+
             $output = [
                 'success' => true,
                 'msg' => __('lang.success')
@@ -285,7 +287,11 @@ class OfferController extends Controller
             $data['created_by'] = Auth::user()->id;
             DB::beginTransaction();
 
-            Offer::where('id', $id)->update($data);
+            $offer = Offer::where('id', $id)->first();
+            $offer->update($data);
+            $data['product_ids'] = $this->productUtil->getCorrespondingProductIdsReverse($data['product_ids']);
+            // print_r($data['product_ids']); die();
+            $this->commonUtil->addSyncDataWithPos('Offer', $offer, $data, 'PUT', 'sales-promotion');
 
             DB::commit();
             $output = [
@@ -316,7 +322,12 @@ class OfferController extends Controller
         }
 
         try {
-            Offer::find($id)->delete();
+            $offer = Offer::find($id)->first();
+
+            DB::beginTransaction();
+            $this->commonUtil->addSyncDataWithPos('Offer', $offer, null, 'DELETE', 'sales-promotion');
+            $offer->delete();
+            DB::commit();
             $output = [
                 'success' => true,
                 'msg' => __('lang.success')

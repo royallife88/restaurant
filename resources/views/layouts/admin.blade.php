@@ -230,6 +230,7 @@
                 $('.alert-div').slideUp('slow');
             }, 3000);
         });
+        $('.hidden_menu').hide();
         $('.select2').select2();
     </script>
     @yield('javascript')

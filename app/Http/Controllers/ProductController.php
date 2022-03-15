@@ -64,10 +64,6 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::findOrFail($id);
-        $offer = Offer::whereDate('start_date', '<=', date('Y-m-d'))->whereDate('end_date', '>=', date('Y-m-d'))->whereJsonContains('product_ids', (string) $id)->where('status', 1)->first();
-        if (!empty($offer)) {
-            $product->discount = $offer->discount_value;
-        }
 
         return view('product.show')->with(compact(
             'product'

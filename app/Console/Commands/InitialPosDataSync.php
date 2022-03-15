@@ -2,9 +2,11 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Offer;
 use App\Models\Product;
 use App\Models\ProductClass;
 use App\Models\Size;
+use App\Models\Store;
 use App\Models\System;
 use App\Models\Variation;
 use App\Utils\ProductUtil;
@@ -63,6 +65,50 @@ class InitialPosDataSync extends Command
 
         if ($ENABLE_POS_SYNC == true && !empty($POS_SYSTEM_URL) && !empty($POS_ACCESS_TOKEN)) {
 
+
+            //get stores
+            $response_stores = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $POS_ACCESS_TOKEN,
+            ])->get($POS_SYSTEM_URL . '/api/store')->json();
+
+            if ($response_stores['success']) {
+                $stores = $response_stores['data'];
+                $keep_stores = [];
+                foreach ($stores as $store) {
+                    $keep_stores[] = $store['id'];
+                    $store_exist = Store::where('pos_model_id', $store['id'])->first();
+                    if (empty($store_exist)) {
+                        $store_data = [
+                            'name' => $store['name'],
+                            'location' => $store['location'],
+                            'phone_number' => $store['phone_number'],
+                            'email' => $store['email'],
+                            'manager_name' => $store['manager_name'],
+                            'manager_mobile_number' => $store['manager_mobile_number'],
+                            'details' => $store['details'],
+                            'created_by' => null,
+                            'pos_model_id' => $store['id'],
+                            'created_at' => !empty($store['created_at']) ? $store['created_at'] : Carbon::now(),
+                            'updated_at' => !empty($store['updated_at']) ? $store['updated_at'] : Carbon::now(),
+                        ];
+                        Store::create($store_data);
+                    } else {
+                        $store_data = [
+                            'name' => $store['name'],
+                            'location' => $store['location'],
+                            'phone_number' => $store['phone_number'],
+                            'email' => $store['email'],
+                            'manager_name' => $store['manager_name'],
+                            'manager_mobile_number' => $store['manager_mobile_number'],
+                            'details' => $store['details'],
+                            'pos_model_id' => $store['id'],
+                            'updated_at' => empty($store['updated_at']) ? $store['updated_at'] : Carbon::now(),
+                        ];
+                        $store_exist->update($store_data);
+                    }
+                }
+                Store::whereNotIn('pos_model_id', $keep_stores)->delete();
+            }
 
             // get sizes
             $response_size = Http::withHeaders([
@@ -268,6 +314,55 @@ class InitialPosDataSync extends Command
                 file_put_contents(public_path('uploads/' . $settings['logo']), $logo_image);
                 System::updateOrCreate(['key' => 'logo'], ['value' => $settings['logo'], 'date_and_time' => Carbon::now(), 'created_by' => 1]);
                 System::updateOrCreate(['key' => 'system_email'], ['value' => $settings['sender_email'], 'date_and_time' => Carbon::now(), 'created_by' => 1]);
+            }
+
+            //get offers
+            $response_offers = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $POS_ACCESS_TOKEN,
+            ])->get($POS_SYSTEM_URL . '/api/sales-promotion')->json();
+
+            if ($response_offers['success']) {
+                $offers = $response_offers['data'];
+                $keep_offers = [];
+                foreach ($offers as $offer) {
+                    $keep_offers[] = $offer['id'];
+                    $offer_exist = Offer::where('pos_model_id', $offer['id'])->first();
+                    $product_ids = $this->productUtil->getCorrespondingProductIds($offer['product_ids']);
+                    if (empty($offer_exist)) {
+                        $offer_data = [
+                            'name' => $offer['name'],
+                            'type' => $offer['type'],
+                            'code' => $offer['code'],
+                            'product_ids' => $product_ids,
+                            'description' => !empty($offer['description']) ? $offer['description'] : null,
+                            'discount_type' => $offer['discount_type'],
+                            'discount_value' => $offer['discount_value'],
+                            'start_date' => $offer['start_date'],
+                            'end_date' => $offer['end_date'],
+                            'created_by' => null,
+                            'pos_model_id' => $offer['id'],
+                            'created_at' => !empty($offer['created_at']) ? $offer['created_at'] : Carbon::now(),
+                            'updated_at' => !empty($offer['updated_at']) ? $offer['updated_at'] : Carbon::now(),
+                        ];
+                        Offer::create($offer_data);
+                    } else {
+                        $offer_data = [
+                            'name' => $offer['name'],
+                            'type' => $offer['type'],
+                            'code' => $offer['code'],
+                            'product_ids' => $product_ids,
+                            'description' => !empty($offer['description']) ? $offer['description'] : null,
+                            'discount_type' => $offer['discount_type'],
+                            'discount_value' => $offer['discount_value'],
+                            'start_date' => $offer['start_date'],
+                            'end_date' => $offer['end_date'],
+                            'pos_model_id' => $offer['id'],
+                            'updated_at' => empty($offer['updated_at']) ? $offer['updated_at'] : Carbon::now(),
+                        ];
+                        $offer_exist->update($offer_data);
+                    }
+                }
+                Offer::whereNotIn('pos_model_id', $keep_offers)->delete();
             }
         }
     }

@@ -33,38 +33,6 @@ class CartController extends Controller
         $this->commonUtil = $commonUtil;
     }
 
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
     /**
      * Display the specified resource.
      *
@@ -94,51 +62,6 @@ class CartController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-    /**
      * add the resource to cart
      *
      * @param  int  $id
@@ -152,16 +75,8 @@ class CartController extends Controller
             $variation = Variation::where('product_id', $id)->first();
 
             $price = $variation->default_sell_price;
-            $discount_value = 0;
-            $offers = Offer::whereDate('start_date', '<=', date('Y-m-d'))->whereDate('end_date', '>=', date('Y-m-d'))->whereJsonContains('product_ids', (string) $id)->where('status', 1)->first();
-            if (!empty($offers)) {
-                $discount_value = $offers->discount_value;
-                $price = $price - $discount_value;
-            } else {
-                $discount_value = $product->discount_value;
-                $price = $price - $discount_value;
-            }
 
+            $price = $price - $product->discount_value;
 
             $user_id = Session::get('user_id');
             \Cart::session($user_id)->add(array(
@@ -172,7 +87,7 @@ class CartController extends Controller
                 'attributes' => [
                     'variation_id' => $variation->id,
                     'extra' => true,
-                    'discount' => $discount_value
+                    'discount' => $product->discount_value
                 ],
                 'associatedModel' => $product
             ));
@@ -210,12 +125,7 @@ class CartController extends Controller
             $user_id = Session::get('user_id');
             $price = $variation->default_sell_price;
 
-            $offers = Offer::whereDate('start_date', '<=', date('Y-m-d'))->whereDate('end_date', '>=', date('Y-m-d'))->whereJsonContains('product_ids', (string) $id)->where('status', 1)->first();
-            if (!empty($offers)) {
-                $price = $price - $offers->discount_value;
-            } else {
-                $price = $price - $product->discount_value;
-            }
+            $price = $price - $product->discount_value;
             $item_exist = \Cart::session($user_id)->get($product->id);
 
 

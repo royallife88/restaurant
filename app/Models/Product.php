@@ -62,6 +62,11 @@ class Product extends Model implements HasMedia
             }
         }
 
+        $offer = Offer::whereDate('start_date', '<=', date('Y-m-d'))->whereDate('end_date', '>=', date('Y-m-d'))->whereJsonContains('product_ids', (string) $this->id)->where('status', 1)->first();
+        if (!empty($offer)) {
+            $discount_value = $offer->discount_value;
+        }
+
         return $discount_value;
     }
 }

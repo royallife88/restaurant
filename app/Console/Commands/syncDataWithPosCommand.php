@@ -64,7 +64,6 @@ class syncDataWithPosCommand extends Command
                     ])->delete($POS_SYSTEM_URL . '/api/' . $sync->route_name . '/' . $sync->pos_model_id, $sync->request_data)->json();
                 }
 
-
                 if (!empty($response['success'])) {
                     SyncDataWithPos::where('id', $sync->id)->update(['is_synced' => true]);
                     $model_class = 'App\Models\\' . $sync->model_name;

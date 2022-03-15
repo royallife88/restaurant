@@ -202,4 +202,73 @@ class ProductUtil extends Util
 
         return $product;
     }
+
+
+    public function getProductDetailsUsingArrayIds($array, $store_ids = null)
+    {
+        $query = Product::leftjoin('variations', 'products.id', 'variations.product_id')
+            ->leftjoin('product_stores', 'variations.id', 'product_stores.variation_id');
+
+        if (!empty($store_ids)) {
+            $query->whereIn('product_stores.store_id', $store_ids);
+        }
+        $query->whereIn('products.id', $array)
+            ->select(
+                'products.*',
+                DB::raw('SUM(product_stores.qty_available) as current_stock'),
+                DB::raw("(SELECT transaction_date FROM transactions LEFT JOIN add_stock_lines ON transactions.id=add_stock_lines.transaction_id WHERE add_stock_lines.product_id=products.id ORDER BY transaction_date DESC LIMIT 1) as date_of_purchase")
+            )
+            ->groupBy('products.id');
+
+        $products = $query->get();
+
+        return $products;
+    }
+
+    /**
+     * extract products using product tree selection
+     *
+     * @param array $data_selected
+     * @return array
+     */
+    public function extractProductIdsfromProductTree($data_selected)
+    {
+        $product_ids = [];
+
+        if (!empty($data_selected['product_selected'])) {
+            $p = array_values(Product::whereIn('id', $data_selected['product_selected'])->select('id')->pluck('id')->toArray());
+            $product_ids = array_merge($product_ids, $p);
+        }
+
+        $product_ids  = array_unique($product_ids);
+
+        return (array)$product_ids;
+    }
+
+    public function getCorrespondingProductIds($product_ids)
+    {
+        $array = [];
+
+        foreach ($product_ids as $product_id) {
+            $product = Product::where('pos_model_id', $product_id)->first();
+            if (!empty($product)) {
+                $array[] = (string) $product->id;
+            }
+        }
+
+        return $array;
+    }
+    public function getCorrespondingProductIdsReverse($product_ids)
+    {
+        $array = [];
+
+        foreach ($product_ids as $product_id) {
+            $product = Product::where('id', $product_id)->first();
+            if (!empty($product)) {
+                $array[] = (int) $product->pos_model_id;
+            }
+        }
+
+        return $array;
+    }
 }

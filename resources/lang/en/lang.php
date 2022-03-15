@@ -51,6 +51,7 @@ return [
     'please_select' => 'Please Select',
     'done' => 'Done',
     'create' => 'Create',
+    'add' => 'Add',
 
     'category' => 'Category',
     'categories' => 'Categories',
@@ -214,4 +215,15 @@ return [
     'October' => 'October',
     'November' => 'November',
     'December' => 'December',
+
+
+    'stores' => 'Stores',
+    'add_store' => 'Add Store',
+    'location' => 'Location',
+    'manager_name' => 'Manager Name',
+    'manager_mobile_number' => 'Manager Mobile Number',
+    'customer_type' => 'Customer Type',
+    'customer_types' => 'Customer Types',
+
+
 ];

@@ -357,6 +357,13 @@ return [
             'can'      => 'settings.size.view',
         ],
         [
+            'key' => 'stores',
+            'text' => 'stores',
+            'route'  => 'store.index',
+            'icon' => 'fas fa-store',
+            'can'      => 'settings.store.view',
+        ],
+        [
             'key'    => 'users',
             'text'    => 'users',
             'icon'    => 'fas fa-users',

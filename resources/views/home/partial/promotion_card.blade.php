@@ -1,8 +1,8 @@
 <a href="{{action('ProductController@show', $offer['product_id'])}}" class="text-center w-1/4 xl:p-16 lg:p-8 md:p-2 sm:p-1">
     <div class="flex-col h-78 mx-auto rounded-tl-lg rounded-tr-lg border-2 border-lightblue bg-white">
         <div class="w-full md:h-48 sm:h-24 rounded-tl-lg rounded-tr-lg">
-            <img src="{{$offer['image']}}" class="mx-auto md:h-48 sm:h-24 rounded-tr-lg rounded-tl-lg w-full"
-                alt="category-1">
+            <img src="{{!empty($offer['image']) ? $offer['image'] : asset('uploads/'. session('logo'))}}" class="mx-auto md:h-48 sm:h-24 rounded-tr-lg rounded-tl-lg w-full"
+                alt="offer">
         </div>
         <div class="h-10 w-full mx-auto text-center px-4 sm:px-1">
             <h3 class="text-base font-semibold text-dark sm:text-sm">{{$offer['product_name']}}</h3>

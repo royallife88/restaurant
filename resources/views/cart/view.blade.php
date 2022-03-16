@@ -78,7 +78,8 @@ $locale_direction = LaravelLocalization::getCurrentLocaleDirection();
                     <select id="day" name="day"
                         class="w-16 mx-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         @for ($i = 1; $i <= 31; $i++)
-                            <option @if ($i == date('d')) selected @endif value="{{ $i }}">{{ $i }}</option>
+                            <option @if ($i == date('d')) selected @endif value="{{ $i }}">
+                                {{ $i }}</option>
                         @endfor
                     </select>
                     <img class="h-8 w-12 px-2 mt-1" src="{{ asset('images/time-icon.png') }}" alt="">
@@ -159,6 +160,15 @@ $locale_direction = LaravelLocalization::getCurrentLocaleDirection();
                     <label class="font-semibold text-base text-dark pr-2 pt-1 float-left"
                         for="table_no">@lang('lang.table_no')</label>
                     <input type="text" id="table_no" name="table_no" class="w-32 border-b border-dark rounded-lg">
+
+                </div>
+                <div class="flex flex-row justify-center">
+                    <select id="store_id" name="store_id" required
+                        class="w-1/2 mx-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        @foreach ($stores as $id => $store)
+                            <option value="{{ $id }}">{{ $store }}</option>
+                        @endforeach
+                    </select>
 
                 </div>
 

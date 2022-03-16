@@ -56,6 +56,7 @@ class OrderController extends Controller
         try {
 
             $data['sales_note'] = $request->sales_note;
+            $data['store_id'] = $request->store_id;
             $data['customer_name'] = $request->customer_name;
             $data['phone_number'] = $request->phone_number;
             $data['order_type'] = !empty($request->order_type) ? 'order_later' : 'order_now';

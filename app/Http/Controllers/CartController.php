@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Offer;
 use App\Models\Product;
+use App\Models\Store;
 use App\Models\Variation;
 use App\Utils\CartUtil;
 use App\Utils\Util;
@@ -52,8 +53,10 @@ class CartController extends Controller
 
         $total = \Cart::session($user_id)->getTotal();
         $month_array = $this->commonUtil->getMonthsArray();
+        $stores = Store::pluck('name', 'id');
 
         return view('cart.view')->with(compact(
+            'stores',
             'extras',
             'total',
             'cart_content',

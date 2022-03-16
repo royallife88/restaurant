@@ -46,7 +46,7 @@ class SendOrderToPosSystem extends Command
         $POS_ACCESS_TOKEN = env('POS_ACCESS_TOKEN', null);
 
         if ($ENABLE_POS_SYNC == true && !empty($POS_SYSTEM_URL) && !empty($POS_ACCESS_TOKEN)) {
-            $orders = Order::whereNull('pos_transaction_id')->with(['order_details'])->get()->toArray();
+            $orders = Order::whereNull('pos_transaction_id')->with(['order_details', 'store'])->get()->toArray();
 
             foreach ($orders as $order) {
                 $response = Http::withHeaders([

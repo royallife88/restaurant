@@ -20,4 +20,8 @@ class Order extends Model
     {
         return $this->hasMany(OrderDetails::class);
     }
+    public function store()
+    {
+        return $this->belongsTo(Store::class);
+    }
 }

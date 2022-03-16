@@ -11,7 +11,7 @@
                 @include('layouts.partials.social_icons')
             </div>
         </div>
-        <div class="flex flex-row">
+        <div class="flex flex-row mt-2">
             <img src="{{ asset('uploads/' . session('logo')) }}" alt="logo"
                 class="mx-auto md:w-56 md:h-56 xs:w-40 xs:h-40">
 

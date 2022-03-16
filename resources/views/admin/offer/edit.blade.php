@@ -38,10 +38,10 @@
                 </div>
             </div>
 
-            <div class="col-md-3 hide">
+            <div class="col-md-3">
                 <div class="form-group">
                     {!! Form::label('discount_type', __('lang.discount_type') . ':*') !!}
-                    {!! Form::select('discount_type', ['fixed' => 'Fixed', 'percentage' => 'Percentage'], 'fixed', ['class' => 'form-control selecpicker', 'required', 'placeholder' => __('lang.please_select')]) !!}
+                    {!! Form::select('discount_type', ['fixed' => 'Fixed', 'percentage' => 'Percentage'], $offer->discount_type, ['class' => 'form-control selecpicker', 'required', 'placeholder' => __('lang.please_select')]) !!}
                 </div>
             </div>
             <div class="col-md-3">

@@ -34,6 +34,7 @@
                         <th>@lang('lang.name')</th>
                         <th>@lang('lang.description')</th>
                         <th>@lang('lang.products')</th>
+                        <th>@lang('lang.discount_type')</th>
                         <th>@lang('lang.discount')</th>
                         <th>@lang('lang.start_date')</th>
                         <th>@lang('lang.end_date')</th>
@@ -98,6 +99,10 @@
                     {
                         data: 'products',
                         name: 'products'
+                    },
+                    {
+                        data: 'discount_type',
+                        name: 'discount_type'
                     },
                     {
                         data: 'discount_value',

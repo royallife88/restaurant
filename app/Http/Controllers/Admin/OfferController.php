@@ -183,7 +183,7 @@ class OfferController extends Controller
             $data['product_class_id'] = $request->product_class_id;
             $data['product_ids'] = $request->product_ids;
             $data['description'] = $request->description;
-            $data['discount_type'] = 'fixed';
+            $data['discount_type'] = $request->discount_type;
             $data['discount_value'] = !empty($request->discount_value) ? $this->productUtil->num_uf($request->discount_value) : 0;
             $data['start_date'] = !empty($request->start_date) ? $this->commonUtil->uf_date($request->start_date) : null;
             $data['end_date'] = !empty($request->end_date) ? $this->commonUtil->uf_date($request->end_date) : null;
@@ -279,7 +279,7 @@ class OfferController extends Controller
             $data['product_class_id'] = $request->product_class_id;
             $data['product_ids'] = $request->product_ids;
             $data['description'] = $request->description;
-            $data['discount_type'] = 'fixed';
+            $data['discount_type'] = $request->discount_type;
             $data['discount_value'] = !empty($request->discount_value) ? $this->productUtil->num_uf($request->discount_value) : 0;
             $data['start_date'] = !empty($request->start_date) ? $this->commonUtil->uf_date($request->start_date) : null;
             $data['end_date'] = !empty($request->end_date) ? $this->commonUtil->uf_date($request->end_date) : null;

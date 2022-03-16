@@ -48,7 +48,8 @@
                 $chunk_count = 1;
             @endphp
 
-                <div class="flex flex-row flex-wrap justify-center">
+            <div class="w-full mx-auto p-4">
+                <div class="grid xs:grid-cols-3 md:grid-cols-4 xs:gap-2 md:gap-16 mt-12">
                     @foreach ($categories as $category)
                         @php
                             $border_round = '';
@@ -71,9 +72,10 @@
                         ])
                     @endforeach
                 </div>
-
+            </div>
         @endif
     </div>
+
     <div class="container mx-auto">
         <div class="flex">
             <div class="flex-1">

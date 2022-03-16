@@ -1,13 +1,9 @@
-<a href="{{ action('ProductController@getProductListByCategory', $category->id) }}"
-    class="text-center md:w-1/4 xs:w-1/3 xl:p-16 lg:p-8 md:p-2 xs:p-1">
-    <div class="flex-col mx-auto">
-        <div class="">
-            <img src="{{ !empty($category->getFirstMediaUrl('product_class'))? $category->getFirstMediaUrl('product_class'): asset('uploads/' . session('logo')) }}"
-                class="border-2 border-dark mx-auto my-4 2xl:72 xl:64 lg:h-40 md:h-36 sm:h-32 xs:h-24 rounded-lg {{ $border_round }}"
-                alt="category-1">
-        </div>
+<a href="{{ action('ProductController@getProductListByCategory', $category->id) }}" class="w-full h-0 shadow-lg pb-full rounded-xl bg-yellow-300 bg-center bg-no-repeat bg-cover relative mb:mb-8 xs:mb-16"
+    style="background-image: url('{{ !empty($category->getFirstMediaUrl('product_class'))? $category->getFirstMediaUrl('product_class'): asset('uploads/' . session('logo')) }}')">
+    <div class="flex absolute md:-bottom-16 xs:-bottom-10 w-full">
         <div class="md:h-10 xs:h-8 md:w-32 xs:w-24 bg-darkblue mx-auto text-center rounded-3xl">
             <h3 class="md:text-xl xs:text-sm text-white font-semibold py-1">{{ $category->name }}</h3>
         </div>
     </div>
 </a>
+

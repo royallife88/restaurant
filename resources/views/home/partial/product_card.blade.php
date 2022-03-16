@@ -1,4 +1,4 @@
-<a href="{{ action('ProductController@show', $product->id) }}"
+<a data-href="{{ action('ProductController@show', $product->id) }}"
     class="w-full h-0 shadow-lg pb-full rounded-xl bg-center bg-no-repeat bg-cover relative mb:mb-8 xs:mb-16 border-2 border-dark product_card"
     style="background-image: url('{{ !empty($product->getFirstMediaUrl('product'))? $product->getFirstMediaUrl('product'): asset('uploads/' . session('logo')) }}')">
     <div

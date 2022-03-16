@@ -2198,6 +2198,10 @@ input:checked + .toggle-bg {
     margin-bottom: 4rem;
   }
 
+  .xs\:mt-6 {
+    margin-top: 1.5rem;
+  }
+
   .xs\:hidden {
     display: none;
   }
@@ -2409,6 +2413,10 @@ input:checked + .toggle-bg {
 
   .md\:mt-8 {
     margin-top: 2rem;
+  }
+
+  .md\:mt-12 {
+    margin-top: 3rem;
   }
 
   .md\:block {

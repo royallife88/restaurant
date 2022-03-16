@@ -2218,6 +2218,10 @@ input:checked + .toggle-bg {
     height: 9rem;
   }
 
+  .xs\:h-40 {
+    height: 10rem;
+  }
+
   .xs\:w-full {
     width: 100%;
   }
@@ -2228,6 +2232,10 @@ input:checked + .toggle-bg {
 
   .xs\:w-1\/3 {
     width: 33.333333%;
+  }
+
+  .xs\:w-40 {
+    width: 10rem;
   }
 
   .xs\:grid-cols-3 {

@@ -26,10 +26,22 @@
 
                             @foreach ($categories as $category)
                                 <div style="margin-left: 20px; margin-right: 20px;">
-                                    @include('home.partial.category_card', [
-                                        'category' => $category,
-                                        'border_round' => '',
-                                    ])
+                                    <a href="{{ action('ProductController@getProductListByCategory', $category->id) }}"
+                                        class="text-center md:w-1/4 xs:w-1/3 xl:p-16 lg:p-8 md:p-2 xs:p-1">
+                                        <div class="flex-col mx-auto">
+                                            <div class="">
+                                                <img src="{{ !empty($category->getFirstMediaUrl('product_class'))? $category->getFirstMediaUrl('product_class'): asset('uploads/' . session('logo')) }}"
+                                                    class="border-2 border-dark mx-auto my-4 xl:h-48 lg:h-30 md:h-20 sm:h-20 xs:h-16 rounded-lg"
+                                                    alt="category-1">
+                                            </div>
+                                            <div
+                                                class="md:h-10 xs:h-8 md:w-32 xs:w-24 bg-darkblue mx-auto text-center rounded-3xl">
+                                                <h3 class="md:text-xl xs:text-sm text-white font-semibold py-1">
+                                                    {{ $category->name }}</h3>
+                                            </div>
+                                        </div>
+                                    </a>
+
                                 </div>
                             @endforeach
                         </div>

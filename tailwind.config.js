@@ -9,6 +9,10 @@ module.exports = {
 
     theme: {
         extend: {
+            padding: {
+                "1/4": "25%",
+                full: "100%",
+            },
             fontFamily: {
                 sans: ["Nunito", ...defaultTheme.fontFamily.sans],
             },

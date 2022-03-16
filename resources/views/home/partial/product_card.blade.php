@@ -1,5 +1,5 @@
 <a href="{{ action('ProductController@show', $product->id) }}"
-    class="w-full h-0 shadow-lg pb-full rounded-xl bg-yellow-300 bg-center bg-no-repeat bg-cover relative mb:mb-8 xs:mb-16 border-2 border-dark product_card"
+    class="w-full h-0 shadow-lg pb-full rounded-xl bg-center bg-no-repeat bg-cover relative mb:mb-8 xs:mb-16 border-2 border-dark product_card"
     style="background-image: url('{{ !empty($product->getFirstMediaUrl('product'))? $product->getFirstMediaUrl('product'): asset('uploads/' . session('logo')) }}')">
     <div
         class="absolute w-full pb-2.5 pt-8 px-5 bottom-0 inset-x-0 text-white text-xs text-center leading-4 bg-gradient-to-t from-black">

@@ -1106,6 +1106,9 @@ input:checked + .toggle-bg {
 .hidden {
   display: none;
 }
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
 .h-5 {
   height: 1.25rem;
 }
@@ -1645,6 +1648,9 @@ input:checked + .toggle-bg {
 .pb-1 {
   padding-bottom: 0.25rem;
 }
+.pt-10 {
+  padding-top: 2.5rem;
+}
 .text-left {
   text-align: left;
 }
@@ -2162,6 +2168,14 @@ input:checked + .toggle-bg {
     height: 10rem;
   }
 
+  .xs\:h-4 {
+    height: 1rem;
+  }
+
+  .xs\:h-6 {
+    height: 1.5rem;
+  }
+
   .xs\:w-full {
     width: 100%;
   }
@@ -2282,6 +2296,10 @@ input:checked + .toggle-bg {
     height: 5rem;
   }
 
+  .sm\:h-28 {
+    height: 7rem;
+  }
+
   .sm\:w-1\/2 {
     width: 50%;
   }
@@ -2386,6 +2404,10 @@ input:checked + .toggle-bg {
 
   .md\:h-56 {
     height: 14rem;
+  }
+
+  .md\:h-8 {
+    height: 2rem;
   }
 
   .md\:w-1\/2 {
@@ -2528,6 +2550,21 @@ input:checked + .toggle-bg {
   .lg\:px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
+  }
+
+  .lg\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .lg\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+
+  .lg\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
 }
 @media (min-width: 1280px) {

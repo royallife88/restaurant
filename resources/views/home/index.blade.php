@@ -31,12 +31,12 @@
                                         <div class="flex-col mx-auto">
                                             <div class="">
                                                 <img src="{{ !empty($category->getFirstMediaUrl('product_class'))? $category->getFirstMediaUrl('product_class'): asset('uploads/' . session('logo')) }}"
-                                                    class="border-2 border-dark mx-auto my-4 xl:h-48 lg:h-30 md:h-20 sm:h-20 xs:h-16 rounded-lg"
+                                                    class="border-2 border-dark mx-auto aspect-square rounded-lg"
                                                     alt="category-1">
                                             </div>
                                             <div
-                                                class="md:h-10 xs:h-8 md:w-32 xs:w-24 bg-darkblue mx-auto text-center rounded-3xl">
-                                                <h3 class="md:text-xl xs:text-sm text-white font-semibold py-1">
+                                                class="md:h-10 md:w-32 xs:h-6 xs:w-24 mt-4 bg-darkblue mx-auto text-center rounded-3xl">
+                                                <h3 class="lg:text-xl md:text-base xs:text-tiny text-white font-semibold py-1">
                                                     {{ $category->name }}</h3>
                                             </div>
                                         </div>
@@ -98,7 +98,6 @@
         </div>
     </div>
     <div class="container mx-auto mt-14">
-        {{-- <div class="flex flex-row flex-wrap justify-center"> --}}
         <div class="w-full mx-auto p-4">
             <div class="grid xs:grid-cols-3 md:grid-cols-4 xs:gap-2 md:gap-16 md:mt-12 xs:mt-6">
                 @foreach ($offers_array as $offer)
@@ -111,7 +110,6 @@
             @endforeach
         </div>
     </div>
-    {{-- </div> --}}
 
     @if (count($offers_array) != 0 && $offers_count > 4)
         <div class="container mx-auto">

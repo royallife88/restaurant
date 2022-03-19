@@ -6,7 +6,7 @@
                 @include('layouts.partials.language_dropdown')
             </div>
             <div class="flex-1 mt-8 text-center">
-                <p class="font-bold text-4xl text-white">{{ $category->name }}</p>
+                <p class="font-bold md:text-4xl xs:text-2xl text-white">{{ $category->name }}</p>
             </div>
             <div class="flex-3 w-48 items-end">
                 @include('layouts.partials.social_icons')

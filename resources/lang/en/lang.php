@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'ar' => 'Arabic',
+    'ar' => 'عربي',
     'nl' => 'Deutsch',
     'en' => 'English',
     'tr' => 'Turkce',
@@ -52,6 +52,7 @@ return [
     'done' => 'Done',
     'create' => 'Create',
     'add' => 'Add',
+    'cancel' => 'Cancel',
 
     'category' => 'Category',
     'categories' => 'Categories',
@@ -225,5 +226,7 @@ return [
     'customer_type' => 'Customer Type',
     'customer_types' => 'Customer Types',
 
+    'crop' => 'Crop',
+    'crop_image_before_upload' => 'Crop image before upload',
 
 ];

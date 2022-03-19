@@ -9,6 +9,7 @@ use App\Utils\DatatableUtil;
 use App\Utils\Util;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
@@ -155,14 +156,17 @@ class ProductClassController extends Controller
         try {
             $data = $request->except('_token', 'quick_add');
 
+            DB::beginTransaction();
             $class = ProductClass::create($data);
 
-            if ($request->has('image')) {
-                $class->addMedia($request->image)->toMediaCollection('product_class');
-                $data['image'] = $class->getFirstMediaUrl('product_class');
+            if ($request->has('uploaded_image_name')) {
+                if (!empty($request->input('uploaded_image_name'))) {
+                    $class->addMediaFromDisk($request->input('uploaded_image_name'), 'temp')->toMediaCollection('product_class');
+                }
             }
 
             $this->commonUtil->addSyncDataWithPos('ProductClass', $class, $data, 'POST', 'product-class');
+            DB::commit();
 
             $output = [
                 'success' => true,
@@ -238,10 +242,11 @@ class ProductClassController extends Controller
             $class = ProductClass::where('id', $id)->first();
             $class->update($data);
 
-            if ($request->has('image')) {
-                $class->clearMediaCollection('product_class');
-                $class->addMedia($request->image)->toMediaCollection('product_class');
-                $data['image'] = $class->getFirstMediaUrl('product_class');
+            if ($request->has('uploaded_image_name')) {
+                if (!empty($request->input('uploaded_image_name'))) {
+                    $class->clearMediaCollection('product_class');
+                    $class->addMediaFromDisk($request->input('uploaded_image_name'), 'temp')->toMediaCollection('product_class');
+                }
             }
 
             $this->commonUtil->addSyncDataWithPos('ProductClass', $class, $data, 'PUT', 'product-class');

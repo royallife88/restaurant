@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'ar' => 'Arabic',
+    'ar' => 'عربي',
     'nl' => 'Deutsch',
     'en' => 'English',
     'tr' => 'Turkce',

@@ -70,6 +70,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         Route::resource('/messages', 'Admin\MessageController')->name('index', 'messages.index')->name('create', 'messages.create');
         Route::resource('/store', 'Admin\StoreController')->name('index', 'store.index')->name('create', 'store.create');
         Route::resource('/customer-type', 'Admin\CustomerTypeController')->name('index', 'customer_type.index')->name('create', 'customer_type.create');
+        Route::post('general/upload-image-temp', 'Admin\GeneralController@uploadImageTemp');
     });
 });
 

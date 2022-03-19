@@ -30,7 +30,7 @@
             </div>
             <div class="form-group">
                 {!! Form::label('image', __('lang.image'), []) !!}
-                <x-adminlte-input-file name="image" placeholder="Choose a file...">
+                <x-adminlte-input-file name="image" id="image" placeholder="Choose a file...">
                     <x-slot name="prependSlot">
                         <div class="input-group-text bg-lightblue">
                             <i class="fas fa-upload"></i>
@@ -38,6 +38,7 @@
                     </x-slot>
                 </x-adminlte-input-file>
             </div>
+            @include('layouts.partials.image_crop')
             <div class="form-group">
                 {!! Form::label('status', __('lang.status'), []) !!}
                 {!! Form::checkbox('status', 1, true, ['class']) !!}

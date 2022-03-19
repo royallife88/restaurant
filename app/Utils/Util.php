@@ -324,6 +324,15 @@ class Util
 
         return $image_name;
     }
+
+    public function uploadTempImage($image)
+    {
+        //upload base64 image in laravel
+        $image_name = time() . '.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+        Image::make($image)->save(public_path('temp/' . $image_name));
+
+        return ['success' => true, 'url' => url('/temp/' . $image_name), 'filename' => $image_name];
+    }
     /**
      * Checks whether mail is configured or not
      *

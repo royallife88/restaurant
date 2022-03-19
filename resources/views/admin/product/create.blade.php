@@ -38,7 +38,7 @@
             <div class="col-md-4">
                 <div class="form-group">
                     {!! Form::label('image', __('lang.image'), []) !!}
-                    <x-adminlte-input-file name="images[]" multiple placeholder="{{ __('lang.choose_a_file') }}">
+                    <x-adminlte-input-file name="image" placeholder="{{ __('lang.choose_a_file') }}">
                         <x-slot name="prependSlot">
                             <div class="input-group-text bg-lightblue">
                                 <i class="fas fa-upload"></i>
@@ -47,7 +47,7 @@
                     </x-adminlte-input-file>
                 </div>
             </div>
-
+            @include('layouts.partials.image_crop')
 
             <div class="col-md-12">
                 <div class="form-group">

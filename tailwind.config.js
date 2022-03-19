@@ -16,6 +16,10 @@ module.exports = {
             fontFamily: {
                 sans: ["Nunito", ...defaultTheme.fontFamily.sans],
             },
+            fontSize: {
+                xtiny: ".50rem",
+                tiny: ".65rem",
+            },
             colors: {
                 red: "#E63946",
                 black: "#000000",
@@ -63,6 +67,9 @@ module.exports = {
             xs: "360px",
             ...defaultTheme.screens,
         },
+        // theme: {
+
+        //   }
     },
 
     plugins: [require("@tailwindcss/forms"), require("flowbite/plugin")],

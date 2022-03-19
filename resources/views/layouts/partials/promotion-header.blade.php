@@ -6,7 +6,7 @@
                 @include('layouts.partials.language_dropdown')
             </div>
             <div class="flex-1 mt-8 text-center">
-                <p class="font-bold text-4xl text-white">@lang('lang.promotions')</p>
+                <p class="font-bold md:text-4xl xs:text-2xl text-white">@lang('lang.promotions')</p>
             </div>
             <div class="flex-3">
                 <a href="https://wa.me/{{ App\Models\System::getProperty('whatsapp') }}">

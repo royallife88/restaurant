@@ -23,6 +23,7 @@ class HomeController extends Controller
         $offers_array = [];
 
         $offers = Offer::whereDate('start_date', '<=', date('Y-m-d'))->whereDate('end_date', '>=', date('Y-m-d'))->where('status', 1)->get();
+        $offers_count = 0;
         $i = 0;
         foreach ($offers as $offer) {
             foreach ($offer->products as $product) {
@@ -33,13 +34,14 @@ class HomeController extends Controller
                 $offers_array[$i]['sell_price'] =  $product->sell_price;
                 $offers_array[$i]['discount_price'] =  $product->sell_price - $offer->discount_value;
                 $i++;
-                if ($i == 4) break;
+                $offers_count++;
             }
         }
 
         return view('home.index')->with(compact(
             'categories',
             'offers_array',
+            'offers_count',
             'homepage_category_carousel',
         ));
     }

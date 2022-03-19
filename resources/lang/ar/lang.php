@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'ar' => 'Arabic',
+    'ar' => 'عربي',
     'nl' => 'Deutsch',
     'en' => 'English',
     'tr' => 'Turkce',
@@ -28,8 +28,8 @@ return [
     'name' => 'اسم',
     'phone_number' => 'رقم التليفون',
     'order_now' => 'اطلب الان',
-    'order_later' => 'اطلب لاحقًا',
-    'i_will_pick_it_up_my_self' => 'سألتقطه بنفسي',
+    'order_later' => 'أطلب لوقت آخر',
+    'i_will_pick_it_up_my_self' => 'سأمر بنفسي',
     'home_delivery' => 'توصيل منزلي',
     'send_the_order' => 'أرسل الطلب',
     'pay_online' => 'ادفع عبر الإنترنت',

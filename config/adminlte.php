@@ -553,6 +553,21 @@ return [
                 ],
             ],
         ],
+        'Cropper' => [
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => '/vendor/cropperjs/cropper.min.css',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '/vendor/cropperjs/cropper.min.js',
+                ],
+            ],
+        ],
     ],
 
     /*

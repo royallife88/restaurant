@@ -39,12 +39,7 @@
                     </x-slot>
                 </x-adminlte-input-file>
             </div>
-
-            <div class="col-md-12">
-                @if(!empty($product_class->getFirstMediaUrl('product_class')))
-                <img src="{{$product_class->getFirstMediaUrl('product_class')}}" alt="image" style="max-width: 200px;">
-                @endif
-            </div>
+            @include('layouts.partials.image_crop')
             <div class="form-group">
                 {!! Form::label('status', __('lang.status'), []) !!}
                 {!! Form::checkbox('status', 1,$product_class->status ? true : false, ['class']) !!}

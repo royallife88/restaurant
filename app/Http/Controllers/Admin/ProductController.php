@@ -180,12 +180,12 @@ class ProductController extends Controller
 
             $this->productUtil->createOrUpdateVariations($product, $request->variations);
 
-            if ($request->has('images')) {
-                foreach ($request->file('images', []) as $key => $image) {
-                    $product->addMedia($image)->toMediaCollection('product');
+            if ($request->has('uploaded_image_name')) {
+                if (!empty($request->input('uploaded_image_name'))) {
+                    $product->addMediaFromDisk($request->input('uploaded_image_name'), 'temp')->toMediaCollection('product');
                 }
-                $data['image'] = $product->getFirstMediaUrl('product');
             }
+
 
             $data['variations'] = $product->variations->toArray();
             $product_class = ProductClass::find($data['product_class_id']);
@@ -272,12 +272,12 @@ class ProductController extends Controller
             $product->update($data);
             $this->productUtil->createOrUpdateVariations($product, $request->variations);
 
-            if ($request->has('images')) {
-                foreach ($request->file('images', []) as $key => $image) {
-                    $product->addMedia($image)->toMediaCollection('product');
+            if ($request->has('uploaded_image_name')) {
+                if (!empty($request->input('uploaded_image_name'))) {
+                    $product->addMediaFromDisk($request->input('uploaded_image_name'), 'temp')->toMediaCollection('product');
                 }
-                $data['image'] = $product->getFirstMediaUrl('product');
             }
+
 
             $data['variations'] = $product->variations->toArray();
             $product_class = ProductClass::find($data['product_class_id']);

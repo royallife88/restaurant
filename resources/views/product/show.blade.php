@@ -9,23 +9,29 @@
                 <div class="flex flex-row justify-center items-center">
                     <div class="w-32">
                         <div class="owl-nav">
-                            <div class="owl-next-custom-erp text-center text-gray-600 text-4xl">
+                            <div class="owl-next-custom-erp text-center text-gray-600 md:text-4xl xs:text-sm">
                                 <i class="fa fa-angle-left"></i>
                             </div>
                         </div>
                     </div>
                     <div class="w-full">
-                        <div class="owl-carousel owl-carousel-product owl-theme "
-                            style=" border:1px solid grey">
-                            @foreach ($product->getMedia('product') as $image)
-                                <img src="@if (!empty($image->getUrl())) {{ $image->getUrl() }}@else{{ asset('/uploads/' . session('logo')) }} @endif"
-                                    class="md:h-72 sm:h-64 xs:h-48" alt="" style="">
-                            @endforeach
+                        <div class="owl-carousel owl-carousel-product owl-theme ">
+                            @forelse ($product->getMedia('product') as $image)
+                                <div style="margin-left: 20px; margin-right: 20px;">
+                                    <img src="@if (!empty($image->getUrl())) {{ $image->getUrl() }}@else{{ asset('uploads/' . session('logo')) }} @endif"
+                                        class="aspect-square" alt="" style="">
+                                </div>
+                            @empty
+                                <div style="margin-left: 20px; margin-right: 20px;">
+                                    <img src="{{ asset('uploads/' . session('logo')) }}" class="aspect-square" alt=""
+                                        style="">
+                                </div>
+                            @endforelse
                         </div>
                     </div>
                     <div class="w-32">
                         <div class="owl-nav">
-                            <div class="owl-next-custom-erp text-center  text-gray-600 text-4xl">
+                            <div class="owl-next-custom-erp text-center  text-gray-600 md:text-4xl xs:text-sm">
                                 <i class="fa fa-angle-right text-grey-500"></i>
                             </div>
                         </div>
@@ -102,12 +108,11 @@
         $(document).ready(function() {
             var owl_erp = $(".owl-carousel-product");
             owl_erp.owlCarousel({
-                loop: true,
+                loop: false,
                 dots: false,
                 items: 1,
                 singleItem: true,
                 autoHeight: false,
-                // responsive: true
             });
 
             $(".owl-next-custom-erp").click(function() {

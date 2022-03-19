@@ -15,13 +15,13 @@
 
         <div class="container mx-auto mt-16">
             <div class="flex justify-end w-full">
-                <a class="text-xl text-white font-semibold px-2"
+                <a class="md:text-xl xs:text-sm text-white font-semibold px-2"
                     href="{{ action('HomeController@index') }}">@lang('lang.home')</a>
-                <span class="text-xl text-white font-semibold px-1">-</span>
-                <a class="text-xl text-white font-semibold px-2"
+                <span class="md:text-xl xs:text-sm text-white font-semibold px-1">-</span>
+                <a class="md:text-xl xs:text-sm text-white font-semibold px-2"
                     href="{{ action('ProductController@getProductListByCategory', $product->category->id) }}">{{ $product->category->name }}</a>
-                <span class="text-xl text-white font-semibold px-1">-</span>
-                <a class="text-xl text-white font-semibold px-2"
+                <span class="md:text-xl xs:text-sm text-white font-semibold px-1">-</span>
+                <a class="md:text-xl xs:text-sm text-white font-semibold px-2"
                     href="{{ action('ProductController@show', $product->id) }}">{{ $product->name }}</a>
             </div>
         </div>

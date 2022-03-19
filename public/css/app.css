@@ -793,6 +793,10 @@ input:checked + .toggle-bg {
   border-color: #1C64F2;
 }
 
+.tooltip.invisible > .tooltip-arrow:before {
+  visibility: hidden;
+}
+
 [role="tab"].active,[role="tab"].active:hover {
   color: #1C64F2;
   border-color: #1C64F2;
@@ -896,6 +900,9 @@ input:checked + .toggle-bg {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+.invisible {
+  visibility: hidden;
 }
 .fixed {
   position: fixed;
@@ -1222,6 +1229,12 @@ input:checked + .toggle-bg {
 }
 .w-3 {
   width: 0.75rem;
+}
+.w-1\/3 {
+  width: 33.333333%;
+}
+.w-1\/6 {
+  width: 16.666667%;
 }
 .max-w-xl {
   max-width: 36rem;
@@ -1600,6 +1613,10 @@ input:checked + .toggle-bg {
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
+.px-0 {
+  padding-left: 0px;
+  padding-right: 0px;
+}
 .pr-2 {
   padding-right: 0.5rem;
 }
@@ -1650,6 +1667,9 @@ input:checked + .toggle-bg {
 }
 .pt-10 {
   padding-top: 2.5rem;
+}
+.pl-2 {
+  padding-left: 0.5rem;
 }
 .text-left {
   text-align: left;
@@ -2148,6 +2168,14 @@ input:checked + .toggle-bg {
     margin-top: 1.5rem;
   }
 
+  .xs\:mt-4 {
+    margin-top: 1rem;
+  }
+
+  .xs\:mt-8 {
+    margin-top: 2rem;
+  }
+
   .xs\:hidden {
     display: none;
   }
@@ -2196,6 +2224,14 @@ input:checked + .toggle-bg {
     width: 10rem;
   }
 
+  .xs\:w-5\/12 {
+    width: 41.666667%;
+  }
+
+  .xs\:w-1\/12 {
+    width: 8.333333%;
+  }
+
   .xs\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -2212,8 +2248,24 @@ input:checked + .toggle-bg {
     gap: 0.5rem;
   }
 
+  .xs\:border-t-2 {
+    border-top-width: 2px;
+  }
+
   .xs\:p-1 {
     padding: 0.25rem;
+  }
+
+  .xs\:p-0 {
+    padding: 0px;
+  }
+
+  .xs\:p-2\.5 {
+    padding: 0.625rem;
+  }
+
+  .xs\:p-2 {
+    padding: 0.5rem;
   }
 
   .xs\:px-4 {
@@ -2382,6 +2434,10 @@ input:checked + .toggle-bg {
     margin-top: 2rem;
   }
 
+  .md\:mt-1 {
+    margin-top: 0.25rem;
+  }
+
   .md\:block {
     display: block;
   }
@@ -2430,12 +2486,24 @@ input:checked + .toggle-bg {
     width: 14rem;
   }
 
+  .md\:w-1\/3 {
+    width: 33.333333%;
+  }
+
+  .md\:w-1\/6 {
+    width: 16.666667%;
+  }
+
   .md\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .md\:flex-row {
+    flex-direction: row;
   }
 
   .md\:justify-end {
@@ -2456,6 +2524,10 @@ input:checked + .toggle-bg {
 
   .md\:p-2 {
     padding: 0.5rem;
+  }
+
+  .md\:p-2\.5 {
+    padding: 0.625rem;
   }
 
   .md\:px-4 {

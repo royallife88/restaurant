@@ -23,7 +23,6 @@
                         <th>@lang('lang.order_type')</th>
                         <th>@lang('lang.delivery_type')</th>
                         <th>@lang('lang.payment_type')</th>
-                        <th>@lang('lang.out_of_restaurant')</th>
                         <th>@lang('lang.table_no')</th>
                         <th class="sum">@lang('lang.total')</th>
                         <th>@lang('lang.status')</th>
@@ -114,10 +113,6 @@
                     {
                         data: 'payment_type',
                         name: 'payment_type'
-                    },
-                    {
-                        data: 'out_of_restaurant',
-                        name: 'out_of_restaurant'
                     },
                     {
                         data: 'table_no',

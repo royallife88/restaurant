@@ -32,11 +32,11 @@ return [
     'phone_number' => 'Phone Number',
     'order_now' => 'Order Now',
     'order_later' => 'Order Later',
-    'i_will_pick_it_up_my_self' => 'Pick Up',
+    'i_will_pick_it_up_my_self' => 'I\'ll pick it up by my self',
     'home_delivery' => 'Home Delivery',
     'send_the_order' => 'Send the order',
     'pay_online' => 'Pay Online',
-    'cash_on_delivery' => 'Pay on Delivery',
+    'cash_on_delivery' => 'Cash on Delivery',
     'home' => 'Home',
     'cart' => 'Cart',
 
@@ -231,6 +231,5 @@ return [
 
     'crop' => 'Crop',
     'crop_image_before_upload' => 'Crop image before upload',
-    'dining_in' => 'Dining In',
 
 ];

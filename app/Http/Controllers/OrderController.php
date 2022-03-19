@@ -64,7 +64,7 @@ class OrderController extends Controller
             $data['day'] = $request->day;
             $data['year'] = !empty($request->year) ? $request->year : date('Y');
             $data['time'] = $request->time;
-            $data['delivery_type'] = !empty($request->delivery_type) ? 'home_delivery' : 'i_will_pick_it_up_my_self';
+            $data['delivery_type'] = $request->delivery_type;
             $data['payment_type'] = !empty($request->payment_type) ? 'cash_on_delivery' : 'pay_online';
             $data['out_of_restaurant'] = !empty($request->out_of_restaurant) ? 'out_of_restaurant' : 'in_restaurant';
             $data['table_no'] = !empty($request->table_no) ? $request->table_no : null;

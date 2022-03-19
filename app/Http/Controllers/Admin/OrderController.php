@@ -63,6 +63,9 @@ class OrderController extends Controller
                     if ($row->delivery_type == "i_will_pick_it_up_my_self") {
                         return __('lang.i_will_pick_it_up_my_self');
                     }
+                    if ($row->delivery_type == "dining_in") {
+                        return __('lang.dining_in');
+                    }
                 })
                 ->editColumn('order_type', function ($row) {
                     if ($row->order_type == "order_later") {
@@ -80,12 +83,11 @@ class OrderController extends Controller
                         return __('lang.pay_online');
                     }
                 })
-                ->editColumn('out_of_restaurant', function ($row) {
-                    if ($row->out_of_restaurant == "out_of_restaurant") {
-                        return __('lang.out_of_restaurant');
-                    }
-                    if ($row->out_of_restaurant == "in_restaurant") {
-                        return __('lang.in_restaurant');
+                ->editColumn('delivery_status', function ($row) {
+                    if ($row->delivery_type == "dining_in") {
+                        return '';
+                    }else{
+                        return ucfirst($row->delivery_status);
                     }
                 })
                 ->addColumn(
@@ -102,7 +104,7 @@ class OrderController extends Controller
 
                         if (auth()->user()->can('order.create_and_edit')) {
                             $html .=
-                                '<a data-href="' . action('Admin\OrderController@edit', $row->id) . '" data-container=".view_modal" class="btn btn-modal btn-xs btn-danger"
+                                '<a data-href="' . action('Admin\OrderController@edit', $row->id) . '" data-container=".view_modal" class="btn btn-modal btn-xs btn-danger ml-1"
                                 ><i class="fa fa-edit"></i> ' . __('lang.edit') . '</a>';
                         }
                         return $html;
@@ -121,10 +123,6 @@ class OrderController extends Controller
         }
 
         return view('admin.order.index');
-
-        return view('admin.order.index')->with(compact(
-            'categories',
-        ));
     }
 
     /**

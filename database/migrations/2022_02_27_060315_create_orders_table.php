@@ -26,7 +26,6 @@ class CreateOrdersTable extends Migration
             $table->string('time')->nullable();
             $table->string('delivery_type');
             $table->string('payment_type');
-            $table->string('out_of_restaurant');
             $table->integer('table_no')->nullable();
             $table->decimal('final_total', 15, 4);
             $table->decimal('discount_amount', 15, 4)->default(0);

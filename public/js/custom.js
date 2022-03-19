@@ -6,10 +6,10 @@ $(document).ready(function () {
         items: 4,
         responsive: {
             0: {
-                items: 2,
+                items: 3,
             },
             600: {
-                items: 2,
+                items: 3,
             },
             800: {
                 items: 3,

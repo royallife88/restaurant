@@ -214,4 +214,17 @@ return [
     'November' => 'november',
     'December' => 'december',
 
+    'stores' => 'Stores',
+    'add_store' => 'Add Store',
+    'location' => 'Location',
+    'manager_name' => 'Manager Name',
+    'manager_mobile_number' => 'Manager Mobile Number',
+    'customer_type' => 'Customer Type',
+    'customer_types' => 'Customer Types',
+
+    'crop' => 'Crop',
+    'crop_image_before_upload' => 'Crop image before upload',
+    'dining_in' => 'Dineren in',
+
+
 ];

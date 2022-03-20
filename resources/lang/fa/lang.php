@@ -214,4 +214,17 @@ return [
     'November' => 'نوامبر',
     'December' => 'دسامبر',
 
+    'stores' => 'مغازه ها',
+    'add_store' => 'افزودن فروشگاه',
+    'location' => 'محل',
+    'manager_name' => 'نام مدیر',
+    'manager_mobile_number' => 'شماره موبایل مدیر',
+    'customer_type' => 'نوع مشتری',
+    'customer_types' => 'انواع مشتری',
+
+    'crop' => 'برش',
+    'crop_image_before_upload' => 'قبل از آپلود تصویر را برش دهید',
+    'dining_in' => 'ناهار خوری در',
+
+
 ];

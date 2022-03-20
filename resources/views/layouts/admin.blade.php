@@ -126,12 +126,12 @@
             <div class="modal-body">
                 <div class="img-container">
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <img src="" id="sample_image" />
                         </div>
-                        <div class="col-md-4">
+                        {{-- <div class="col-md-4">
                             <div class="preview_div"></div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

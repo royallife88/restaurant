@@ -214,4 +214,17 @@ return [
     'November' => 'نوفمبر',
     'December' => 'ديسمبر',
 
+    'stores' => 'المتاجر',
+    'add_store' => 'أضف المتجر',
+    'location' => 'موقع',
+    'manager_name' => 'اسم المدير',
+    'manager_mobile_number' => 'رقم هاتف المدير',
+    'customer_type' => 'نوع العميل',
+    'customer_types' => 'أنواع العملاء',
+
+    'crop' => 'ا & قتصاص',
+    'crop_image_before_upload' => 'اقتصاص الصورة قبل التحميل',
+    'dining_in' => 'تناول الطعام في',
+
+
 ];

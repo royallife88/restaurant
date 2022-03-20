@@ -25,13 +25,13 @@ $(document).ready(function () {
     $modal
         .on("shown.bs.modal", function () {
             cropper = new Cropper(image, {
+                initialAspectRatio: 1 / 1,
                 cropBoxResizable: false,
                 aspectRatio: 1 / 1,
                 restore: false,
                 guides: false,
                 center: false,
-                viewMode: 3,
-                preview: ".preview_div",
+                viewMode: 2,
             });
         })
         .on("hidden.bs.modal", function () {

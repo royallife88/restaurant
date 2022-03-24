@@ -54,7 +54,7 @@
                 </p>
             </a>
             <div class="w-9/12 mx-auto" style="height: 1px; background-color: rgba(0,0,0, 0.5)"></div>
-            <a href="{{ LaravelLocalization::getLocalizedURL('fa') }}/{{ request()->segment(3) }}"
+            <a href="{{ LaravelLocalization::getLocalizedURL('fa') }}"
                 class="flex items-center px-4 py-1 -mx-2">
                 <img class="h-5 w-5 rounded-full object-cover mx-1" src="{{ asset('images/fa-flag.png') }}"
                     alt="avatar">
@@ -63,7 +63,7 @@
                 </p>
             </a>
             <div class="w-9/12 mx-auto" style="height: 1px; background-color: rgba(0,0,0, 0.5)"></div>
-            <a href="{{ LaravelLocalization::getLocalizedURL('ur') }}/{{ request()->segment(3) }}"
+            <a href="{{ LaravelLocalization::getLocalizedURL('ur') }}"
                 class="flex items-center px-4 py-1 -mx-2">
                 <img class="h-5 w-5 rounded-full object-cover mx-1" src="{{ asset('images/ur-flag.png') }}"
                     alt="avatar">
@@ -72,7 +72,7 @@
                 </p>
             </a>
             <div class="w-9/12 mx-auto" style="height: 1px; background-color: rgba(0,0,0, 0.5)"></div>
-            <a href="{{ LaravelLocalization::getLocalizedURL('hi') }}/{{ request()->segment(3) }}"
+            <a href="{{ LaravelLocalization::getLocalizedURL('hi') }}"
                 class="flex items-center px-4 py-1 -mx-2">
                 <img class="h-5 w-5 rounded-full object-cover mx-1" src="{{ asset('images/hi-flag.png') }}"
                     alt="avatar">

@@ -95,7 +95,7 @@ return [
     'this_product_have_variant' => 'هذا المنتج له متغير',
     'inside_restaurant' => 'داخل المطعم',
     'out_of_restaurant' => 'خارج المطعم',
-    'table_no' => 'رقم الجدول',
+    'table_no' => 'رقم الطاولة',
     'suspend' => 'تعليق',
     'activate' => 'تفعيل',
     'choose_a_file' => 'اختيار ملف...',
@@ -224,7 +224,7 @@ return [
 
     'crop' => 'ا & قتصاص',
     'crop_image_before_upload' => 'اقتصاص الصورة قبل التحميل',
-    'dining_in' => 'تناول الطعام في',
+    'dining_in' => 'أنا داخل المطعم',
 
 
 ];

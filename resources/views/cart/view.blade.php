@@ -43,6 +43,14 @@ $locale_direction = LaravelLocalization::getCurrentLocaleDirection();
                         class="border-b border-dark rounded-lg w-full px-4 w-3/5 @if ($locale_direction == 'rtl') float-left @else float-right @endif "
                         value="">
                 </div>
+                <div class="flex flex-row py-2 flow-root">
+                    <label
+                        class="font-semibold text-base text-dark pr-2 pt-1 @if ($locale_direction == 'rtl') float-right @else float-left @endif"
+                        for="address">@lang('lang.address')</label>
+                    <input type="text" name="address"
+                        class="border-b border-dark rounded-lg w-full px-4 w-3/5 @if ($locale_direction == 'rtl') float-left @else float-right @endif "
+                        value="">
+                </div>
 
 
                 <div class="flex py-2 justify-center">
@@ -168,11 +176,11 @@ $locale_direction = LaravelLocalization::getCurrentLocaleDirection();
                                 <div class="md:w-1/3 xs:w-5/12">
                                     <div class="flex flex-row qty_row justify-center w-full">
                                         <button type="button"
-                                            class="minus border-2 rounded-full text-lg text-center border-lightgrey text-lightgrey h-8 w-8">-</button>
+                                            class="minus border-2 rounded-full text-lg text-center border-dark text-dark h-8 w-8">-</button>
                                         <input type="text" data-id="{{ $item->id }}" value="{{ $item->quantity }}"
-                                            class="quantity text-center text-lightgrey w-16 line leading-none border-transparent bg-transparent focus:border-transparent focus:ring-0 ">
+                                            class="quantity text-center text-dark w-16 line leading-none border-transparent bg-transparent focus:border-transparent focus:ring-0 ">
                                         <button type="button"
-                                            class="plus border-2 rounded-full text-lg text-center border-lightgrey text-lightgrey h-8 w-8">+</button>
+                                            class="plus border-2 rounded-full text-lg text-center border-dark text-dark h-8 w-8">+</button>
                                     </div>
                                 </div>
                                 <div class="md:w-1/6 xs:w-1/12  @if ($locale_direction == 'rtl') text-left @else text-right @endif ">

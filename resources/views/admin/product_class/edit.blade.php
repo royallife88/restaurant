@@ -1,9 +1,7 @@
 <div class="modal-dialog" role="document">
     <div class="modal-content">
 
-        {!! Form::open(['url' => action('Admin\ProductClassController@update', $product_class->id), 'method' => 'put',
-        'id' =>
-        'product_class_add_form', 'files' => true ]) !!}
+        {!! Form::open(['url' => action('Admin\ProductClassController@update', $product_class->id), 'method' => 'put', 'id' => 'product_class_add_form', 'files' => true]) !!}
 
         <div class="modal-header">
 
@@ -14,20 +12,26 @@
 
         <div class="modal-body">
             <div class="form-group">
-                {!! Form::label('name', __( 'lang.name' ) . ':*') !!}
-                {!! Form::text('name', $product_class->name, ['class' => 'form-control', 'placeholder' => __(
-                'lang.name' ), 'required' ]); !!}
+                <x-adminlte-input name="name" label="{{ __('lang.name') }}" placeholder="{{ __('lang.name') }}"
+                    value="{{ $product_class->name }}" enable-old-support>
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text text-primary translation_btn">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
+            </div>
+            @include('admin.partial.translation_inputs', [
+                'attribute' => 'name',
+                'translations' => $product_class->translations,
+            ])
+            <div class="form-group">
+                {!! Form::label('description', __('lang.description') . ':') !!}
+                {!! Form::text('description', $product_class->description, ['class' => 'form-control', 'placeholder' => __('lang.description')]) !!}
             </div>
             <div class="form-group">
-                {!! Form::label('description', __( 'lang.description' ) . ':') !!}
-                {!! Form::text('description', $product_class->description, ['class' => 'form-control','placeholder' =>
-                __( 'lang.description' )]); !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('sort', __( 'lang.sort' ) . ':*') !!}
-                {!! Form::number('sort', $product_class->sort, ['class' => 'form-control', 'placeholder' => __(
-                'lang.sort' ), 'required'
-                ]); !!}
+                {!! Form::label('sort', __('lang.sort') . ':*') !!}
+                {!! Form::number('sort', $product_class->sort, ['class' => 'form-control', 'placeholder' => __('lang.sort'), 'required']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('image', __('lang.image'), []) !!}
@@ -42,7 +46,7 @@
             @include('layouts.partials.image_crop')
             <div class="form-group">
                 {!! Form::label('status', __('lang.status'), []) !!}
-                {!! Form::checkbox('status', 1,$product_class->status ? true : false, ['class']) !!}
+                {!! Form::checkbox('status', 1, $product_class->status ? true : false, ['class']) !!}
             </div>
         </div>
 

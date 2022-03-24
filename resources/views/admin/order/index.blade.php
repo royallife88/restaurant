@@ -27,6 +27,7 @@
                         <th class="sum">@lang('lang.total')</th>
                         <th>@lang('lang.status')</th>
                         <th>@lang('lang.delivery_status')</th>
+                        <th>@lang('lang.address')</th>
 
                         <th class="notexport">@lang('lang.action')</th>
                     </tr>
@@ -129,6 +130,10 @@
                     {
                         data: 'delivery_status',
                         name: 'delivery_status'
+                    },
+                    {
+                        data: 'delivery_address',
+                        name: 'delivery_address'
                     },
 
                     {

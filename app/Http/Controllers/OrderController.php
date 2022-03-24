@@ -59,6 +59,7 @@ class OrderController extends Controller
             $data['store_id'] = $request->store_id;
             $data['customer_name'] = $request->customer_name;
             $data['phone_number'] = $request->phone_number;
+            $data['address'] = !empty($request->address) ? $request->address : null;
             $data['order_type'] = !empty($request->order_type) ? 'order_later' : 'order_now';
             $data['month'] = $request->month;
             $data['day'] = $request->day;

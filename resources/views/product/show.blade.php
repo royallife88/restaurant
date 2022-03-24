@@ -65,11 +65,11 @@
                             <div class="flex-1">
                                 <div class="flex flex-row">
                                     <button
-                                        class="minus border-2 rounded-full text-lg text-center border-lightgrey text-lightgrey h-8 w-8">-</button>
+                                        class="minus border-2 rounded-full text-lg text-center border-dark text-dark h-8 w-8">-</button>
                                     <input type="quantity" value="1"
-                                        class="quantity text-center focus:outline-none text-lightgrey bg-transparent w-16">
+                                        class="quantity text-center focus:outline-none text-dark bg-transparent w-16">
                                     <button
-                                        class="plus border-2 rounded-full text-lg text-center border-lightgrey text-lightgrey h-8 w-8">+</button>
+                                        class="plus border-2 rounded-full text-lg text-center border-dark text-dark h-8 w-8">+</button>
                                 </div>
                                 <div class="flex">
                                     <a href="{{ action('CartController@addToCart', $product->id) }}"

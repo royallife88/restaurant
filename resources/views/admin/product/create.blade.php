@@ -30,9 +30,19 @@
 
             <div class="col-md-4">
                 <div class="form-group">
-                    {!! Form::label('name', __('lang.name') . ' *', []) !!}
-                    {!! Form::text('name', null, ['class' => 'form-control', 'required', 'placeholder' => __('lang.name')]) !!}
+                    <x-adminlte-input name="name" label="{{ __('lang.name') }}" placeholder="{{ __('lang.name') }}"
+                        enable-old-support>
+                        <x-slot name="appendSlot">
+                            <div class="input-group-text text-primary translation_btn">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                        </x-slot>
+                    </x-adminlte-input>
                 </div>
+                @include('admin.partial.translation_inputs', [
+                    'attribute' => 'name',
+                    'translations' => [],
+                ])
             </div>
 
             <div class="col-md-4">
@@ -51,7 +61,7 @@
 
             <div class="col-md-12">
                 <div class="form-group">
-                    {!! Form::label('product_details', __('lang.description'), []) !!}
+                    {!! Form::label('product_details', __('lang.description'), []) !!} <button type="button" class="translation_textarea_btn btn btn-sm text-primary"> <i class="fas fa-globe"></i></button>
                     @php
                         $config = config('adminlte.editor');
                     @endphp
@@ -59,7 +69,14 @@
 
                 </div>
             </div>
-
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    @include('admin.partial.translation_textarea', [
+                        'attribute' => 'product_details',
+                        'translations' => [],
+                    ])
+                </div>
+            </div>
 
             <div class="col-md-4">
                 <div class="form-group">
@@ -78,7 +95,7 @@
             <div class="col-md-4">
                 <div class="form-group">
                     {!! Form::label('discount_type', __('lang.discount_type'), []) !!}
-                    {!! Form::select('discount_type', ['fixed' => __('lang.fixed'), 'percentage' => __('lang.percentage')], 'fixed', ['class' => 'form-control', 'style' => 'width: 80%', 'placeholder' => __('lang.please_select'),]) !!}
+                    {!! Form::select('discount_type', ['fixed' => __('lang.fixed'), 'percentage' => __('lang.percentage')], 'fixed', ['class' => 'form-control', 'style' => 'width: 80%', 'placeholder' => __('lang.please_select')]) !!}
                 </div>
             </div>
             <div class="col-md-4">

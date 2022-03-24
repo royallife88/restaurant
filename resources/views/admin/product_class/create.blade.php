@@ -1,8 +1,7 @@
 <div class="modal-dialog" role="document">
     <div class="modal-content">
 
-        {!! Form::open(['url' => action('Admin\ProductClassController@store'), 'method' => 'post', 'id' => $quick_add ?
-        'quick_add_product_class_form' : 'product_class_add_form', 'files' => true ]) !!}
+        {!! Form::open(['url' => action('Admin\ProductClassController@store'), 'method' => 'post', 'id' => $quick_add ? 'quick_add_product_class_form' : 'product_class_add_form', 'files' => true]) !!}
 
         <div class="modal-header">
 
@@ -13,20 +12,27 @@
 
         <div class="modal-body">
             <div class="form-group">
-                {!! Form::label('name', __( 'lang.name' ) . ':*') !!}
-                {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => __( 'lang.name' ), 'required'
-                ]); !!}
+                <x-adminlte-input name="name" label="{{ __('lang.name') }}" placeholder="{{ __('lang.name') }}"
+                    enable-old-support>
+                    <x-slot name="appendSlot">
+                        <div class="input-group-text text-primary translation_btn">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input>
             </div>
-            <input type="hidden" name="quick_add" value="{{$quick_add }}">
+            @include('admin.partial.translation_inputs', [
+                'attribute' => 'name',
+                'translations' => [],
+            ])
+            <input type="hidden" name="quick_add" value="{{ $quick_add }}">
             <div class="form-group">
-                {!! Form::label('description', __( 'lang.description' ) . ':') !!}
-                {!! Form::textarea('description', null, ['class' => 'form-control','placeholder' => __(
-                'lang.description' ), 'rows' => 3]); !!}
+                {!! Form::label('description', __('lang.description') . ':') !!}
+                {!! Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => __('lang.description'), 'rows' => 3]) !!}
             </div>
             <div class="form-group">
-                {!! Form::label('sort', __( 'lang.sort' ) . ':*') !!}
-                {!! Form::number('sort', 1, ['class' => 'form-control', 'placeholder' => __( 'lang.sort' ), 'required'
-                ]); !!}
+                {!! Form::label('sort', __('lang.sort') . ':*') !!}
+                {!! Form::number('sort', 1, ['class' => 'form-control', 'placeholder' => __('lang.sort'), 'required']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('image', __('lang.image'), []) !!}

@@ -161,6 +161,7 @@ class InitialPosDataSync extends Command
                     if (empty($pc_exist)) {
                         $pc_data = [
                             'name' => $product_class['name'],
+                            'translations' => $product_class['translations'],
                             'description' => $product_class['description'],
                             'status' => 1,
                             'sort' => $i,
@@ -175,6 +176,7 @@ class InitialPosDataSync extends Command
                     } else {
                         $pc_data = [
                             'name' => $product_class['name'],
+                            'translations' => $product_class['translations'],
                             'description' => $product_class['description'],
                             'status' => 1,
                             'pos_model_id' => $product_class['id'],
@@ -211,6 +213,7 @@ class InitialPosDataSync extends Command
 
                         $p_data = [
                             'name' => $product['name'],
+                            'translations' => $product['translations'],
                             'product_class_id' => $product_class->id ?? null,
                             'sku' => $product['sku'],
                             'multiple_sizes' => $product['multiple_sizes'],
@@ -253,6 +256,7 @@ class InitialPosDataSync extends Command
                         $product_class = ProductClass::where('pos_model_id', $product['product_class_id'])->first();
                         $p_data = [
                             'name' => $product['name'],
+                            'translations' => $product['translations'],
                             'product_class_id' => $product_class->id ?? null,
                             'sku' => $product['sku'],
                             'multiple_sizes' => $product['multiple_sizes'],

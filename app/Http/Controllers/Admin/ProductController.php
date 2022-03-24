@@ -75,6 +75,10 @@ class ProductController extends Controller
                 ->editColumn('discount_start_date', '@if(!empty($discount_start_date)){{@format_date($discount_start_date)}}@endif')
                 ->editColumn('discount_end_date', '@if(!empty($discount_end_date)){{@format_date($discount_end_date)}}@endif')
                 ->editColumn('discount', '{{@num_format($discount)}}')
+                ->editColumn('category', function ($row) {
+                    $category = ProductClass::find($row->product_class_id);
+                    return $category->name ?? '';
+                })
                 ->editColumn('sell_price', '@if(!empty($sell_price)){{@num_format($sell_price)}}@endif')
                 ->editColumn('purchase_price', '@if(!empty($purchase_price)){{@num_format($purchase_price)}}@endif')
                 ->editColumn('active', '@if(!empty($active))@lang("lang.active")@else @lang("lang.deactivated")@endif')
@@ -174,7 +178,7 @@ class ProductController extends Controller
             $data['active'] = !empty($data['active']) ? 1 : 0;
             $data['created_by'] = auth()->user()->id;
             $data['type'] = !empty($request->this_product_have_variant) ? 'variable' : 'single';
-
+            $data['translations'] = !empty($data['translations']) ? $data['translations'] : [];
             DB::beginTransaction();
             $product = Product::create($data);
 
@@ -265,7 +269,7 @@ class ProductController extends Controller
             $data['active'] = !empty($data['active']) ? 1 : 0;
             $data['created_by'] = auth()->user()->id;
             $data['type'] = !empty($request->this_product_have_variant) ? 'variable' : 'single';
-
+            $data['translations'] = !empty($data['translations']) ? $data['translations'] : [];
             $product = Product::where('id', $id)->first();
 
             DB::beginTransaction();

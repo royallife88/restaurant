@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -25,8 +26,21 @@ class Product extends Model implements HasMedia
      */
     protected $casts = [
         'multiple_sizes' => 'array',
+        'translations' => 'array',
 
     ];
+
+    public function getNameAttribute($name)
+    {
+        $translations = !empty($this->translations['name']) ? $this->translations['name'] : [];
+        if (!empty($translations)) {
+            $lang = LaravelLocalization::getCurrentLocale();
+            if (!empty($translations[$lang])) {
+                return $translations[$lang];
+            }
+        }
+        return $name;
+    }
 
     public function category()
     {

@@ -93,7 +93,7 @@
             columns: [
                 { data: 'image', name: 'image'  },
                 { data: 'name', name: 'name'  },
-                { data: 'category', name: 'product_classes.name'  },
+                { data: 'category', name: 'category'  },
                 { data: 'product_details', name: 'product_details'  },
                 { data: 'purchase_price', name: 'purchase_price'  },
                 { data: 'sell_price', name: 'sell_price'  },

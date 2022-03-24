@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('store_id');
             $table->string('customer_name');
             $table->string('phone_number');
+            $table->text('address')->nullable();
             $table->string('order_type');
             $table->integer('month')->nullable();
             $table->integer('day')->nullable();

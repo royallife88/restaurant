@@ -40,35 +40,6 @@ class EventServiceProvider extends ServiceProvider
                 'label' => $order_count,
                 'label_color' => 'success',
             ]);
-            // $event->menu->addAfter('system_settings', [
-            //     'key' => 'language',
-            //     'text' => __('lang.' . app()->getLocale()),
-            //     'url'  =>  '/',
-            //     'icon' => 'fas fa-language',
-            //     'topnav_right' => true,
-            //     'submenu' => [
-            //         [
-            //             'text' => 'Arabic',
-            //             'url'  => url('/ar/admin/dashboard'),
-            //         ],
-            //         [
-            //             'text' => 'Deutsch',
-            //             'url'  => url('/nl/admin/dashboard'),
-            //         ],
-            //         [
-            //             'text' => 'English',
-            //             'url'  => url('/en/admin/dashboard'),
-            //         ],
-            //         [
-            //             'text' => 'Turkce',
-            //             'url'  => url('/tr/admin/dashboard'),
-            //         ],
-            //         [
-            //             'text' => 'فارسی',
-            //             'url'  => url('/fa/admin/dashboard'),
-            //         ],
-            //     ]
-            // ]);
 
             config(['adminlte.logo_img' => asset('/uploads/' . session('logo'))]);
             config(['adminlte.logo' => System::getProperty('site_title')]);

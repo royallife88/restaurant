@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('general/switch-language/{lang}', 'GeneralController@switchLanguage');
-Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'SetSessionData']], function () {
+Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'SetSessionData', 'prevent-back-history']], function () {
     Route::get('/', 'HomeController@index');
     Route::get('/product/list/{category_id}', 'ProductController@getProductListByCategory');
     Route::get('/product/promotions', 'ProductController@getPromotionProducts');

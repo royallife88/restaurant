@@ -99,7 +99,7 @@ class CartController extends Controller
 
             $output = [
                 'success' => 1,
-                'msg' => __('lang.success')
+                'msg' => __('lang.added_to_the_cart_successfully')
             ];
         } catch (\Exception $e) {
             Log::emergency('File: ' . $e->getFile() . 'Line: ' . $e->getLine() . 'Message: ' . $e->getMessage());
@@ -158,7 +158,7 @@ class CartController extends Controller
 
             $output = [
                 'success' => 1,
-                'msg' => __('lang.success')
+                'msg' => __('lang.added_to_the_cart_successfully')
             ];
         } catch (\Exception $e) {
             Log::emergency('File: ' . $e->getFile() . 'Line: ' . $e->getLine() . 'Message: ' . $e->getMessage());

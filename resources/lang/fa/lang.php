@@ -226,5 +226,5 @@ return [
     'crop_image_before_upload' => 'قبل از آپلود تصویر را برش دهید',
     'dining_in' => 'ناهار خوری در',
 
-
+    'added_to_the_cart_successfully' => 'با موفقیت به سبد خرید اضافه شد',
 ];

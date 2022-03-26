@@ -226,5 +226,6 @@ return [
     'crop_image_before_upload' => 'Crop image before upload',
     'dining_in' => 'Dineren in',
 
+    'added_to_the_cart_successfully' => 'Succesvol toegevoegd aan de winkelwagen',
 
 ];

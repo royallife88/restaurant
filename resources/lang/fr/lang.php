@@ -230,4 +230,5 @@ return [
     'crop_image_before_upload' => 'Recadrer l\'image avant le téléchargement',
     'dining_in' => 'Dîner sur place',
 
+    'added_to_the_cart_successfully' => 'Ajouté au panier avec succès',
 ];

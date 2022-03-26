@@ -30,8 +30,8 @@
     @include('layouts.partials.javascript')
     <script>
         @if (!empty(session('status')))
-            @if (session('status.success') == '1')
-                swal.fire("@lang('lang.done')!", "{{ session('status.msg') }}", "success");
+            @if (session('status.success') == 1)
+                swal.fire("", "{{ session('status.msg') }}", "success");
             @elseif(session('status.success') == '0')
                 swal.fire("@lang('lang.error')!", "{{ session('status.msg') }}", "error");
             @endif

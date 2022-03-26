@@ -226,5 +226,5 @@ return [
     'crop_image_before_upload' => 'اقتصاص الصورة قبل التحميل',
     'dining_in' => 'أنا داخل المطعم',
 
-
+    'added_to_the_cart_successfully' => 'تم الإضافة لعربة التسوق',
 ];

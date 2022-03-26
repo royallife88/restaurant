@@ -232,5 +232,6 @@ return [
     'crop' => 'Crop',
     'crop_image_before_upload' => 'Crop image before upload',
     'dining_in' => 'Dining In',
+    'added_to_the_cart_successfully' => 'Added to the Cart successfully',
 
 ];

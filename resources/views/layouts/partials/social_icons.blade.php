@@ -10,32 +10,32 @@
         class="flex flex-row bg-red py-2 pl-4 rounded-tl-full rounded-bl-full border border-dark">
 
 
-        <a target="_blank" href="https://instagram.com/send?phone={{ App\Models\System::getProperty('instagram') }}"
+        <a target="_blank" href="{{ App\Models\System::getProperty('instagram') }}"
             class="">
             <img src="{{ asset('images/instagram.png') }}" alt="instagram" class=" w-6 h-6 mr-2 ">
         </a>
 
-        <a target="_blank" href="https://twitter.com/{{ App\Models\System::getProperty('twitter') }}"
+        <a target="_blank" href="{{ App\Models\System::getProperty('twitter') }}"
             class="">
             <img src="{{ asset('images/twitter.png') }}" alt="twitter" class=" w-6 h-6 mr-2 ">
         </a>
 
-        <a target="_blank" href="https://youtube.com/{{ App\Models\System::getProperty('youtube') }}"
+        <a target="_blank" href="{{ App\Models\System::getProperty('youtube') }}"
             class="">
             <img src="{{ asset('images/youtube.png') }}" alt="youtube" class=" w-6 h-6 mr-2 ">
         </a>
 
-        <a target="_blank" href="https://telegram.org/{{ App\Models\System::getProperty('telegram') }}"
+        <a target="_blank" href="{{ App\Models\System::getProperty('telegram') }}"
             class="">
             <img src="{{ asset('images/telegram.png') }}" alt="telegram" class=" w-6 h-6 mr-2 ">
         </a>
 
-        <a target="_blank" href="https://api.whatsapp.com/send?phone={{ App\Models\System::getProperty('whatsapp') }}"
+        <a target="_blank" href="{{ App\Models\System::getProperty('whatsapp') }}"
             class="">
             <img src="{{ asset('images/whatsapp.png') }}" alt="whatsapp" class=" w-6 h-6 mr-2 ">
         </a>
 
-        <a target="_blank" href="https://www.fb.com/{{ App\Models\System::getProperty('facebook') }}"
+        <a target="_blank" href="{{ App\Models\System::getProperty('facebook') }}"
             class="">
             <img src="{{ asset('images/facebook.png') }}" alt="facebook" class=" w-6 h-6 mr-2 ">
         </a>

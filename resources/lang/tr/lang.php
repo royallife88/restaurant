@@ -226,5 +226,5 @@ return [
     'crop_image_before_upload' => 'Crop image before upload',
     'dining_in' => 'Yemek',
 
-
+    'added_to_the_cart_successfully' => 'Sepete başarıyla eklendi',
 ];

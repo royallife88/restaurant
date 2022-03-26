@@ -230,4 +230,5 @@ return [
     'crop_image_before_upload' => 'अपलोड करने से पहले छवि क्रॉप करें',
     'dining_in' => 'डाइनिंग इन',
 
+    'added_to_the_cart_successfully' => 'कार्ट में सफलतापूर्वक जोड़ा गया',
 ];

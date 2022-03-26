@@ -30,7 +30,7 @@
             <img src="{{ asset('images/telegram.png') }}" alt="telegram" class=" w-6 h-6 mr-2 ">
         </a>
 
-        <a target="_blank" href="{{ App\Models\System::getProperty('whatsapp') }}"
+        <a target="_blank" href="https://api.whatsapp.com/send?phone={{ App\Models\System::getProperty('whatsapp') }}"
             class="">
             <img src="{{ asset('images/whatsapp.png') }}" alt="whatsapp" class=" w-6 h-6 mr-2 ">
         </a>

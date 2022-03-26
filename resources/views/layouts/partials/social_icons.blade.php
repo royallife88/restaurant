@@ -25,7 +25,7 @@
             <img src="{{ asset('images/youtube.png') }}" alt="youtube" class=" w-6 h-6 mr-2 ">
         </a>
 
-        <a target="_blank" href="{{ App\Models\System::getProperty('telegram') }}"
+        <a target="_blank" href="https://t.me/{{ App\Models\System::getProperty('telegram') }}"
             class="">
             <img src="{{ asset('images/telegram.png') }}" alt="telegram" class=" w-6 h-6 mr-2 ">
         </a>

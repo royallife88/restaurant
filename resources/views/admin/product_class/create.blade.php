@@ -15,7 +15,7 @@
                 <x-adminlte-input name="name" label="{{ __('lang.name') }}" placeholder="{{ __('lang.name') }}"
                     enable-old-support>
                     <x-slot name="appendSlot">
-                        <div class="input-group-text text-primary translation_btn">
+                        <div class="input-group-text text-primary translation_btn"  data-type="product_class">
                             <i class="fas fa-globe"></i>
                         </div>
                     </x-slot>
@@ -24,6 +24,7 @@
             @include('admin.partial.translation_inputs', [
                 'attribute' => 'name',
                 'translations' => [],
+                'type' => 'product_class',
             ])
             <input type="hidden" name="quick_add" value="{{ $quick_add }}">
             <div class="form-group">

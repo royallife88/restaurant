@@ -15,7 +15,7 @@
                 <x-adminlte-input name="name" label="{{ __('lang.name') }}" placeholder="{{ __('lang.name') }}"
                     value="{{ $product_class->name }}" enable-old-support>
                     <x-slot name="appendSlot">
-                        <div class="input-group-text text-primary translation_btn">
+                        <div class="input-group-text text-primary translation_btn" data-type="product_class">
                             <i class="fas fa-globe"></i>
                         </div>
                     </x-slot>
@@ -24,6 +24,7 @@
             @include('admin.partial.translation_inputs', [
                 'attribute' => 'name',
                 'translations' => $product_class->translations,
+                'type' => 'product_class',
             ])
             <div class="form-group">
                 {!! Form::label('description', __('lang.description') . ':') !!}

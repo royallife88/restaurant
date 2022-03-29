@@ -81,12 +81,13 @@ class OrderController extends Controller
             $cart_content = \Cart::session($user_id)->getContent();
             $text = '%20';
             foreach ($cart_content as $content) {
-                $discount =  $content->attributes->discount;
+                $discount_attr = $content->attributes->discount;
+                $discount =  !empty($discount_attr) ? $discount_attr : 0;
                 $order_details = [
                     'order_id' => $order->id,
                     'product_id' => $content->id,
                     'variation_id' => $content->attributes->variation_id,
-                    'discount' => $content->attributes->discount,
+                    'discount' => $discount,
                     'quantity' => $content->quantity,
                     'price' => $content->price,
                     'sub_total' => $content->price * $content->quantity,

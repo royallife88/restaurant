@@ -327,6 +327,10 @@ class Util
 
     public function uploadTempImage($image)
     {
+        if (!file_exists('./public/temp')) {
+            mkdir('./public/temp', 0777, true);
+        }
+
         //upload base64 image in laravel
         $image_name = time() . '.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
         Image::make($image)->save(public_path('temp/' . $image_name));

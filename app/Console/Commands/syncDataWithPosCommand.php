@@ -46,40 +46,40 @@ class syncDataWithPosCommand extends Command
         $POS_ACCESS_TOKEN = env('POS_ACCESS_TOKEN', null);
 
 
-        // if ($ENABLE_POS_SYNC == true && !empty($POS_SYSTEM_URL) && !empty($POS_ACCESS_TOKEN)) {
-        //     foreach ($syncable_data as $sync) {
-        //         if ($sync->request_type == 'POST') {
-        //             $response = Http::withHeaders([
-        //                 'Authorization' => 'Bearer ' . $POS_ACCESS_TOKEN,
-        //             ])->post($POS_SYSTEM_URL . '/api/' . $sync->route_name, $sync->request_data)->json();
-        //         } elseif ($sync->request_type == 'PUT') {
-        //             $response = Http::withHeaders([
-        //                 'Accept' => 'application/json',
-        //                 'Authorization' => 'Bearer ' . $POS_ACCESS_TOKEN,
-        //             ])->put($POS_SYSTEM_URL . '/api/' . $sync->route_name . '/' . $sync->pos_model_id, $sync->request_data)->json();
-        //         } elseif ($sync->request_type == 'DELETE') {
-        //             $response = Http::withHeaders([
-        //                 'Accept' => 'application/json',
-        //                 'Authorization' => 'Bearer ' . $POS_ACCESS_TOKEN,
-        //             ])->delete($POS_SYSTEM_URL . '/api/' . $sync->route_name . '/' . $sync->pos_model_id, $sync->request_data)->json();
-        //         }
+        if ($ENABLE_POS_SYNC == true && !empty($POS_SYSTEM_URL) && !empty($POS_ACCESS_TOKEN)) {
+            foreach ($syncable_data as $sync) {
+                if ($sync->request_type == 'POST') {
+                    $response = Http::withHeaders([
+                        'Authorization' => 'Bearer ' . $POS_ACCESS_TOKEN,
+                    ])->post($POS_SYSTEM_URL . '/api/' . $sync->route_name, $sync->request_data)->json();
+                } elseif ($sync->request_type == 'PUT') {
+                    $response = Http::withHeaders([
+                        'Accept' => 'application/json',
+                        'Authorization' => 'Bearer ' . $POS_ACCESS_TOKEN,
+                    ])->put($POS_SYSTEM_URL . '/api/' . $sync->route_name . '/' . $sync->pos_model_id, $sync->request_data)->json();
+                } elseif ($sync->request_type == 'DELETE') {
+                    $response = Http::withHeaders([
+                        'Accept' => 'application/json',
+                        'Authorization' => 'Bearer ' . $POS_ACCESS_TOKEN,
+                    ])->delete($POS_SYSTEM_URL . '/api/' . $sync->route_name . '/' . $sync->pos_model_id, $sync->request_data)->json();
+                }
 
-        //         if (!empty($response['success'])) {
-        //             SyncDataWithPos::where('id', $sync->id)->update(['is_synced' => true]);
-        //             $model_class = 'App\Models\\' . $sync->model_name;
-        //             if (!empty($response['data']['id'])) {
-        //                 $model_class::where('id', $sync->model_id)->update(['pos_model_id' => $response['data']['id']]);
-        //             }
+                if (!empty($response['success'])) {
+                    SyncDataWithPos::where('id', $sync->id)->update(['is_synced' => true]);
+                    $model_class = 'App\Models\\' . $sync->model_name;
+                    if (!empty($response['data']['id'])) {
+                        $model_class::where('id', $sync->model_id)->update(['pos_model_id' => $response['data']['id']]);
+                    }
 
-        //             if ($sync->model_name == 'Product' && ($sync->request_type == 'POST' || $sync->request_type == 'PUT')) {
-        //                 $variations = $response['data']['variations'];
+                    if ($sync->model_name == 'Product' && ($sync->request_type == 'POST' || $sync->request_type == 'PUT')) {
+                        $variations = $response['data']['variations'];
 
-        //                 foreach ($variations as $v) {
-        //                     Variation::where('id', $v['restaurant_model_id'])->update(['pos_model_id' => $v['id']]);
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
+                        foreach ($variations as $v) {
+                            Variation::where('id', $v['restaurant_model_id'])->update(['pos_model_id' => $v['id']]);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

@@ -1,33 +1,3 @@
-$(document).ready(function () {
-    var owl_erp = $(".owl-carousel-erp");
-    owl_erp.owlCarousel({
-        loop: true,
-        dots: false,
-        items: 4,
-        responsive: {
-            0: {
-                items: 3,
-            },
-            600: {
-                items: 3,
-            },
-            800: {
-                items: 3,
-            },
-            1000: {
-                items: 4,
-            },
-        },
-    });
-
-    $(".owl-next-custom-erp").click(function () {
-        owl_erp.trigger("next.owl.carousel");
-    });
-    $(".owl-prev-custom-erp").click(function () {
-        owl_erp.trigger("prev.owl.carousel");
-    });
-});
-
 $(document).on("mouseleave", ".cart_button", function () {
     $(this).find(".cart_icon").removeClass("rotate360");
 });

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
 @section('content')
     <div class="container mx-auto">
         <div class="flex">
@@ -12,45 +12,42 @@
     </div>
     <div class="container mx-auto mt-14">
         @if (!empty($homepage_category_carousel))
-            <div class="carosual">
-                <div class="flex flex-row items-center">
-                    <div class="flex-3 w-48">
-                        <div class="owl-nav">
-                            <div class="owl-next-custom-erp">
-                                <img src="{{ asset('images/slider-arrow-left.png') }}" alt="" class="m-auto">
-                            </div>
+            <div class="flex flex-row items-center">
+                <div class="flex-3 w-48">
+                    <div class="owl-nav">
+                        <div class="prev-nav">
+                            <img src="{{ asset('images/slider-arrow-left.png') }}" alt="" class="m-auto">
                         </div>
                     </div>
-                    <div class="flex-1 w-96">
-                        <div class="owl-carousel owl-carousel-erp owl-theme">
-
-                            @foreach ($categories as $category)
-                                <div style="margin-left: 20px; margin-right: 20px;">
-                                    <a href="{{ action('ProductController@getProductListByCategory', $category->id) }}"
-                                        class="text-center md:w-1/4 xs:w-1/3 xl:p-16 lg:p-8 md:p-2 xs:p-1">
-                                        <div class="flex-col mx-auto">
-                                            <div class="">
-                                                <img src="{{ !empty($category->getFirstMediaUrl('product_class'))? $category->getFirstMediaUrl('product_class'): asset('uploads/' . session('logo')) }}"
-                                                    class="border-2 border-dark mx-auto aspect-square rounded-lg"
-                                                    alt="category-1">
-                                            </div>
-                                            <div
-                                                class="md:h-10 md:w-32 xs:h-6 xs:w-24 mt-4 bg-darkblue mx-auto text-center rounded-3xl">
-                                                <h3 class="lg:text-xl md:text-base xs:text-tiny text-white font-semibold py-1">
-                                                    {{ $category->name }}</h3>
-                                            </div>
+                </div>
+                <div class="flex-1 w-96">
+                    <div class="category-slider">
+                        @foreach ($categories as $category)
+                            <div class="text-center md:w-1/4 xs:w-1/3 xl:p-16 lg:p-8 md:p-2 xs:p-1">
+                                <a href="{{ action('ProductController@getProductListByCategory', $category->id) }}"
+                                    class="">
+                                    <div class="flex-col mx-auto">
+                                        <div class="">
+                                            <img src="{{ !empty($category->getFirstMediaUrl('product_class'))? $category->getFirstMediaUrl('product_class'): asset('uploads/' . session('logo')) }}"
+                                                class="border-2 border-dark mx-auto w-full aspect-square rounded-lg"
+                                                alt="category-1">
                                         </div>
-                                    </a>
+                                        <div
+                                            class="md:h-10 md:w-32 xs:h-6 xs:w-24 mt-4 bg-darkblue mx-auto text-center rounded-3xl">
+                                            <h3 class="lg:text-xl md:text-base xs:text-tiny text-white font-semibold py-1">
+                                                {{ $category->name }}</h3>
+                                        </div>
+                                    </div>
+                                </a>
 
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                    <div class="flex-3 w-48 justify-center">
-                        <div class="owl-nav">
-                            <div class="owl-prev-custom-erp">
-                                <img src="{{ asset('images/slider-arrow-right.png') }}" alt="" class="m-auto">
                             </div>
+                        @endforeach
+                    </div>
+                </div>
+                <div class="flex-3 w-48 justify-center">
+                    <div class="owl-nav">
+                        <div class="next-nav">
+                            <img src="{{ asset('images/slider-arrow-right.png') }}" alt="" class="m-auto">
                         </div>
                     </div>
                 </div>
@@ -125,4 +122,29 @@
 @endsection
 
 @section('javascript')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
+@if (!empty($homepage_category_carousel))
+<script>
+    $(document).ready(function() {
+        var slider = tns({
+            container: ".category-slider",
+            items: 3,
+            slideBy: "page",
+            autoplay: false,
+            mouseDrag: true,
+            controls: false,
+            nav: false,
+            loop: true,
+            swipeAngle: false,
+        });
+
+        document.querySelector(".next-nav").onclick = function() {
+            slider.goTo("next");
+        };
+        document.querySelector(".prev-nav").onclick = function() {
+            slider.goTo("prev");
+        };
+    });
+</script>
+@endif
 @endsection

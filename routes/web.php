@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\NewOrderEvent;
 use Illuminate\Support\Facades\Route;
 
 /*

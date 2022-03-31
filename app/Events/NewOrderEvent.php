@@ -38,6 +38,6 @@ class NewOrderEvent implements ShouldBroadcast
 
     public function broadcastAs()
     {
-        return 'new-order-event';
+        return 'new-order';
     }
 }

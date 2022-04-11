@@ -65,6 +65,20 @@ class InitialPosDataSync extends Command
 
         if ($ENABLE_POS_SYNC == true && !empty($POS_SYSTEM_URL) && !empty($POS_ACCESS_TOKEN)) {
 
+            //get settings
+            $response_setting = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $POS_ACCESS_TOKEN,
+            ])->get($POS_SYSTEM_URL . '/api/setting')->json();
+
+            if ($response_setting['success']) {
+                $settings = $response_setting['data'];
+
+                $logo_url = $POS_SYSTEM_URL . '/uploads/' . rawurlencode($settings['logo']);
+                $logo_image = file_get_contents($logo_url);
+                file_put_contents(public_path('uploads/' . $settings['logo']), $logo_image);
+                System::updateOrCreate(['key' => 'logo'], ['value' => $settings['logo'], 'date_and_time' => Carbon::now(), 'created_by' => 1]);
+                System::updateOrCreate(['key' => 'system_email'], ['value' => $settings['sender_email'], 'date_and_time' => Carbon::now(), 'created_by' => 1]);
+            }
 
             //get stores
             $response_stores = Http::withHeaders([
@@ -303,22 +317,6 @@ class InitialPosDataSync extends Command
                 Variation::whereNotIn('product_id', $keep_products)->delete();
             }
 
-
-
-            //get settings
-            $response_setting = Http::withHeaders([
-                'Authorization' => 'Bearer ' . $POS_ACCESS_TOKEN,
-            ])->get($POS_SYSTEM_URL . '/api/setting')->json();
-
-            if ($response_setting['success']) {
-                $settings = $response_setting['data'];
-
-                $logo_url = $POS_SYSTEM_URL . '/uploads/' . rawurlencode($settings['logo']);
-                $logo_image = file_get_contents($logo_url);
-                file_put_contents(public_path('uploads/' . $settings['logo']), $logo_image);
-                System::updateOrCreate(['key' => 'logo'], ['value' => $settings['logo'], 'date_and_time' => Carbon::now(), 'created_by' => 1]);
-                System::updateOrCreate(['key' => 'system_email'], ['value' => $settings['sender_email'], 'date_and_time' => Carbon::now(), 'created_by' => 1]);
-            }
 
             //get offers
             $response_offers = Http::withHeaders([

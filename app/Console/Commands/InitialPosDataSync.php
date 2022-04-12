@@ -264,7 +264,9 @@ class InitialPosDataSync extends Command
                         $this->productUtil->createOrUpdateVariations($p, $variation_formated);
 
                         if (!empty($product['image'])) {
-                            $p->addMediaFromUrl($product['image'])->toMediaCollection('product');
+                            if (@getimagesize($product['image'])) {
+                                $p->addMediaFromUrl($product['image'])->toMediaCollection('product');
+                            }
                         }
                     } else {
                         $product_class = ProductClass::where('pos_model_id', $product['product_class_id'])->first();
@@ -309,7 +311,9 @@ class InitialPosDataSync extends Command
 
                         if (!empty($product['image'])) {
                             $p->clearMediaCollection('product');
-                            $p->addMediaFromUrl($product['image'])->toMediaCollection('product');
+                            if (@getimagesize($product['image'])) {
+                                $p->addMediaFromUrl($product['image'])->toMediaCollection('product');
+                            }
                         }
                     }
                 }

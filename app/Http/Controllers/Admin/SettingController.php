@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Currency;
 use App\Models\System;
 use App\Utils\Util;
 use Carbon\Carbon;
@@ -36,9 +37,11 @@ class SettingController extends Controller
         }
 
         $settings = System::pluck('value', 'key');
+        $currencies  = $this->commonUtil->allCurrencies();
 
         return view('admin.setting.setting')->with(compact(
-            'settings'
+            'settings',
+            'currencies'
         ));
     }
     public function saveSystemSettings(Request $request)
@@ -88,6 +91,23 @@ class SettingController extends Controller
                 ['key' => 'system_email'],
                 ['value' => $request->system_email, 'date_and_time' => Carbon::now(), 'created_by' => Auth::user()->id]
             );
+            System::updateOrCreate(
+                ['key' => 'currency'],
+                ['value' => $request->currency, 'date_and_time' => Carbon::now(), 'created_by' => Auth::user()->id]
+            );
+            if (!empty($request->currency)) {
+                $currency = Currency::find($request->currency);
+                $currency_data = [
+                    'country' => $currency->country,
+                    'code' => $currency->code,
+                    'symbol' => $currency->symbol,
+                    'decimal_separator' => '.',
+                    'thousand_separator' => ',',
+                    'currency_precision' => 2,
+                    'currency_symbol_placement' => 'before',
+                ];
+                $request->session()->put('currency', $currency_data);
+            }
             System::updateOrCreate(
                 ['key' => 'open_time'],
                 ['value' => $request->open_time, 'date_and_time' => Carbon::now(), 'created_by' => Auth::user()->id]

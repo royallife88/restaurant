@@ -234,4 +234,6 @@ return [
     'dining_in' => 'Dining In',
     'added_to_the_cart_successfully' => 'Added to the Cart successfully',
 
+    'currency' => 'Currency',
+    'footer_copyright' => 'Proudly developed at Sherifshalaby.tech, +97433231457',
 ];

@@ -227,4 +227,7 @@ return [
     'dining_in' => 'أنا داخل المطعم',
 
     'added_to_the_cart_successfully' => 'تم الإضافة لعربة التسوق',
+
+    'currency' => 'عملة',
+    'footer_copyright' => 'تمت البرمجة بكل فخر في شريف شلبي التقنية، 0097433231457',
 ];

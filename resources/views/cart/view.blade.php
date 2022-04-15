@@ -75,7 +75,8 @@ $locale_direction = LaravelLocalization::getCurrentLocaleDirection();
                     </div>
                 </div>
                 <div class="flex flex-row justify-center order_later_div hidden ">
-                    <img class="md:h-8 md:w-12 xs:h-4 xs:w-8 px-2 md:mt-1 xs:mt-4" src="{{ asset('images/calender-icon.png') }}" alt="">
+                    <img class="md:h-8 md:w-12 xs:h-4 xs:w-8 px-2 md:mt-1 xs:mt-4"
+                        src="{{ asset('images/calender-icon.png') }}" alt="">
                     <select id="month" name="month"
                         class="w-32 mx-2 bg-gray-50 border border-gray-300 text-gray-900 md:text-base xs:text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:p-2.5 xs:p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         @foreach ($month_array as $key => $month)
@@ -90,7 +91,8 @@ $locale_direction = LaravelLocalization::getCurrentLocaleDirection();
                                 {{ $i }}</option>
                         @endforeach
                     </select>
-                    <img class="md:h-8 md:w-12 xs:h-4 xs:w-8 px-2 md:mt-1 xs:mt-4" src="{{ asset('images/time-icon.png') }}" alt="">
+                    <img class="md:h-8 md:w-12 xs:h-4 xs:w-8 px-2 md:mt-1 xs:mt-4"
+                        src="{{ asset('images/time-icon.png') }}" alt="">
 
                     <input type="time" name="time" id="base-input" value="{{ date('H:i') }}"
                         class="w-32 bg-gray-50 border border-gray-300 text-gray-900 md:text-base xs:text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-0 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -183,7 +185,8 @@ $locale_direction = LaravelLocalization::getCurrentLocaleDirection();
                                             class="plus border-2 rounded-full text-lg text-center border-dark text-dark h-8 w-8">+</button>
                                     </div>
                                 </div>
-                                <div class="md:w-1/6 xs:w-1/12  @if ($locale_direction == 'rtl') text-left @else text-right @endif ">
+                                <div
+                                    class="md:w-1/6 xs:w-1/12  @if ($locale_direction == 'rtl') text-left @else text-right @endif ">
                                     <a href="{{ action('CartController@removeProduct', $item->id) }}"
                                         class="mt-2 rounded-full text-lg text-center border-lightgrey text-rose-700 h-8 w-8">
                                         <i class="fa fa-times"></i>
@@ -220,7 +223,7 @@ $locale_direction = LaravelLocalization::getCurrentLocaleDirection();
                                             class="flex-1 text-base @if ($locale_direction == 'rtl') text-left @else text-right @endif font-semibold">
                                             {{ @num_format($variation->default_sell_price - $item->attributes->discount) }}<span
                                                 class="font-bold">
-                                                TL</span>
+                                                {{ session('currency')['code'] }}</span>
                                         </div>
                                     </div>
                                 @endif
@@ -249,7 +252,7 @@ $locale_direction = LaravelLocalization::getCurrentLocaleDirection();
                         <div
                             class="flex-1 text-base @if ($locale_direction == 'rtl') text-left @else text-right @endif font-semibold">
                             {{ @num_format($extra->sell_price - $extra->discount_value) }}<span class="font-bold">
-                                TL</span>
+                                {{ session('currency')['code'] }}</span>
                         </div>
                     </div>
                 @endforeach
@@ -260,7 +263,8 @@ $locale_direction = LaravelLocalization::getCurrentLocaleDirection();
         <div class="flex justify-center">
             <button type="submit"
                 class="lg:w-1/4 md:w-1/2 xs:w-full h-10 mt-4 rounded-lg  bg-red text-white relative">@lang('lang.send_the_order')
-                <span class="text-white text-base absolute right-2">{{ @num_format($total) }} TL</span></button>
+                <span class="text-white text-base absolute right-2">{{ @num_format($total) }}
+                    {{ session('currency')['code'] }}</span></button>
         </div>
 
         {!! Form::close() !!}

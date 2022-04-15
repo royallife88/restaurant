@@ -227,4 +227,7 @@ return [
     'dining_in' => 'ناهار خوری در',
 
     'added_to_the_cart_successfully' => 'با موفقیت به سبد خرید اضافه شد',
+
+    'currency' => 'واحد پول',
+    'footer_copyright' => 'Proudly developed at Sherifshalaby.tech, +97433231457',
 ];

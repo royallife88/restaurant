@@ -231,4 +231,7 @@ return [
     'dining_in' => 'Dîner sur place',
 
     'added_to_the_cart_successfully' => 'Ajouté au panier avec succès',
+
+    'currency' => 'devise',
+    'footer_copyright' => 'Proudly developed at Sherifshalaby.tech, +97433231457',
 ];

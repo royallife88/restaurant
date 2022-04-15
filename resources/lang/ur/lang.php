@@ -231,4 +231,7 @@ return [
     'dining_in' => 'کھانے میں',
 
     'added_to_the_cart_successfully' => 'کارٹ میں کامیابی کے ساتھ شامل کر دیا گیا۔',
+
+    'currency' => 'کرنسی',
+    'footer_copyright' => 'Proudly developed at Sherifshalaby.tech, +97433231457',
 ];

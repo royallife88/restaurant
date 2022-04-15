@@ -228,4 +228,7 @@ return [
 
     'added_to_the_cart_successfully' => 'Succesvol toegevoegd aan de winkelwagen',
 
+    'currency' => 'munteenheid',
+    'footer_copyright' => 'Proudly developed at Sherifshalaby.tech, +97433231457',
+
 ];

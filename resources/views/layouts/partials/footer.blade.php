@@ -25,4 +25,9 @@
 
         </div>
     </div>
+    <div class="flex w-full">
+        <div class="flex-1 mt-10">
+            <p class="text-white text-center">@lang('lang.footer_copyright')</p>
+        </div>
+    </div>
 </div>

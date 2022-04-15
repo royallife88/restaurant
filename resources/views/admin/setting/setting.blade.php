@@ -182,6 +182,10 @@
                     {!! Form::text('address', !empty($settings['address']) ? $settings['address'] : null, ['class' => 'form-control']) !!}
                 </div>
             </div>
+            <div class="col-md-6">
+                {!! Form::label('currency', __('lang.currency'), []) !!}
+                {!! Form::select('currency', $currencies, !empty($settings['currency']) ? $settings['currency'] : null, ['class' => 'form-control select2', 'data-live-search' => 'true']) !!}
+            </div>
             <br>
             <div class="col-md-12">
                 <div class="form-group">

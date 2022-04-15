@@ -70,16 +70,17 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('format_currency', function ($number) {
             return '<?php
             $formated_number = "";
-            if (session("currency")["currency_symbol_placement"] == "before") {
-                $formated_number .= session("currency")["symbol"] . " ";
+            if (session("business.currency_symbol_placement") == "before") {
+                $formated_number .= session("currency")["code"] . " ";
             }
-            $formated_number .= number_format((float) ' . $number . ', session("currency")["currency_precision"] , session("currency")["decimal_separator"], session("currency")["thousand_separator"]);
+            $formated_number .= number_format((float) ' . $number . ', config("constants.currency_precision", 2) , session("currency")["decimal_separator"], session("currency")["thousand_separator"]);
 
-            if (session("currency")["currency_symbol_placement"] == "after") {
-                $formated_number .= " " . session("currency")["symbol"];
+            if (session("business.currency_symbol_placement") == "after") {
+                $formated_number .= " " . session("currency")["code"];
             }
             echo $formated_number; ?>';
         });
+
         //Blade directive to return appropiate class according to attendance status
         Blade::directive('attendance_status', function ($status) {
             return "<?php if($status == 'late'){

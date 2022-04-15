@@ -29,6 +29,30 @@ class SetSessionData
             Session::save();
         }
 
+        $currency_id = System::getProperty('currency');
+        if (empty($currency_id)) {
+            $currency_data = [
+                'country' => 'Qatar',
+                'symbol' => 'QR',
+                'decimal_separator' => '.',
+                'thousand_separator' => ',',
+                'currency_precision' => 2,
+                'currency_symbol_placement' => 'before',
+            ];
+        } else {
+            $currency = Currency::find($currency_id);
+            $currency_data = [
+                'country' => $currency->country,
+                'code' => $currency->code,
+                'symbol' => $currency->symbol,
+                'decimal_separator' => '.',
+                'thousand_separator' => ',',
+                'currency_precision' => 2,
+                'currency_symbol_placement' => 'before',
+            ];
+        }
+        $request->session()->put('currency', $currency_data);
+
         $logo = System::getProperty('logo');
         if (empty($logo)) {
             $logo = 'sharifshalaby.png';

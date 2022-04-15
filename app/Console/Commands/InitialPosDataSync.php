@@ -78,6 +78,7 @@ class InitialPosDataSync extends Command
                 file_put_contents(public_path('uploads/' . $settings['logo']), $logo_image);
                 System::updateOrCreate(['key' => 'logo'], ['value' => $settings['logo'], 'date_and_time' => Carbon::now(), 'created_by' => 1]);
                 System::updateOrCreate(['key' => 'system_email'], ['value' => $settings['sender_email'], 'date_and_time' => Carbon::now(), 'created_by' => 1]);
+                System::updateOrCreate(['key' => 'currency'], ['value' => $settings['currency'], 'date_and_time' => Carbon::now(), 'created_by' => 1]);
             }
 
             //get stores

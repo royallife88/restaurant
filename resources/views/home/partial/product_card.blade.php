@@ -5,8 +5,8 @@
         class="absolute w-full pb-2.5 pt-8 px-5 bottom-0 inset-x-0 text-white text-xs text-center leading-4 bg-gradient-to-t from-black rounded-xl">
         <p class="md:text-sm xs:text-tiny font-semibold text-white py-0">{{ $product->name }}</p>
         <p class="md:text-sm xs:text-tiny font-semibold text-white py-0">{{ $product->description }}</p>
-        <p class="md:text-sm xs:text-tiny font-semibold text-white py-0">TL
-            {{ @num_format($product->sell_price - $product->discount_value) }}</p>
+        <p class="md:text-sm xs:text-tiny font-semibold text-white py-0">
+            {{ session('currency')['code'] }} {{ @num_format($product->sell_price - $product->discount_value) }}</p>
     </div>
     <div class="flex  w-full text-center">
         <div class="absolute bottom-0 mx-auto w-full">

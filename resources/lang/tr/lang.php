@@ -227,4 +227,7 @@ return [
     'dining_in' => 'Yemek',
 
     'added_to_the_cart_successfully' => 'Sepete başarıyla eklendi',
+
+    'currency' => 'para birimi',
+    'footer_copyright' => 'Proudly developed at Sherifshalaby.tech, +97433231457',
 ];

@@ -49,9 +49,9 @@
                                     @if (!empty($product->discount_value) && $product->discount_value > 0)
                                         <span
                                             class="strikethrough text-gray-600 mr-4">{{ @num_format($product->sell_price) }}
-                                            TL
+                                            {{ session('currency')['code'] }}
                                     @endif
-                                    </span> {{ @num_format($product->sell_price - $product->discount_value) }} TL
+                                    </span> {{ @num_format($product->sell_price - $product->discount_value) }} {{ session('currency')['code'] }}
                                 </h2>
                             </div>
                         </div>

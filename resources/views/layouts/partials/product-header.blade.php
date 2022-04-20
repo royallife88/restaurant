@@ -14,7 +14,7 @@
         </div>
         <div class="flex flex-row mt-2 text-center">
             <div class="flex-1">
-                <p class="font-bold md:text-4xl xs:text-xl text-white text-center">{{ $product->name }}</p>
+                <p class="font-bold md:text-4xl xs:text-lg text-white text-center">{{ $product->name }}</p>
             </div>
         </div>
 

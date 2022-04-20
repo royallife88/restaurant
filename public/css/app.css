@@ -2319,6 +2319,11 @@ input:checked + .toggle-bg {
   .xs\:text-xtiny {
     font-size: .50rem;
   }
+
+  .xs\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
 }
 @media (min-width: 640px) {
 

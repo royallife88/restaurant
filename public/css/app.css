@@ -1253,6 +1253,15 @@ input:checked + .toggle-bg {
 .w-3 {
   width: 0.75rem;
 }
+.w-80 {
+  width: 20rem;
+}
+.w-40 {
+  width: 10rem;
+}
+.w-44 {
+  width: 11rem;
+}
 .max-w-xl {
   max-width: 36rem;
 }

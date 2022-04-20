@@ -13,14 +13,14 @@
     <div class="container mx-auto mt-14">
         @if (!empty($homepage_category_carousel))
             <div class="flex flex-row items-center">
-                <div class="flex-3 w-48">
+                <div class="flex-3 w-48 md:block xs:hidden ">
                     <div class="owl-nav">
                         <div class="prev-nav">
                             <img src="{{ asset('images/slider-arrow-left.png') }}" alt="" class="m-auto">
                         </div>
                     </div>
                 </div>
-                <div class="flex-1 w-96">
+                <div class="flex-1 w-80">
                     <div class="category-slider">
                         @foreach ($categories as $category)
                             <div class="text-center md:w-1/4 xs:w-1/3 xl:p-16 lg:p-8 md:p-2 xs:p-1">
@@ -44,7 +44,7 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="flex-3 w-48 justify-center">
+                <div class="flex-3 w-48 md:block xs:hidden ">
                     <div class="owl-nav">
                         <div class="next-nav">
                             <img src="{{ asset('images/slider-arrow-right.png') }}" alt="" class="m-auto">

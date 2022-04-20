@@ -4,7 +4,7 @@
     <a href="{{ action('ProductController@show', $product->id) }}"
         class="absolute w-full pb-2.5 pt-4 px-5 -bottom-24  text-white text-xs text-center leading-4 bg-black opacity-70 rounded-xl">
         <p class="md:text-sm xs:text-tiny font-semibold text-white py-0">{{ $product->name }}</p>
-        <p class="md:text-sm xs:text-tiny font-semibold text-white py-0">{{ $product->description }}</p>
+        {{-- <p class="md:text-sm xs:text-tiny font-semibold text-white py-0">{{ $product->description }}</p> --}}
         <p class="md:text-sm xs:text-tiny font-semibold text-white py-0">
             {{ session('currency')['code'] }} {{ @num_format($product->sell_price - $product->discount_value) }}</p>
     </a>

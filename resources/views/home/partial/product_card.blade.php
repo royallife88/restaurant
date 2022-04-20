@@ -1,4 +1,4 @@
-<div class="w-full">
+<div class="w-full mb-4">
     <div class="w-full  shadow-lg pb-full rounded-xl bg-center bg-no-repeat bg-cover relative border-2 border-dark product_card"
         style="background-image: url('{{ !empty($product->getFirstMediaUrl('product'))? $product->getFirstMediaUrl('product'): asset('uploads/' . session('logo')) }}')">
 

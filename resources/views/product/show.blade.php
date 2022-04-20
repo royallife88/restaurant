@@ -37,7 +37,7 @@
 
             </div>
             <div class="flex-1 xs:w-full lg:w-1/2">
-                <div class="flex flex-col bg-white opacity-80 px-16 py-8">
+                <div class="flex flex-col bg-white opacity-70 px-16 py-8">
                     <div class="flex-1">
                         <h1 class="text-2xl font-bold">{{ $product->name }}</h1>
                         <p class="py-2 text-gray-600">{!! $product->product_details !!}</p>

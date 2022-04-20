@@ -19,7 +19,7 @@ $locale_direction = LaravelLocalization::getCurrentLocaleDirection();
 
     <div class="container mx-auto py-4">
         {!! Form::open(['url' => action('OrderController@store'), 'method' => 'pos', 'id' => 'cart_form']) !!}
-        <div class="flex lg:flex-row xs:flex-col  ">
+        <div class="flex lg:flex-row xs:flex-col py-4 bg-white opacity-70 ">
             <div class="flex-1 xl:px-16 lg:px-2 md:px-4 xs:px-4 flow-root">
                 <div class="form-group">
                     <label

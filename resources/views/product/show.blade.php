@@ -1,38 +1,34 @@
 @extends('layouts.app')
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
 @section('content')
     @include('layouts.partials.product-header')
 
     <div class="container mx-auto mt-14">
         <div class="flex flex-row flex-wrap h-96 min-h-full">
-            <div class="flex-1 xs:w-full lg:w-1/2 px-16">
-                <div class="flex flex-row justify-center items-center">
-                    <div class="w-32">
+            <div class="flex-1 xs:w-full lg:w-1/2 px-16 @if($product->getMedia('product')->count() == 0) md:block xs:hidden @endif">
+
+                <div class="flex flex-row items-center @if($product->getMedia('product')->count() == 0) xs:hidden @endif">
+                    <div class="flex-3 w-20 block md:block xs:hidden ">
                         <div class="owl-nav">
-                            <div class="owl-next-custom-erp text-center text-gray-600 md:text-4xl xs:text-sm">
-                                <i class="fa fa-angle-left"></i>
+                            <div class="prev-nav">
+                                <img src="{{ asset('images/slider-arrow-left.png') }}" alt="" class="m-auto">
                             </div>
                         </div>
                     </div>
-                    <div class="w-full">
-                        <div class="owl-carousel owl-carousel-product owl-theme ">
-                            @forelse ($product->getMedia('product') as $image)
-                                <div style="margin-left: 20px; margin-right: 20px;">
+                    <div class="flex-1 ">
+                        <div class="product-slider">
+                            @foreach ($product->getMedia('product') as $image)
+                                <div style="">
                                     <img src="@if (!empty($image->getUrl())) {{ $image->getUrl() }}@else{{ asset('uploads/' . session('logo')) }} @endif"
                                         class="aspect-square" alt="" style="">
                                 </div>
-                            @empty
-                                <div style="margin-left: 20px; margin-right: 20px;">
-                                    <img src="{{ asset('uploads/' . session('logo')) }}" class="aspect-square" alt=""
-                                        style="">
-                                </div>
-                            @endforelse
+                            @endforeach
                         </div>
                     </div>
-                    <div class="w-32">
+                    <div class="flex-3 w-20 block md:block xs:hidden  justify-center">
                         <div class="owl-nav">
-                            <div class="owl-next-custom-erp text-center  text-gray-600 md:text-4xl xs:text-sm">
-                                <i class="fa fa-angle-right text-grey-500"></i>
+                            <div class="next-nav">
+                                <img src="{{ asset('images/slider-arrow-right.png') }}" alt="" class="m-auto">
                             </div>
                         </div>
                     </div>
@@ -40,8 +36,8 @@
 
 
             </div>
-            <div class="flex-1 xs:w-full lg:w-1/2 px-16">
-                <div class="flex flex-col">
+            <div class="flex-1 xs:w-full lg:w-1/2">
+                <div class="flex flex-col bg-white opacity-80 px-16 py-8">
                     <div class="flex-1">
                         <h1 class="text-2xl font-bold">{{ $product->name }}</h1>
                         <p class="py-2 text-gray-600">{!! $product->product_details !!}</p>
@@ -86,6 +82,7 @@
 @endsection
 
 @section('javascript')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
     <script>
         $(document).on('click', '.plus', function() {
             let quantity = __read_number($('.quantity'));
@@ -106,21 +103,24 @@
         })
 
         $(document).ready(function() {
-            var owl_erp = $(".owl-carousel-product");
-            owl_erp.owlCarousel({
-                loop: false,
-                dots: false,
+            var slider = tns({
+                container: ".product-slider",
                 items: 1,
-                singleItem: true,
-                autoHeight: false,
+                // slideBy: "page",
+                autoplay: false,
+                mouseDrag: true,
+                controls: false,
+                nav: false,
+                loop: true,
+                swipeAngle: false,
             });
 
-            $(".owl-next-custom-erp").click(function() {
-                owl_erp.trigger("next.owl.carousel");
-            });
-            $(".owl-prev-custom-erp").click(function() {
-                owl_erp.trigger("prev.owl.carousel");
-            });
+            document.querySelector(".next-nav").onclick = function() {
+                slider.goTo("next");
+            };
+            document.querySelector(".prev-nav").onclick = function() {
+                slider.goTo("prev");
+            };
         });
     </script>
 @endsection

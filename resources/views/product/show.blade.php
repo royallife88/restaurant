@@ -5,9 +5,9 @@
 
     <div class="container mx-auto mt-14">
         <div class="flex flex-row flex-wrap h-96 min-h-full">
-            <div class="flex-1 xs:w-full lg:w-1/2 px-16 @if($product->getMedia('product')->count() == 0) md:block xs:hidden @endif">
+            <div class="flex-1 xs:w-full lg:w-1/2 px-16 @if ($product->getMedia('product')->count() == 0) md:block xs:hidden @endif">
 
-                <div class="flex flex-row items-center @if($product->getMedia('product')->count() == 0) xs:hidden @endif">
+                <div class="flex flex-row items-center @if ($product->getMedia('product')->count() == 0) xs:hidden @endif">
                     <div class="flex-3 w-20 block md:block xs:hidden ">
                         <div class="owl-nav">
                             <div class="prev-nav">
@@ -18,10 +18,8 @@
                     <div class="flex-1 ">
                         <div class="product-slider">
                             @foreach ($product->getMedia('product') as $image)
-                                <div style="">
-                                    <img src="@if (!empty($image->getUrl())) {{ $image->getUrl() }}@else{{ asset('uploads/' . session('logo')) }} @endif"
-                                        class="aspect-square" alt="" style="">
-                                </div>
+                                <img src="@if (!empty($image->getUrl())) {{ $image->getUrl() }}@else{{ asset('uploads/' . session('logo')) }} @endif"
+                                    class="aspect-square" alt="" style="">
                             @endforeach
                         </div>
                     </div>
@@ -51,7 +49,8 @@
                                             class="strikethrough text-gray-600 mr-4">{{ @num_format($product->sell_price) }}
                                             {{ session('currency')['code'] }}
                                     @endif
-                                    </span> {{ @num_format($product->sell_price - $product->discount_value) }} {{ session('currency')['code'] }}
+                                    </span> {{ @num_format($product->sell_price - $product->discount_value) }}
+                                    {{ session('currency')['code'] }}
                                 </h2>
                             </div>
                         </div>

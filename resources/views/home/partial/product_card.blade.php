@@ -14,7 +14,7 @@
     <div class="flex">
         <a href="{{ action('ProductController@show', $product->id) }}"
             class=" w-full text-white text-xs text-center bg-black opacity-70 rounded-xl py-4 mt-2">
-            <p class="md:text-sm xs:text-tiny font-semibold text-white py-0">{{ Str::limit($product->name, 10) }}</p>
+            <p class="md:text-sm xs:text-tiny font-semibold text-white py-0">{{ Str::limit($product->name, 15) }}</p>
             <p class="md:text-sm xs:text-tiny font-semibold text-white py-0">
                 {{ session('currency')['code'] }} {{ @num_format($product->sell_price - $product->discount_value) }}
             </p>

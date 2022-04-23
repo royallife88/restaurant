@@ -22,7 +22,7 @@ return [
     'ur' => 'اردو',
     'hi' => 'हिन्दी',
     'categories' => 'فئات',
-    'promotions' => 'الترقيات',
+    'promotions' => 'العروض',
     'order_now' => 'اطلب الان',
     'show_more' => 'أظهر المزيد',
     'select_size' => 'أختر الحجم',

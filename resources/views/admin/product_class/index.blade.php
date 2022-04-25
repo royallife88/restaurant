@@ -23,6 +23,7 @@
                     <th>@lang('lang.name')</th>
                     <th>@lang('lang.description')</th>
                     <th>@lang('lang.sort')</th>
+                    <th>@lang('lang.status')</th>
 
                     <th class="notexport">@lang('lang.action')</th>
                 </tr>
@@ -73,6 +74,7 @@
                 { data: 'name', name: 'name'  },
                 { data: 'description', name: 'description'  },
                 { data: 'sort', name: 'sort'  },
+                { data: 'status', name: 'status'  },
 
                 { data: 'action', name: 'action'},
 

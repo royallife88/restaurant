@@ -66,6 +66,13 @@ class ProductClassController extends Controller
                         return '<img src="' . asset('/uploads/' . session('logo')) . '" height="50px" width="50px">';
                     }
                 })
+                ->editColumn('status', function ($row) {
+                    if ($row->status == 1) {
+                        return '<span class="badge badge-success">' . __('lang.active') . '</span>';
+                    } else {
+                        return '<span class="badge badge-danger">' . __('lang.deactivated') . '</span>';
+                    }
+                })
                 ->addColumn(
                     'action',
                     function ($row) {
@@ -104,6 +111,7 @@ class ProductClassController extends Controller
 
                 ->rawColumns([
                     'image',
+                    'status',
                     'action',
                 ])
                 ->make(true);
@@ -156,6 +164,7 @@ class ProductClassController extends Controller
         try {
             $data = $request->except('_token', 'quick_add');
             $data['translations'] = !empty($data['translations']) ? $data['translations'] : [];
+            $data['status'] = !empty($data['status']) ? $data['status'] : 0;
             DB::beginTransaction();
             $class = ProductClass::create($data);
 
@@ -238,11 +247,11 @@ class ProductClassController extends Controller
         );
 
         try {
-            $data = $request->only('name', 'description', 'sort', 'translations');
+            $data = $request->only('name', 'description', 'sort', 'translations', 'status');
             $data['translations'] = !empty($data['translations']) ? $data['translations'] : [];
+            $data['status'] = !empty($data['status']) ? 1 : 0;
             $class = ProductClass::where('id', $id)->first();
             $class->update($data);
-
             if ($request->has('uploaded_image_name')) {
                 if (!empty($request->input('uploaded_image_name'))) {
                     $class->clearMediaCollection('product_class');

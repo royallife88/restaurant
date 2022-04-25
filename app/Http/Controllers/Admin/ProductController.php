@@ -81,7 +81,13 @@ class ProductController extends Controller
                 })
                 ->editColumn('sell_price', '@if(!empty($sell_price)){{@num_format($sell_price)}}@endif')
                 ->editColumn('purchase_price', '@if(!empty($purchase_price)){{@num_format($purchase_price)}}@endif')
-                ->editColumn('active', '@if(!empty($active))@lang("lang.active")@else @lang("lang.deactivated")@endif')
+                ->editColumn('active', function ($row) {
+                    if ($row->active == 1) {
+                        return '<span class="badge badge-success">' . __('lang.active') . '</span>';
+                    } else {
+                        return '<span class="badge badge-danger">' . __('lang.deactivated') . '</span>';
+                    }
+                })
                 ->editColumn('product_details', '{!! $product_details !!}')
                 ->addColumn(
                     'action',
@@ -128,6 +134,7 @@ class ProductController extends Controller
 
                 ->rawColumns([
                     'image',
+                    'active',
                     'product_details',
                     'discount_start_date',
                     'discount_end_date',

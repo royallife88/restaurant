@@ -178,7 +178,7 @@ class InitialPosDataSync extends Command
                             'name' => $product_class['name'],
                             'translations' => $product_class['translations'],
                             'description' => $product_class['description'],
-                            'status' => 1,
+                            'status' => $product_class['status'],
                             'sort' => $i,
                             'pos_model_id' => $product_class['id'],
                             'created_at' => !empty($product_class['created_at']) ? $product_class['created_at'] : Carbon::now(),
@@ -193,7 +193,7 @@ class InitialPosDataSync extends Command
                             'name' => $product_class['name'],
                             'translations' => $product_class['translations'],
                             'description' => $product_class['description'],
-                            'status' => 1,
+                            'status' => $product_class['status'],
                             'pos_model_id' => $product_class['id'],
                             'updated_at' => empty($product_class['updated_at']) ? $product_class['updated_at'] : Carbon::now(),
                         ];

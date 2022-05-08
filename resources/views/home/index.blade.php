@@ -23,18 +23,18 @@
                 <div class="flex-1 w-80">
                     <div class="category-slider">
                         @foreach ($categories as $category)
-                            <div class="text-center md:w-1/4 xs:w-1/3 xl:p-16 lg:p-8 md:p-2 xs:p-1">
+                            <div class="text-center md:w-1/4 xs:w-1/3 xl:p-8 lg:p-2 md:p-2 xs:p-1">
                                 <a href="{{ action('ProductController@getProductListByCategory', $category->id) }}"
                                     class="">
                                     <div class="flex-col mx-auto">
                                         <div class="">
-                                            <img src="{{ !empty($category->getFirstMediaUrl('product_class'))? $category->getFirstMediaUrl('product_class'): asset('uploads/' . session('logo')) }}"
+                                            <img src="{{ !empty($category->getFirstMediaUrl('product_class')) ? $category->getFirstMediaUrl('product_class') : asset('uploads/' . session('logo')) }}"
                                                 class="border-2 border-dark mx-auto w-full aspect-square rounded-lg"
                                                 alt="category-1">
                                         </div>
                                         <div
-                                            class="md:h-10 md:w-32 xs:h-6 xs:w-24 mt-4 bg-darkblue mx-auto text-center rounded-3xl">
-                                            <h3 class="lg:text-xl md:text-base xs:text-tiny text-white font-semibold py-1">
+                                            class="lg:h-10 md:h-6 xs:h-6 lg:w-36 md:w-22 xs:w-22 bg-darkblue mx-auto text-center rounded-3xl mt-4">
+                                            <h3 class="lg:text-lg md:text-tiny xs:text-tiny text-white font-semibold py-1">
                                                 {{ $category->name }}</h3>
                                         </div>
                                     </div>
@@ -53,31 +53,11 @@
                 </div>
             </div>
         @else
-            @php
-                $chunk_count = 1;
-            @endphp
-
             <div class="w-full mx-auto p-4">
-                <div class="grid xs:grid-cols-3 md:grid-cols-4 xs:gap-2 md:gap-16 md:mt-12 xs:mt-6">
+                <div class="grid xs:grid-cols-4 md:grid-cols-4 xs:gap-2 md:gap-16 md:mt-12 xs:mt-6">
                     @foreach ($categories as $category)
-                        @php
-                            $border_round = '';
-                            if ($loop->iteration == 1) {
-                                $border_round = $chunk_count == 1 ? 'rounded-tl-3xl' : 'rounded-bl-3xl';
-                            }
-                            if ($loop->iteration == 4) {
-                                $border_round = $chunk_count == 1 ? 'rounded-tr-3xl' : 'rounded-br-3xl';
-                            }
-                            if ($chunk_count == 2) {
-                                $last_ele = $categoryChunk->last();
-                                if ($last_ele->id == $category->id) {
-                                    $border_round = 'rounded-br-3xl';
-                                }
-                            }
-                        @endphp
                         @include('home.partial.category_card', [
                             'category' => $category,
-                            'border_round' => $border_round,
                         ])
                     @endforeach
                 </div>
@@ -124,27 +104,27 @@
 @section('javascript')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
 @if (!empty($homepage_category_carousel))
-<script>
-    $(document).ready(function() {
-        var slider = tns({
-            container: ".category-slider",
-            items: 3,
-            slideBy: "page",
-            autoplay: false,
-            mouseDrag: true,
-            controls: false,
-            nav: false,
-            loop: true,
-            swipeAngle: false,
-        });
+    <script>
+        $(document).ready(function() {
+            var slider = tns({
+                container: ".category-slider",
+                items: 4,
+                slideBy: "page",
+                autoplay: false,
+                mouseDrag: true,
+                controls: false,
+                nav: false,
+                loop: true,
+                swipeAngle: false,
+            });
 
-        document.querySelector(".next-nav").onclick = function() {
-            slider.goTo("next");
-        };
-        document.querySelector(".prev-nav").onclick = function() {
-            slider.goTo("prev");
-        };
-    });
-</script>
+            document.querySelector(".next-nav").onclick = function() {
+                slider.goTo("next");
+            };
+            document.querySelector(".prev-nav").onclick = function() {
+                slider.goTo("prev");
+            };
+        });
+    </script>
 @endif
 @endsection

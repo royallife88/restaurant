@@ -205,7 +205,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4 hide">
                 <div class="form-group">
                     {!! Form::label('homepage_category_count', __('lang.homepage_category_count'), []) !!}
                     {!! Form::select('homepage_category_count', [4 => 4, 8 => 8], !empty($settings['homepage_category_count']) ? $settings['homepage_category_count'] : 8, ['class' => 'form-control']) !!}

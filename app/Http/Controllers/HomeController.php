@@ -17,8 +17,8 @@ class HomeController extends Controller
     public function index()
     {
         $homepage_category_carousel = System::getProperty('homepage_category_carousel');
-        $homepage_category_count = System::getProperty('homepage_category_count') ?? 8;
-        $categories = ProductClass::orderBy('sort', 'asc')->where('status', 1)->where('name', '!=', 'Extras')->limit($homepage_category_count)->get();
+        // $homepage_category_count = System::getProperty('homepage_category_count') ?? 8;
+        $categories = ProductClass::orderBy('sort', 'asc')->where('status', 1)->where('name', '!=', 'Extras')->get();
 
         $offers_array = [];
 

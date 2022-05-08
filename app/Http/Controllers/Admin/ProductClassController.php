@@ -221,7 +221,7 @@ class ProductClassController extends Controller
             abort(403, __('lang.not_authorized'));
         }
 
-        $product_class = ProductClass::find($id);
+        $product_class = ProductClass::orderBy('sort', 'asc')->find($id);
 
         return view('admin.product_class.edit')->with(compact(
             'product_class'
@@ -246,7 +246,7 @@ class ProductClassController extends Controller
             ['name' => ['required', 'max:255']]
         );
 
-        // try {
+        try {
             $data = $request->only('name', 'description', 'sort', 'translations', 'status');
             $data['translations'] = !empty($data['translations']) ? $data['translations'] : [];
             $data['status'] = !empty($data['status']) ? 1 : 0;
@@ -265,13 +265,13 @@ class ProductClassController extends Controller
                 'success' => true,
                 'msg' => __('lang.success')
             ];
-        // } catch (\Exception $e) {
-        //     Log::emergency('File: ' . $e->getFile() . 'Line: ' . $e->getLine() . 'Message: ' . $e->getMessage());
-        //     $output = [
-        //         'success' => false,
-        //         'msg' => __('lang.something_went_wrong')
-        //     ];
-        // }
+        } catch (\Exception $e) {
+            Log::emergency('File: ' . $e->getFile() . 'Line: ' . $e->getLine() . 'Message: ' . $e->getMessage());
+            $output = [
+                'success' => false,
+                'msg' => __('lang.something_went_wrong')
+            ];
+        }
 
         return redirect()->back()->with('status', $output);
     }

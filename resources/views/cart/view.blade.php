@@ -31,36 +31,24 @@ $locale_direction = LaravelLocalization::getCurrentLocaleDirection();
                     <label
                         class="font-semibold text-base text-dark pr-2 pt-1 @if ($locale_direction == 'rtl') float-right @else float-left @endif"
                         for="customer_name">@lang('lang.name')</label>
-                    <[type=text] type="text" name="customer_name" required
-                        class="border-b border-dark rounded-lg w-full px-4 w-3/5 @if ($locale_direction == 'rtl')
-float-left
-@else
-float-right
-@endif "
+                    <input type="text" name="customer_name" required
+                        class="border-b border-dark rounded-lg w-full px-4 w-3/5 @if ($locale_direction == 'rtl') float-left @else float-right @endif "
                         value="">
                 </div>
                 <div class="flex flex-row py-2 flow-root">
                     <label
                         class="font-semibold text-base text-dark pr-2 pt-1 @if ($locale_direction == 'rtl') float-right @else float-left @endif"
                         for="phone_number">@lang('lang.phone_number')</label>
-                    <[type=text] type="text" name="phone_number" required
-                        class="border-b border-dark rounded-lg w-full px-4 w-3/5 @if ($locale_direction == 'rtl')
-float-left
-@else
-float-right
-@endif "
+                    <input type="text" name="phone_number" required
+                        class="border-b border-dark rounded-lg w-full px-4 w-3/5 @if ($locale_direction == 'rtl') float-left @else float-right @endif "
                         value="">
                 </div>
                 <div class="flex flex-row py-2 flow-root">
                     <label
                         class="font-semibold text-base text-dark pr-2 pt-1 @if ($locale_direction == 'rtl') float-right @else float-left @endif"
                         for="address">@lang('lang.address')</label>
-                    <[type=text] type="text" name="address"
-                        class="border-b border-dark rounded-lg w-full px-4 w-3/5 @if ($locale_direction == 'rtl')
-float-left
-@else
-float-right
-@endif "
+                    <input type="text" name="address"
+                        class="border-b border-dark rounded-lg w-full px-4 w-3/5 @if ($locale_direction == 'rtl') float-left @else float-right @endif "
                         value="">
                 </div>
 
@@ -73,11 +61,11 @@ float-right
                     <div class="flex w-16 justify-center">
                         <div class="mt-1">
                             <label for="order" class="flex relative items-center mb-4 cursor-pointer">
-                                <[type=text] type="checkbox" name="order_type" id="order" value="1" class="sr-only">
-                                    <div
-                                        class="w-11 h-6 bg-gray-200 rounded-full border border-red toggle-bg dark:bg-gray-700 dark:border-gray-600">
-                                    </div>
-                                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
+                                <input type="checkbox" name="order_type" id="order" value="1" class="sr-only">
+                                <div
+                                    class="w-11 h-6 bg-gray-200 rounded-full border border-red toggle-bg dark:bg-gray-700 dark:border-gray-600">
+                                </div>
+                                <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                             </label>
                         </div>
                     </div>
@@ -106,7 +94,7 @@ float-right
                     <img class="md:h-8 md:w-12 xs:h-4 xs:w-8 px-2 md:mt-1 xs:mt-4"
                         src="{{ asset('images/time-icon.png') }}" alt="">
 
-                    <[type=text] type="time" name="time" id="base-[type=text]" value="{{ date('H:i') }}"
+                    <input type="time" name="time" id="base-input" value="{{ date('H:i') }}"
                         class="w-32 bg-gray-50 border border-gray-300 text-gray-900 md:text-base xs:text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-0 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
                 </div>
@@ -118,12 +106,12 @@ float-right
                     <div class="flex w-16 justify-center">
                         <div class="mt-1">
                             <label for="payment_type" class="flex relative items-center mb-4 cursor-pointer">
-                                <[type=text] type="checkbox" id="payment_type" name="payment_type" checked value="1"
+                                <input type="checkbox" id="payment_type" name="payment_type" checked value="1"
                                     class="sr-only">
-                                    <div
-                                        class="w-11 h-6 bg-gray-200 rounded-full border border-red toggle-bg dark:bg-gray-700 dark:border-gray-600">
-                                    </div>
-                                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
+                                <div
+                                    class="w-11 h-6 bg-gray-200 rounded-full border border-red toggle-bg dark:bg-gray-700 dark:border-gray-600">
+                                </div>
+                                <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                             </label>
                         </div>
                     </div>
@@ -135,25 +123,25 @@ float-right
 
                 <div class="flex flex-row py-2 justify-center items-center">
                     <div class="flex-1 text-center">
-                        <[type=text] type="radio" name="delivery_type" value="i_will_pick_it_up_my_self" required
+                        <input type="radio" name="delivery_type" value="i_will_pick_it_up_my_self" required
                             class="w-4 h-4 border-red focus:ring-2 focus:ring-red dark:focus:ring-red dark:focus:bg-red dark:bg-gray-700 dark:border-red"
                             aria-labelledby="radio" aria-describedby="radio">
-                            <label class="i_will_pick font-semibold md:text-base xs:text-xs text-dark pl-2"
-                                for="i_will_pick_it_up_my_self">@lang('lang.i_will_pick_it_up_my_self')</label>
+                        <label class="i_will_pick font-semibold md:text-base xs:text-xs text-dark pl-2"
+                            for="i_will_pick_it_up_my_self">@lang('lang.i_will_pick_it_up_my_self')</label>
                     </div>
                     <div class="flex-1 text-center">
-                        <[type=text] type="radio" name="delivery_type" value="home_delivery" checked required
+                        <input type="radio" name="delivery_type" value="home_delivery" checked required
                             class="w-4 h-4 border-red focus:ring-2 focus:ring-red dark:focus:ring-red dark:focus:bg-red dark:bg-gray-700 dark:border-red"
                             aria-labelledby="radio" aria-describedby="radio">
-                            <label class="i_will_pick font-semibold md:text-base xs:text-xs text-dark pl-2"
-                                for="home_delivery">@lang('lang.home_delivery')</label>
+                        <label class="i_will_pick font-semibold md:text-base xs:text-xs text-dark pl-2"
+                            for="home_delivery">@lang('lang.home_delivery')</label>
                     </div>
                     <div class="flex-1 text-center">
-                        <[type=text] type="radio" name="delivery_type" value="dining_in" required
+                        <input type="radio" name="delivery_type" value="dining_in" required
                             class="w-4 h-4 border-red focus:ring-2 focus:ring-red dark:focus:ring-red dark:focus:bg-red dark:bg-gray-700 dark:border-red"
                             aria-labelledby="radio" aria-describedby="radio">
-                            <label class="i_will_pick font-semibold md:text-base xs:text-xs text-dark pl-2"
-                                for="dining_in">@lang('lang.dining_in')</label>
+                        <label class="i_will_pick font-semibold md:text-base xs:text-xs text-dark pl-2"
+                            for="dining_in">@lang('lang.dining_in')</label>
                     </div>
                 </div>
 
@@ -192,11 +180,10 @@ float-right
                                     <div class="flex flex-row qty_row justify-center w-full">
                                         <button type="button"
                                             class="minus border-2 rounded-full text-lg text-center border-dark text-dark h-8 w-8">-</button>
-                                        <[type=text] type="text" data-id="{{ $item->id }}"
-                                            value="{{ $item->quantity }}"
+                                        <input type="text" data-id="{{ $item->id }}" value="{{ $item->quantity }}"
                                             class="quantity text-center text-dark w-16 line leading-none border-transparent bg-transparent focus:border-transparent focus:ring-0 ">
-                                            <button type="button"
-                                                class="plus border-2 rounded-full text-lg text-center border-dark text-dark h-8 w-8">+</button>
+                                        <button type="button"
+                                            class="plus border-2 rounded-full text-lg text-center border-dark text-dark h-8 w-8">+</button>
                                     </div>
                                 </div>
                                 <div
@@ -218,71 +205,70 @@ float-right
                                         <div class="flex-1">
                                             <div
                                                 class="flex @if ($locale_direction == 'rtl') flex-row-reverse @else flex-row @endif items-center mb-4">
-                                                <[type=text] type="radio" data-id="{{ $item->id }}" @if ($item->attributes->variation_id == $variation->id)
-                                                    checked
+                                                <input type="radio" data-id="{{ $item->id }}"
+                                                    @if ($item->attributes->variation_id == $variation->id) checked @endif
+                                                    value="{{ $variation->id }}"
+                                                    class="variation_radio w-4 h-4 border-red focus:ring-2 focus:ring-red dark:focus:ring-red dark:focus:bg-red dark:bg-gray-700 dark:border-red"
+                                                    aria-labelledby="radio" aria-describedby="radio">
+                                                <label for="radio"
+                                                    class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 px-2">
+                                                    @if ($variation->name == 'Default')
+                                                        {{ $item->name }}
+                                                    @else
+                                                        {{ $variation->size->name ?? '' }}
+                                                    @endif
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="flex-1 text-base @if ($locale_direction == 'rtl') text-left @else text-right @endif font-semibold">
+                                            {{ @num_format($variation->default_sell_price - $item->attributes->discount) }}<span
+                                                class="font-bold">
+                                                {{ session('currency')['code'] }}</span>
+                                        </div>
+                                    </div>
                                 @endif
-                                value="{{ $variation->id }}"
-                                class="variation_radio w-4 h-4 border-red focus:ring-2 focus:ring-red dark:focus:ring-red dark:focus:bg-red dark:bg-gray-700 dark:border-red"
-                                aria-labelledby="radio" aria-describedby="radio">
-                                <label for="radio"
-                                    class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 px-2">
-                                    @if ($variation->name == 'Default')
-                                        {{ $item->name }}
-                                    @else
-                                        {{ $variation->size->name ?? '' }}
-                                    @endif
-                                </label>
+                            @endforeach
                         </div>
-            </div>
-            <div
-                class="flex-1 text-base @if ($locale_direction == 'rtl') text-left @else text-right @endif font-semibold">
-                {{ @num_format($variation->default_sell_price - $item->attributes->discount) }}<span
-                    class="font-bold">
-                    {{ session('currency')['code'] }}</span>
-            </div>
-        </div>
-        @endif
-        @endforeach
-    </div>
-    @endif
-    @endforeach
+                    @endif
+                @endforeach
 
-    <div class="flex @if ($locale_direction == 'rtl') justify-end @endif">
-        <h3
-            class="font-semibold text-lg text-dark pt-5 @if ($locale_direction == 'rtl') text-right @else text-right @endif @if ($extras->count() == 0) hidden @endif">
-            @lang('lang.extras')</h3>
-    </div>
-    @foreach ($extras as $extra)
-        <div class="flex @if ($locale_direction == 'rtl') flex-row-reverse @else flex-row @endif py-2">
-            <div class="flex-1">
-                <div class="flex @if ($locale_direction == 'rtl') flex-row-reverse @else flex-row @endif">
-                    <input @if (in_array($extra->id, $cart_content->pluck('id')->toArray())) checked @endif
-                        class="extra_checkbox form-check-input appearance-none h-4 w-4 border border-red rounded-sm bg-white checked:bg-red checked:border-red focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                        type="checkbox" value="{{ $extra->id }}" id="extra">
-                    <label class="form-check-label inline-block text-gray-800 font-semibold px-2" for="extra">
-                        {{ $extra->name }}
-                    </label>
+                <div class="flex @if ($locale_direction == 'rtl') justify-end @endif">
+                    <h3
+                        class="font-semibold text-lg text-dark pt-5 @if ($locale_direction == 'rtl') text-right @else text-right @endif @if ($extras->count() == 0) hidden @endif">
+                        @lang('lang.extras')</h3>
                 </div>
-            </div>
-            <div
-                class="flex-1 text-base @if ($locale_direction == 'rtl') text-left @else text-right @endif font-semibold">
-                {{ @num_format($extra->sell_price - $extra->discount_value) }}<span class="font-bold">
-                    {{ session('currency')['code'] }}</span>
+                @foreach ($extras as $extra)
+                    <div class="flex @if ($locale_direction == 'rtl') flex-row-reverse @else flex-row @endif py-2">
+                        <div class="flex-1">
+                            <div class="flex @if ($locale_direction == 'rtl') flex-row-reverse @else flex-row @endif">
+                                <input @if (in_array($extra->id, $cart_content->pluck('id')->toArray())) checked @endif
+                                    class="extra_checkbox form-check-input appearance-none h-4 w-4 border border-red rounded-sm bg-white checked:bg-red checked:border-red focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                    type="checkbox" value="{{ $extra->id }}" id="extra">
+                                <label class="form-check-label inline-block text-gray-800 font-semibold px-2" for="extra">
+                                    {{ $extra->name }}
+                                </label>
+                            </div>
+                        </div>
+                        <div
+                            class="flex-1 text-base @if ($locale_direction == 'rtl') text-left @else text-right @endif font-semibold">
+                            {{ @num_format($extra->sell_price - $extra->discount_value) }}<span class="font-bold">
+                                {{ session('currency')['code'] }}</span>
+                        </div>
+                    </div>
+                @endforeach
+
             </div>
         </div>
-    @endforeach
 
-    </div>
-    </div>
+        <div class="flex justify-center">
+            <button type="button" class="lg:w-1/4 md:w-1/2 xs:w-full h-10 mt-4 rounded-lg  bg-red text-white relative"
+                id="send_the_order">@lang('lang.send_the_order')
+                <span class="text-white text-base absolute right-2">{{ @num_format($total) }}
+                    {{ session('currency')['code'] }}</span></button>
+        </div>
 
-    <div class="flex justify-center">
-        <button type="button" class="lg:w-1/4 md:w-1/2 xs:w-full h-10 mt-4 rounded-lg  bg-red text-white relative"
-            readonly="readonly" id="send_the_order">@lang('lang.send_the_order')
-            <span class="text-white text-base absolute right-2">{{ @num_format($total) }}
-                {{ session('currency')['code'] }}</span></button>
-    </div>
-
-    {!! Form::close() !!}
+        {!! Form::close() !!}
     </div>
 @endsection
 
@@ -360,7 +346,7 @@ float-right
             }
         })
 
-        $(document).on('change', '[type=text][name="delivery_type"]', function() {
+        $(document).on('change', 'input[name="delivery_type"]', function() {
             if ($(this).val() == 'dining_in') {
                 $('.inside_restaurant_div').removeClass('hidden');
                 $('#table_no').attr('required', true);

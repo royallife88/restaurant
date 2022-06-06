@@ -278,8 +278,6 @@ $locale_direction = LaravelLocalization::getCurrentLocaleDirection();
             e.preventDefault();
             $('input[type=text]').blur();
             if ($('#cart_form').valid()) {
-                // $(this).blur();
-                console.log('click submit');
                 $('#cart_form').submit();
             }
         });

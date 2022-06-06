@@ -149,7 +149,7 @@ $locale_direction = LaravelLocalization::getCurrentLocaleDirection();
                     <label class="font-semibold text-base text-dark pr-2 pt-1 float-left"
                         for="table_no">@lang('lang.table_no')</label>
 
-                    <select id="table_no" name="table_no" required
+                    <select id="table_no" name="table_no"
                         class="w-1/4 mx-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option value="">@lang('lang.please_select')</option>
                         @foreach ($dining_tables as $key => $value)

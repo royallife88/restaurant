@@ -76,9 +76,11 @@ class InitialPosDataSync extends Command
                 $settings = $response_setting['data'];
 
                 $logo_url = $POS_SYSTEM_URL . '/uploads/' . rawurlencode($settings['logo']);
-                $logo_image = file_get_contents($logo_url);
-                file_put_contents(public_path('uploads/' . $settings['logo']), $logo_image);
-                System::updateOrCreate(['key' => 'logo'], ['value' => $settings['logo'], 'date_and_time' => Carbon::now(), 'created_by' => 1]);
+                if (@getimagesize($logo_url)) {
+                    $logo_image = file_get_contents($logo_url);
+                    file_put_contents(public_path('uploads/' . $settings['logo']), $logo_image);
+                    System::updateOrCreate(['key' => 'logo'], ['value' => $settings['logo'], 'date_and_time' => Carbon::now(), 'created_by' => 1]);
+                }
                 System::updateOrCreate(['key' => 'system_email'], ['value' => $settings['sender_email'], 'date_and_time' => Carbon::now(), 'created_by' => 1]);
                 System::updateOrCreate(['key' => 'currency'], ['value' => $settings['currency'], 'date_and_time' => Carbon::now(), 'created_by' => 1]);
             }
@@ -256,7 +258,9 @@ class InitialPosDataSync extends Command
                         ];
                         $pc = ProductClass::create($pc_data);
                         if (!empty($product_class['image'])) {
-                            $pc->addMediaFromUrl($product_class['image'])->toMediaCollection('product_class');
+                            if (@getimagesize($product_class['image'])) {
+                                $pc->addMediaFromUrl($product_class['image'])->toMediaCollection('product_class');
+                            }
                         }
                     } else {
                         $pc_data = [
@@ -271,8 +275,10 @@ class InitialPosDataSync extends Command
                         $pc = ProductClass::where('pos_model_id', $product_class['id'])->first();
                         $pc->update($pc_data);
                         if (!empty($product_class['image'])) {
-                            $pc->clearMediaCollection('product_class');
-                            $pc->addMediaFromUrl($product_class['image'])->toMediaCollection('product_class');
+                            if (@getimagesize($product_class['image'])) {
+                                $pc->clearMediaCollection('product_class');
+                                $pc->addMediaFromUrl($product_class['image'])->toMediaCollection('product_class');
+                            }
                         }
                     }
 

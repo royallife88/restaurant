@@ -262,8 +262,8 @@ $locale_direction = LaravelLocalization::getCurrentLocaleDirection();
         </div>
 
         <div class="flex justify-center">
-            <button type="button" class="lg:w-1/4 md:w-1/2 xs:w-full h-10 mt-4 rounded-lg  bg-red text-white relative" readonly="readonly"
-                id="send_the_order">@lang('lang.send_the_order')
+            <button type="button" class="lg:w-1/4 md:w-1/2 xs:w-full h-10 mt-4 rounded-lg  bg-red text-white relative"
+                readonly="readonly" id="send_the_order">@lang('lang.send_the_order')
                 <span class="text-white text-base absolute right-2">{{ @num_format($total) }}
                     {{ session('currency')['code'] }}</span></button>
         </div>
@@ -276,6 +276,7 @@ $locale_direction = LaravelLocalization::getCurrentLocaleDirection();
     <script>
         $(document).on('click', '#send_the_order', function(e) {
             e.preventDefault();
+            $('input').focusOut();
             console.log('click submit');
             if ($('#cart_form').valid()) {
                 $('#cart_form').submit();

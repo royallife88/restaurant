@@ -234,4 +234,18 @@ return [
 
     'currency' => 'devise',
     'footer_copyright' => 'Proudly developed at Sherifshalaby.tech, +97433231457',
+
+    'add_dining_room' => 'Ajouter une salle à manger',
+    'dining_room_name_already_exist' => 'Le nom de la salle à manger existe déjà.',
+    'add_new_table' => 'Ajouter un nouveau tableau',
+    'add_table' => 'Ajouter un tableau',
+    'dining_table_name_already_exist' => 'Le nom de la table existe déjà.',
+
+    'reserve' => 'réserve',
+    'order' => 'Commande',
+    'cancel_reservation' => 'Réservation de canal',
+    'table' => 'Table',
+    'pay_and_close' => 'Payer et fermer',
+    'dining_room' => 'Salle à manger',
+    'dining_table' => 'Table à manger',
 ];

@@ -234,4 +234,18 @@ return [
 
     'currency' => 'मुद्रा',
     'footer_copyright' => 'Proudly developed at Sherifshalaby.tech, +97433231457',
+
+    'add_dining_room' => 'भोजन कक्ष जोड़ें',
+    'dining_room_name_already_exist' => 'भोजन कक्ष का नाम पहले से मौजूद है।',
+    'add_new_table' => 'नई तालिका जोड़ें',
+    'add_table' => 'तालिका जोड़ें',
+    'dining_table_name_already_exist' => 'तालिका का नाम पहले से मौजूद है।',
+
+    'reserve' => 'रिज़र्व',
+    'order' => 'आदेश',
+    'cancel_reservation' => 'आरक्षण रद्द करो',
+    'table' => 'टेबल',
+    'pay_and_close' => 'भुगतान करें और बंद करें',
+    'dining_room' => 'भोजन कक्ष',
+    'dining_table' => 'खाने की मेज',
 ];

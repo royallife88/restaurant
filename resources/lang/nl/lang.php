@@ -231,4 +231,19 @@ return [
     'currency' => 'munteenheid',
     'footer_copyright' => 'Proudly developed at Sherifshalaby.tech, +97433231457',
 
+    'add_dining_room' => 'Eetkamer toevoegen',
+    'dining_room_name_already_exist' => 'De naam van de eetkamer bestaat al.',
+    'add_new_table' => 'Nieuwe tabel toevoegen',
+    'add_table' => 'Tabel toevoegen',
+    'dining_table_name_already_exist' => 'Tabelnaam bestaat al.',
+
+    'reserve' => 'Reserveren',
+    'order' => 'Volgorde',
+    'cancel_reservation' => 'Annuleer reservering',
+    'table' => 'Tafel',
+    'pay_and_close' => 'Betalen en sluiten',
+    'dining_room' => 'Eetkamer',
+    'dining_table' => 'Eettafel',
+
+
 ];

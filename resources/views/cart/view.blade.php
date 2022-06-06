@@ -151,8 +151,9 @@ $locale_direction = LaravelLocalization::getCurrentLocaleDirection();
 
                     <select id="table_no" name="table_no" required
                         class="w-1/4 mx-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        @foreach (range(1, 10, 1) as $number)
-                            <option value="{{ $number }}">{{ $number }}</option>
+                        <option value="">@lang('lang.please_select')</option>
+                        @foreach ($dining_tables as $key => $value)
+                            <option value="{{ $key }}">{{ $value }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -339,8 +340,10 @@ $locale_direction = LaravelLocalization::getCurrentLocaleDirection();
         $(document).on('change', 'input[name="delivery_type"]', function() {
             if ($(this).val() == 'dining_in') {
                 $('.inside_restaurant_div').removeClass('hidden');
+                $('#table_no').attr('required', true);
             } else {
                 $('.inside_restaurant_div').addClass('hidden');
+                $('#table_no').attr('required', false);
             }
         })
 

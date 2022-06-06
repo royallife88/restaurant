@@ -61,6 +61,8 @@ class User extends Authenticatable implements HasMedia
             'settings' => [
                 'size' => __('lang.size'),
                 'store' => __('lang.store'),
+                'dining_room' => __('lang.dining_room'),
+                'dining_table' => __('lang.dining_table'),
                 'user' => __('lang.user'),
                 'system_setting' => __('lang.system_setting'),
             ],

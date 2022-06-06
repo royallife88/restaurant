@@ -357,6 +357,20 @@ return [
             'can'      => 'settings.size.view',
         ],
         [
+            'key' => 'dining_rooms',
+            'text' => 'dining_rooms',
+            'route'  => 'dining_room.index',
+            'icon' => 'fas fa-person-booth',
+            'can'      => 'settings.dining_room.view',
+        ],
+        [
+            'key' => 'dining_tables',
+            'text' => 'dining_tables',
+            'route'  => 'dining_table.index',
+            'icon' => 'fas fa-stroopwafel',
+            'can'      => 'settings.dining_table.view',
+        ],
+        [
             'key' => 'stores',
             'text' => 'stores',
             'route'  => 'store.index',

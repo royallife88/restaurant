@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\DiningTable;
 use App\Models\Offer;
 use App\Models\Product;
 use App\Models\Store;
@@ -54,12 +55,14 @@ class CartController extends Controller
         $total = \Cart::session($user_id)->getTotal();
         $month_array = $this->commonUtil->getMonthsArray();
         $stores = Store::pluck('name', 'id');
+        $dining_tables = DiningTable::pluck('name', 'id');
 
         return view('cart.view')->with(compact(
             'stores',
             'extras',
             'total',
             'cart_content',
+            'dining_tables',
             'month_array'
         ));
     }

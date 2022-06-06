@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Events\NewOrderEvent;
+use App\Models\DiningTable;
 use App\Models\Order;
 use App\Models\OrderDetails;
 use Illuminate\Console\Command;
@@ -49,6 +50,13 @@ class SendOrderToPosSystem extends Command
             $orders = Order::whereNull('pos_transaction_id')->with(['order_details', 'store'])->get()->toArray();
 
             foreach ($orders as $order) {
+                $order['dining_table_id'] = null;
+                if (!empty($order['table_no'])) {
+                    $dining_table = DiningTable::find($order['table_no']);
+                    if (!empty($dining_table)) {
+                        $order['dining_table_id'] = $dining_table->pos_model_id;
+                    }
+                }
                 $response = Http::withHeaders([
                     'Authorization' => 'Bearer ' . $POS_ACCESS_TOKEN,
                 ])->post($POS_SYSTEM_URL . '/api/order', $order)->json();

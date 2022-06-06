@@ -230,4 +230,18 @@ return [
 
     'currency' => 'para birimi',
     'footer_copyright' => 'Proudly developed at Sherifshalaby.tech, +97433231457',
+
+    'add_dining_room' => 'Yemek Odası Ekle',
+    'dining_room_name_already_exist' => 'Yemek odası adı zaten var.',
+    'add_new_table' => 'Yeni Tablo Ekle',
+    'add_table' => 'Tablo Ekle',
+    'dining_table_name_already_exist' => 'Tablo adı zaten var.',
+
+    'reserve' => 'Rezerv',
+    'order' => 'Sipariş',
+    'cancel_reservation' => 'Rezervasyon iptali',
+    'table' => 'Tablo',
+    'pay_and_close' => 'Öde ve Kapat',
+    'dining_room' => 'Yemek odası',
+    'dining_table' => 'Yemek masası',
 ];

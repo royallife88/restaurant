@@ -130,7 +130,7 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    {!! Form::label('whatsapp', __('lang.whatsapp'), []) !!}
+                    {!! Form::label('whatsapp', __('lang.whatsapp'), []) !!} <small>i.e 90123456789</small>
                     {!! Form::text('whatsapp', !empty($settings['whatsapp']) ? $settings['whatsapp'] : null, ['class' => 'form-control']) !!}
                 </div>
             </div>

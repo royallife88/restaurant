@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Models\DiningRoom;
+use App\Models\DiningTable;
 use App\Models\Offer;
 use App\Models\Product;
 use App\Models\ProductClass;
@@ -70,7 +72,7 @@ class InitialPosDataSync extends Command
                 'Authorization' => 'Bearer ' . $POS_ACCESS_TOKEN,
             ])->get($POS_SYSTEM_URL . '/api/setting')->json();
 
-            if ($response_setting['success']) {
+            if (!empty($response_setting['success'])) {
                 $settings = $response_setting['data'];
 
                 $logo_url = $POS_SYSTEM_URL . '/uploads/' . rawurlencode($settings['logo']);
@@ -86,7 +88,7 @@ class InitialPosDataSync extends Command
                 'Authorization' => 'Bearer ' . $POS_ACCESS_TOKEN,
             ])->get($POS_SYSTEM_URL . '/api/store')->json();
 
-            if ($response_stores['success']) {
+            if (!empty($response_stores['success'])) {
                 $stores = $response_stores['data'];
                 $keep_stores = [];
                 foreach ($stores as $store) {
@@ -131,7 +133,7 @@ class InitialPosDataSync extends Command
             ])->get($POS_SYSTEM_URL . '/api/size')->json();
 
 
-            if ($response_size['success']) {
+            if (!empty($response_size['success'])) {
                 $sizes = $response_size['data'];
                 $keep_sizes = [];
                 foreach ($sizes as $size) {
@@ -159,6 +161,74 @@ class InitialPosDataSync extends Command
                 Size::whereNotIn('pos_model_id', $keep_sizes)->delete();
             }
 
+            // get dining rooms
+            $response_dining_room = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $POS_ACCESS_TOKEN,
+            ])->get($POS_SYSTEM_URL . '/api/dining-room')->json();
+
+
+            if (!empty($response_dining_room['success'])) {
+                $dining_rooms = $response_dining_room['data'];
+                $keep_dining_rooms = [];
+                foreach ($dining_rooms as $dining_room) {
+                    $keep_dining_rooms[] = $dining_room['id'];
+                    $dining_room_exist = DiningRoom::where('pos_model_id', $dining_room['id'])->first();
+                    if (empty($dining_room_exist)) {
+                        $dining_room_data = [
+                            'name' => $dining_room['name'],
+                            'pos_model_id' => $dining_room['id'],
+                            'created_at' => !empty($dining_room['created_at']) ? $dining_room['created_at'] : Carbon::now(),
+                            'updated_at' => !empty($dining_room['updated_at']) ? $dining_room['updated_at'] : Carbon::now(),
+                        ];
+                        DiningRoom::create($dining_room_data);
+                    } else {
+                        $dining_room_data = [
+                            'name' => $dining_room['name'],
+                            'pos_model_id' => $dining_room['id'],
+                            'updated_at' => empty($dining_room['updated_at']) ? $dining_room['updated_at'] : Carbon::now(),
+                        ];
+                        $dining_room_exist->update($dining_room_data);
+                    }
+                }
+                DiningRoom::whereNotIn('pos_model_id', $keep_dining_rooms)->delete();
+            }
+
+            // get dining tables
+            $response_dining_table = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $POS_ACCESS_TOKEN,
+            ])->get($POS_SYSTEM_URL . '/api/dining-table')->json();
+
+
+            if (!empty($response_dining_table['success'])) {
+                $dining_tables = $response_dining_table['data'];
+                $keep_dining_tables = [];
+                foreach ($dining_tables as $dining_table) {
+                    $keep_dining_tables[] = $dining_table['id'];
+                    $dining_table_exist = DiningTable::where('pos_model_id', $dining_table['id'])->first();
+                    if (empty($dining_table_exist)) {
+                        $dining_room = DiningRoom::where('pos_model_id', $dining_table['dining_room_id'])->first();
+                        $dining_table_data = [
+                            'name' => $dining_table['name'],
+                            'dining_room_id' => $dining_room->id,
+                            'pos_model_id' => $dining_table['id'],
+                            'created_at' => !empty($dining_table['created_at']) ? $dining_table['created_at'] : Carbon::now(),
+                            'updated_at' => !empty($dining_table['updated_at']) ? $dining_table['updated_at'] : Carbon::now(),
+                        ];
+                        DiningTable::create($dining_table_data);
+                    } else {
+                        $dining_room = DiningRoom::where('pos_model_id', $dining_table['dining_room_id'])->first();
+                        $dining_table_data = [
+                            'name' => $dining_table['name'],
+                            'dining_room_id' => $dining_room->id,
+                            'pos_model_id' => $dining_table['id'],
+                            'updated_at' => empty($dining_table['updated_at']) ? $dining_table['updated_at'] : Carbon::now(),
+                        ];
+                        $dining_table_exist->update($dining_table_data);
+                    }
+                }
+                DiningTable::whereNotIn('pos_model_id', $keep_dining_tables)->delete();
+            }
+
 
             // get product classes
             $response_pc = Http::withHeaders([
@@ -166,7 +236,7 @@ class InitialPosDataSync extends Command
             ])->get($POS_SYSTEM_URL . '/api/product-class')->json();
 
 
-            if ($response_pc['success']) {
+            if (!empty($response_pc['success'])) {
                 $i = 1;
                 $product_classes = $response_pc['data'];
                 $keep_product_classes = [];
@@ -219,7 +289,7 @@ class InitialPosDataSync extends Command
             ])->get($POS_SYSTEM_URL . '/api/product')->json();
 
 
-            if ($response_p['success']) {
+            if (!empty($response_p['success'])) {
                 $products = $response_p['data'];
                 $keep_products = [];
                 foreach ($products as $product) {
@@ -329,7 +399,7 @@ class InitialPosDataSync extends Command
                 'Authorization' => 'Bearer ' . $POS_ACCESS_TOKEN,
             ])->get($POS_SYSTEM_URL . '/api/sales-promotion')->json();
 
-            if ($response_offers['success']) {
+            if (!empty($response_offers['success'])) {
                 $offers = $response_offers['data'];
                 $keep_offers = [];
                 foreach ($offers as $offer) {

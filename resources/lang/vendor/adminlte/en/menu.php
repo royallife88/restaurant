@@ -48,4 +48,7 @@ return [
 
     'stores' => 'Stores',
     'customer_type' => 'Customer Type',
+
+    'dining_rooms' => 'Dining Rooms',
+    'dining_tables' => 'Dining Tables',
 ];

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\DiningTable;
 use App\Models\Order;
 use App\Utils\Util;
 use Illuminate\Http\Request;
@@ -67,6 +68,10 @@ class OrderController extends Controller
                         return __('lang.dining_in');
                     }
                 })
+                ->editColumn('table_no', function ($row) {
+                    $dining_table = DiningTable::find($row->table_no);
+                    return $dining_table->name;
+                })
                 ->editColumn('order_type', function ($row) {
                     if ($row->order_type == "order_later") {
                         return __('lang.order_later');
@@ -86,7 +91,7 @@ class OrderController extends Controller
                 ->editColumn('delivery_status', function ($row) {
                     if ($row->delivery_type == "dining_in") {
                         return '';
-                    }else{
+                    } else {
                         return ucfirst($row->delivery_status);
                     }
                 })
@@ -132,7 +137,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-       //
+        //
     }
 
     /**
@@ -143,7 +148,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-       //
+        //
     }
 
     /**

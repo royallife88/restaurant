@@ -72,6 +72,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         Route::resource('/store', 'Admin\StoreController')->name('index', 'store.index')->name('create', 'store.create');
         Route::resource('/customer-type', 'Admin\CustomerTypeController')->name('index', 'customer_type.index')->name('create', 'customer_type.create');
         Route::post('general/upload-image-temp', 'Admin\GeneralController@uploadImageTemp');
+        Route::resource('/dining-room', 'Admin\DiningRoomController')->name('index', 'dining_room.index')->name('create', 'dining_room.create');
+        Route::resource('/dining-table', 'Admin\DiningTableController')->name('index', 'dining_table.index')->name('create', 'dining_table.create');
     });
 });
 

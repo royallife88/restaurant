@@ -230,4 +230,18 @@ return [
 
     'currency' => 'واحد پول',
     'footer_copyright' => 'Proudly developed at Sherifshalaby.tech, +97433231457',
+
+    'add_dining_room' => 'اتاق غذاخوری را اضافه کنید',
+    'dining_room_name_already_exist' => 'نام اتاق غذاخوری از قبل وجود دارد.',
+    'add_new_table' => 'اضافه کردن جدول جدید',
+    'add_table' => 'اضافه کردن جدول',
+    'dining_table_name_already_exist' => 'نام جدول از قبل وجود دارد.',
+
+    'reserve' => 'ذخیره',
+    'order' => 'سفارش',
+    'cancel_reservation' => 'لغو رزرو',
+    'table' => 'جدول',
+    'pay_and_close' => 'پرداخت و بستن',
+    'dining_room' => 'ناهارخوری',
+    'dining_table' => 'میز غذاخوری',
 ];

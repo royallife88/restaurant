@@ -230,4 +230,18 @@ return [
 
     'currency' => 'عملة',
     'footer_copyright' => 'تمت البرمجة بكل فخر في شريف شلبي التقنية، 0097433231457',
+
+    'add_dining_room' => 'أضف صالة طعام',
+    'dining_room_name_already_exist' => 'اسم غرفة الطعام موجود بالفعل.',
+    'add_new_table' => 'أضف طاولة جديدة',
+    'add_table' => 'أضف الجدول',
+    'dining_table_name_already_exist' => 'اسم الجدول موجود بالفعل.',
+
+    'reserve' => 'حجز',
+    'order' => 'طلب',
+    'cancel_reservation' => 'إلغاء الحجز',
+    'table' => 'طاولة',
+    'pay_and_close' => 'دفع وإغلاق',
+    'dining_room' => 'غرفة العشاء',
+    'dining_table' => 'طاولة الطعام',
 ];

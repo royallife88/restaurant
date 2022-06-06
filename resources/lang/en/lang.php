@@ -236,4 +236,21 @@ return [
 
     'currency' => 'Currency',
     'footer_copyright' => 'Proudly developed at Sherifshalaby.tech, +97433231457',
+
+    'add_dining_room' => 'Add Dining Room',
+    'dining_room_name_already_exist' => 'Dining room name already exists.',
+    'add_new_table' => 'Add New Table',
+    'add_table' => 'Add Table',
+    'dining_table_name_already_exist' => 'Table name already exists.',
+
+    'reserve' => 'Reserve',
+    'order' => 'Order',
+    'cancel_reservation' => 'Cancel Reservation',
+    'table' => 'Table',
+    'pay_and_close' => 'Pay and Close',
+    'dining_room' => 'Dining Room',
+    'dining_table' => 'Dining Table',
+
+    'dining_rooms' => 'Dining Rooms',
+    'dining_tables' => 'Dining Tables',
 ];

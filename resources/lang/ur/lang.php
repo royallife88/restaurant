@@ -234,4 +234,18 @@ return [
 
     'currency' => 'کرنسی',
     'footer_copyright' => 'Proudly developed at Sherifshalaby.tech, +97433231457',
+
+    'add_dining_room' => 'کھانے کا کمرہ شامل کریں۔',
+    'dining_room_name_already_exist' => 'کھانے کے کمرے کا نام پہلے سے موجود ہے۔',
+    'add_new_table' => 'نیا ٹیبل شامل کریں۔',
+    'add_table' => 'ٹیبل شامل کریں۔',
+    'dining_table_name_already_exist' => 'ٹیبل کا نام پہلے سے موجود ہے۔',
+
+    'reserve' => 'ریزرو',
+    'order' => 'ترتیب',
+    'cancel_reservation' => 'ریزرویشن منسوخ کریں۔',
+    'table' => 'ٹیبل',
+    'pay_and_close' => 'ادائیگی کریں اور بند کریں۔',
+    'dining_room' => 'کھانا کھانے کا کمرہ',
+    'dining_table' => 'کھانے کی میز',
 ];

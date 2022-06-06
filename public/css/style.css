@@ -65,3 +65,7 @@ input:checked + .toggle-bg {
 [type="radio"] {
     color: #e63946;
 }
+.error{
+    color: #be0202;
+    font-size: 14px;
+}

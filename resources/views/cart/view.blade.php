@@ -276,7 +276,7 @@ $locale_direction = LaravelLocalization::getCurrentLocaleDirection();
     <script>
         $(document).on('click', '#send_the_order', function(e) {
             e.preventDefault();
-            $('input').focusOut();
+            $('input').focusout();
             console.log('click submit');
             if ($('#cart_form').valid()) {
                 $('#cart_form').submit();

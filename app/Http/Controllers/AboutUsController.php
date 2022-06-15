@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Store;
+use App\Models\System;
 use Illuminate\Http\Request;
 
 class AboutUsController extends Controller
@@ -13,7 +15,20 @@ class AboutUsController extends Controller
      */
     public function index()
     {
-        return view('about_us.index');
+        $content_data = System::getProperty('about_us_content');
+
+        $store = Store::orderBy('id', 'desc')->first();
+
+        $content = str_replace('{store_name}', $store->name, $content_data);
+        $content = str_replace('{store_location}', $store->location, $content);
+        $content = str_replace('{store_phone_number}', $store->phone_number, $content);
+
+        $all_store_names = Store::pluck('name', 'id')->toArray();
+        $all_store_names = implode(',', $all_store_names);
+        $content = str_replace('{all_store_names}', $all_store_names, $content);
+
+
+        return view('about_us.index')->with(compact('content'));
     }
 
     /**

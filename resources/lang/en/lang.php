@@ -253,4 +253,6 @@ return [
 
     'dining_rooms' => 'Dining Rooms',
     'dining_tables' => 'Dining Tables',
+    'tags' => 'Tags',
+    'use_tags_info' => 'Use tags in text like {store_name} to display data automatically.',
 ];

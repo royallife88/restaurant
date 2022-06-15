@@ -195,7 +195,9 @@
             </div>
             <div class="col-md-12">
                 <div class="form-group">
-                    {!! Form::label('about_us_content', __('lang.about_us_content'), []) !!}
+                    {!! Form::label('about_us_content', __('lang.about_us_content'), []) !!} <p>@lang('lang.tags'): {store_name}, {store_location}, {store_phone_number},
+                        {all_store_names} <i class="fa fa-info-circle text-primary" data-toggle="tooltip"
+                            title="@lang('lang.use_tags_info')"></i></p>
                     @php
                         $config = config('adminlte.editor');
                     @endphp
@@ -245,5 +247,8 @@
                 }
             });
         });
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
     </script>
 @endsection

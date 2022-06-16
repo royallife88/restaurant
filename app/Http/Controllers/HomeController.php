@@ -17,12 +17,13 @@ class HomeController extends Controller
     public function index()
     {
         $homepage_category_carousel = System::getProperty('homepage_category_carousel');
-        // $homepage_category_count = System::getProperty('homepage_category_count') ?? 8;
         $categories = ProductClass::orderBy('sort', 'asc')->where('status', 1)->where('name', '!=', 'Extras')->get();
 
         $offers_array = [];
 
-        $offers = Offer::whereDate('start_date', '<=', date('Y-m-d'))->whereDate('end_date', '>=', date('Y-m-d'))->where('status', 1)->get();
+        $offers = Offer::where(function ($q) {
+            $q->whereDate('start_date', '<=', date('Y-m-d'))->whereDate('end_date', '>=', date('Y-m-d'))->orWhereNull('start_date');
+        })->where('status', 1)->get();
         $offers_count = 0;
         $i = 0;
         foreach ($offers as $offer) {

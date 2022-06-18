@@ -70,7 +70,7 @@ class OrderController extends Controller
                 })
                 ->editColumn('table_no', function ($row) {
                     $dining_table = DiningTable::find($row->table_no);
-                    return $dining_table->name;
+                    return $dining_table->name ?? '';
                 })
                 ->editColumn('order_type', function ($row) {
                     if ($row->order_type == "order_later") {

@@ -65,36 +65,38 @@
         @endif
     </div>
 
-    <div class="container mx-auto">
-        <div class="flex">
-            <div class="flex-1">
-                <div class="w-1/2 h-10 bg-red text-white mx-auto text-center mt-14 rounded-xl">
-                    <h3 class="text-2xl text-white font-semibold py-1">@lang('lang.promotions')</h3>
+    @if(count($offers_array) > 0)
+        <div class="container mx-auto">
+            <div class="flex">
+                <div class="flex-1">
+                    <div class="w-1/2 h-10 bg-red text-white mx-auto text-center mt-14 rounded-xl">
+                        <h3 class="text-2xl text-white font-semibold py-1">@lang('lang.promotions')</h3>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container mx-auto mt-14">
-        <div class="w-full mx-auto p-4">
-            <div class="grid xs:grid-cols-3 md:grid-cols-4 xs:gap-2 md:gap-16 md:mt-12 xs:mt-6">
-                @foreach ($offers_array as $offer)
-                    @if ($loop->index == 4)
-                    @break
-                @endif
-                @include('home.partial.promotion_card', [
-                    'offer' => $offer,
-                ])
-            @endforeach
-        </div>
-    </div>
-
-    @if (count($offers_array) != 0 && $offers_count > 4)
-        <div class="container mx-auto">
-            <div class="flex md:justify-end xs:justify-center">
-                <a href="{{ action('ProductController@getPromotionProducts') }}"
-                    class="bg-red text-white font-semibold py-1 md:px-4 xs:px-8 rounded-md md:mr-16 md:mt-8">@lang('lang.show_more')</a>
+        <div class="container mx-auto mt-14">
+            <div class="w-full mx-auto p-4">
+                <div class="grid xs:grid-cols-3 md:grid-cols-4 xs:gap-2 md:gap-16 md:mt-12 xs:mt-6">
+                    @foreach ($offers_array as $offer)
+                        @if ($loop->index == 4)
+                        @break
+                    @endif
+                    @include('home.partial.promotion_card', [
+                        'offer' => $offer,
+                    ])
+                @endforeach
             </div>
         </div>
+
+        @if (count($offers_array) != 0 && $offers_count > 4)
+            <div class="container mx-auto">
+                <div class="flex md:justify-end xs:justify-center">
+                    <a href="{{ action('ProductController@getPromotionProducts') }}"
+                        class="bg-red text-white font-semibold py-1 md:px-4 xs:px-8 rounded-md md:mr-16 md:mt-8">@lang('lang.show_more')</a>
+                </div>
+            </div>
+        @endif
     @endif
 
     @include('layouts.partials.cart-row')

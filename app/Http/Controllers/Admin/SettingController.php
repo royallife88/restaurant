@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class SettingController extends Controller
 {
@@ -38,9 +39,11 @@ class SettingController extends Controller
 
         $settings = System::pluck('value', 'key');
         $currencies  = $this->commonUtil->allCurrencies();
+        $locales = $this->commonUtil->getSupportedLocalesArray();
 
         return view('admin.setting.setting')->with(compact(
             'settings',
+            'locales',
             'currencies'
         ));
     }
@@ -90,6 +93,10 @@ class SettingController extends Controller
             System::updateOrCreate(
                 ['key' => 'system_email'],
                 ['value' => $request->system_email, 'date_and_time' => Carbon::now(), 'created_by' => Auth::user()->id]
+            );
+            System::updateOrCreate(
+                ['key' => 'language'],
+                ['value' => $request->language, 'date_and_time' => Carbon::now(), 'created_by' => Auth::user()->id]
             );
             System::updateOrCreate(
                 ['key' => 'currency'],

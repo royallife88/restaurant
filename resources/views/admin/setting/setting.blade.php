@@ -34,8 +34,8 @@
             <div class="col-md-4">
                 <div class="form-group">
                     @if (!empty($settings['home_background_image']))
-                        <button type="button" class="btn btn-xs btn-danger remove_image" data-type="home_background_image"><i
-                                class="fa fa-times"></i></button>
+                        <button type="button" class="btn btn-xs btn-danger remove_image"
+                            data-type="home_background_image"><i class="fa fa-times"></i></button>
                     @endif
                     {!! Form::label('home_background_image', __('lang.home_background_image'), []) !!} <small class="text-red">@lang('lang.1350_450')</small>
                     <x-adminlte-input-file name="home_background_image" placeholder="{{ __('lang.choose_a_file') }}">
@@ -181,6 +181,10 @@
                     {!! Form::label('address', __('lang.address'), []) !!}
                     {!! Form::text('address', !empty($settings['address']) ? $settings['address'] : null, ['class' => 'form-control']) !!}
                 </div>
+            </div>
+            <div class="col-md-6">
+                {!! Form::label('language', __('lang.language'), []) !!}
+                {!! Form::select('language', $locales, !empty($settings['language']) ? $settings['language'] : null, ['class' => 'form-control select2', 'data-live-search' => 'true', 'placeholder' => __('lang.please_select')]) !!}
             </div>
             <div class="col-md-6">
                 {!! Form::label('currency', __('lang.currency'), []) !!}

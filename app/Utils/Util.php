@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rules\Unique;
 use Image;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class Util
 {
@@ -619,5 +620,23 @@ class Util
         $date_array[] = end($last_element);
 
         return $date_array;
+    }
+
+    /**
+     * get the supported locales array
+     *
+     * @return void
+     */
+    public function getSupportedLocalesArray()
+    {
+        $locales =  LaravelLocalization::getSupportedLocales();
+
+        $locale_array = [];
+
+        foreach ($locales as $key => $locale) {
+            $locale_array[$key] = $locale['name'];
+        }
+
+        return $locale_array;
     }
 }

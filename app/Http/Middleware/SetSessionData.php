@@ -33,6 +33,7 @@ class SetSessionData
             if (in_array($country, ['TR'])) {
                 $lang = 'tr';
             }
+            $lang = 'tr';
             app()->setLocale($lang);
         }
 

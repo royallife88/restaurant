@@ -22,6 +22,20 @@ class SetSessionData
      */
     public function handle(Request $request, Closure $next)
     {
+        if (app()->getLocale() == 'en') {
+            $ip = $_SERVER['REMOTE_ADDR'];
+            $details = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
+            $country = $details->country;
+            $lang = 'en';
+            if (in_array($country, ['SA', 'AE', 'QA', 'EG', 'OM', 'BH', 'DZ', 'KM', 'IQ', 'JO', 'KW', 'LB', 'LY', 'MR', 'MA', 'PS', 'SO', 'SD', 'SY', 'TN', 'YE'])) {
+                $lang = 'ar';
+            }
+            if (in_array($country, ['TR'])) {
+                $lang = 'tr';
+            }
+            app()->setLocale($lang);
+        }
+
         $user_id = Session::get('user_id');
         if (empty($user_id)) {
             $user_id = uniqid('USER_');

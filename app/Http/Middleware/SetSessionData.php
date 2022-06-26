@@ -10,6 +10,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class SetSessionData
 {
@@ -22,19 +23,23 @@ class SetSessionData
      */
     public function handle(Request $request, Closure $next)
     {
-        if (app()->getLocale() == 'en') {
-            $ip = $_SERVER['REMOTE_ADDR'];
-            $details = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
-            $country = $details->country;
-            $lang = 'en';
-            if (in_array($country, ['SA', 'AE', 'QA', 'EG', 'OM', 'BH', 'DZ', 'KM', 'IQ', 'JO', 'KW', 'LB', 'LY', 'MR', 'MA', 'PS', 'SO', 'SD', 'SY', 'TN', 'YE'])) {
-                $lang = 'ar';
-            }
-            if (in_array($country, ['TR'])) {
-                $lang = 'tr';
-            }
+        $current_locale = LaravelLocalization::getCurrentLocale();
+        $ip = $_SERVER['REMOTE_ADDR'];
+        $details = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
+        $country = $details->country ?? 'SA';
+        $lang = 'en';
+        if (in_array($country, ['SA', 'AE', 'QA', 'EG', 'OM', 'BH', 'DZ', 'KM', 'IQ', 'JO', 'KW', 'LB', 'LY', 'MR', 'MA', 'PS', 'SO', 'SD', 'SY', 'TN', 'YE'])) {
+            $lang = 'ar';
+        }
+        if (in_array($country, ['TR'])) {
             $lang = 'tr';
+        }
+        $lang = 'fr';
+
+        if ($current_locale != $lang) {
             app()->setLocale($lang);
+
+            return redirect(url('/') . '/' . $lang);
         }
 
         $user_id = Session::get('user_id');

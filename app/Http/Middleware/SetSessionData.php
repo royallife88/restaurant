@@ -33,8 +33,8 @@ class SetSessionData
                 $lang = $setting_lang;
             } else {
                 $ip = $_SERVER['REMOTE_ADDR'];
-                $details = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
-                $country = $details->country ?? 'US';
+                $details = json_decode(file_get_contents("http://ip-api.com/{$ip}"));
+                $country = $details->countryCode ?? 'US';
                 $lang = 'en';
                 if (in_array($country, ['SA', 'AE', 'QA', 'EG', 'OM', 'BH', 'DZ', 'KM', 'IQ', 'JO', 'KW', 'LB', 'LY', 'MR', 'MA', 'PS', 'SO', 'SD', 'SY', 'TN', 'YE'])) {
                     $lang = 'ar';

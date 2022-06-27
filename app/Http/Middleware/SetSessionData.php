@@ -10,6 +10,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Fluent;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class SetSessionData
@@ -33,8 +34,9 @@ class SetSessionData
                 $lang = $setting_lang;
             } else {
                 $ip = $_SERVER['REMOTE_ADDR'];
-                $details = json_decode(file_get_contents("http://ip-api.com/{$ip}"));
-                $country = $details->countryCode ?? 'US';
+                $details = unserialize(file_get_contents("http://www.geoplugin.net/php.gp?{$ip}"));
+                $country = $details['geoplugin_countryCode'] ?? 'US';
+
                 $lang = 'en';
                 if (in_array($country, ['SA', 'AE', 'QA', 'EG', 'OM', 'BH', 'DZ', 'KM', 'IQ', 'JO', 'KW', 'LB', 'LY', 'MR', 'MA', 'PS', 'SO', 'SD', 'SY', 'TN', 'YE'])) {
                     $lang = 'ar';

@@ -33,17 +33,17 @@ class SetSessionData
             if (!empty($setting_lang)) {
                 $lang = $setting_lang;
             } else {
-                $ip = $_SERVER['REMOTE_ADDR'];
-                $details = unserialize(file_get_contents("http://www.geoplugin.net/php.gp?{$ip}"));
-                $country = $details['geoplugin_countryCode'] ?? 'US';
+                // $ip = $_SERVER['REMOTE_ADDR'];
+                // $details = unserialize(file_get_contents("http://www.geoplugin.net/php.gp?{$ip}"));
+                // $country = $details['geoplugin_countryCode'] ?? 'US';
 
-                $lang = 'en';
-                if (in_array($country, ['SA', 'AE', 'QA', 'EG', 'OM', 'BH', 'DZ', 'KM', 'IQ', 'JO', 'KW', 'LB', 'LY', 'MR', 'MA', 'PS', 'SO', 'SD', 'SY', 'TN', 'YE'])) {
+                // $lang = 'en';
+                // if (in_array($country, ['SA', 'AE', 'QA', 'EG', 'OM', 'BH', 'DZ', 'KM', 'IQ', 'JO', 'KW', 'LB', 'LY', 'MR', 'MA', 'PS', 'SO', 'SD', 'SY', 'TN', 'YE'])) {
                     $lang = 'ar';
-                }
-                if (in_array($country, ['TR'])) {
-                    $lang = 'tr';
-                }
+                // }
+                // if (in_array($country, ['TR'])) {
+                //     $lang = 'tr';
+                // }
             }
 
             if ($current_locale != $lang) {

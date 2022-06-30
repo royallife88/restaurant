@@ -31,6 +31,9 @@
     <script>
         @if (!empty(session('order_completed')))
             swal.fire("Done", "Your order has been sent successfully", "success");
+            @php
+                session(['order_completed' => null]);
+            @endphp
         @endif
         @if (!empty(session('status')))
             @if (session('status.success') == 1)

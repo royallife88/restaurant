@@ -150,6 +150,7 @@ class OrderController extends Controller
 
             $whatsapp = System::getProperty('whatsapp');
             $url = "https://api.whatsapp.com/send/?phone=" . $whatsapp . "&text=" . $text . "&app_absent=0";
+            session(['order_completed', '1']);
 
             return redirect()->to($url);
 

@@ -20,7 +20,7 @@
         @include('layouts.partials.main-header')
     @endif
     <main class="relative bg-cover bg-no-repeat bg-center"
-        style="background-image: url('@if(!empty(session('page_background_image'))){{ asset('uploads/' . session('page_background_image')) }}@else{{ asset('images/default-page-bg.png') }}@endif')">
+        style="background-image: url('@if (!empty(session('page_background_image'))) {{ asset('uploads/' . session('page_background_image')) }}@else{{ asset('images/default-page-bg.png') }} @endif')">
         @yield('content')
     </main>
     @include('layouts.partials.footer')
@@ -29,10 +29,14 @@
     </script>
     @include('layouts.partials.javascript')
     <script>
+        @if (!empty(session('order_completed')))
+            swal.fire("Done", "Your order has been sent successfully", "success");
+        @endif
         @if (!empty(session('status')))
             @if (session('status.success') == 1)
                 swal.fire("", "{{ session('status.msg') }}", "success");
-            @elseif(session('status.success') == '0')
+            @elseif
+                (session('status.success') == '0')
                 swal.fire("@lang('lang.error')!", "{{ session('status.msg') }}", "error");
             @endif
         @endif
